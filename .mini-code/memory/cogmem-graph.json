@@ -1,0 +1,3450 @@
+{
+  "schema_version": 2,
+  "nodes": [
+    {
+      "node_id": "p_12dea96fec205935",
+      "node_type": "person",
+      "canonical_name": "User",
+      "aliases": [],
+      "description": "Person: User",
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "User"
+    },
+    {
+      "node_id": "p_27a9612b3207eb0f",
+      "node_type": "person",
+      "canonical_name": "Assistant",
+      "aliases": [],
+      "description": "Person: Assistant",
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Assistant"
+    },
+    {
+      "node_id": "concept_c8f89d196ba7391a",
+      "node_type": "concept",
+      "name": "notes/todo.md",
+      "aliases": [],
+      "description": "Markdown to-do file created in the current directory during this session.",
+      "mention_count": 21,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: notes/todo.md. Markdown to-do file created in the current directory during this session."
+    },
+    {
+      "node_id": "concept_0668f64fb89f28b1",
+      "node_type": "concept",
+      "name": "notes/todo.md format",
+      "aliases": [],
+      "description": "Rules requiring one todo per line, `- [ ]` prefixes, and the current date as the first line.",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: notes/todo.md format. Rules requiring one todo per line, `- [ ]` prefixes, and the current date as the first line."
+    },
+    {
+      "node_id": "concept_93a2c75c704a4b6f",
+      "node_type": "concept",
+      "name": "current date",
+      "aliases": [],
+      "description": "The day's date written as the first line of notes/todo.md.",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: current date. The day's date written as the first line of notes/todo.md."
+    },
+    {
+      "node_id": "concept_cdcd5c9a3a475f22",
+      "node_type": "concept",
+      "name": "[ ]",
+      "aliases": [
+        "- [ ]"
+      ],
+      "description": "Checkbox prefix used for open todo items in notes/todo.md.",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: [ ]. Checkbox prefix used for open todo items in notes/todo.md."
+    },
+    {
+      "node_id": "concept_3c345a8aed30f94c",
+      "node_type": "concept",
+      "name": "[x]",
+      "aliases": [
+        "- [x]"
+      ],
+      "description": "Checkbox prefix used for completed todo items in notes/todo.md.",
+      "mention_count": 4,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: [x]. Checkbox prefix used for completed todo items in notes/todo.md."
+    },
+    {
+      "node_id": "concept_302ee7bb4366d21c",
+      "node_type": "concept",
+      "name": "todo item",
+      "aliases": [],
+      "description": "An individual task line stored in notes/todo.md.",
+      "mention_count": 6,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: todo item. An individual task line stored in notes/todo.md."
+    },
+    {
+      "node_id": "concept_f78a71af8bbf8cc2",
+      "node_type": "concept",
+      "name": "readme",
+      "aliases": [
+        "README"
+      ],
+      "description": "Project README referenced by the first generated todo item.",
+      "mention_count": 2,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: readme. Project README referenced by the first generated todo item."
+    },
+    {
+      "node_id": "event_e35f7632d7617d10",
+      "node_type": "event",
+      "title": "User asked to create notes/todo.md with a specified todo format",
+      "description": "User asked to create notes/todo.md with a specified todo format",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_0668f64fb89f28b1"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: User asked to create notes/todo.md with a specified todo format. User asked to create notes/todo.md with a specified todo format. Concepts: notes/todo.md, notes/todo.md format"
+    },
+    {
+      "node_id": "event_f6833811765f8b85",
+      "node_type": "event",
+      "title": "Assistant created notes/todo.md with the current date as the first line",
+      "description": "Assistant created notes/todo.md with the current date as the first line",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_93a2c75c704a4b6f"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: Assistant created notes/todo.md with the current date as the first line. Assistant created notes/todo.md with the current date as the first line. Concepts: notes/todo.md, current date"
+    },
+    {
+      "node_id": "event_8a6b7a0315c3b286",
+      "node_type": "event",
+      "title": "Assistant asked the user to provide todo items for appending",
+      "description": "Assistant asked the user to provide todo items for appending",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_302ee7bb4366d21c",
+        "concept_cdcd5c9a3a475f22"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "把待办发给我，我会按 `- [ ] 内容` 的格式逐行追加。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: Assistant asked the user to provide todo items for appending. Assistant asked the user to provide todo items for appending. Concepts: notes/todo.md, todo item, [ ]"
+    },
+    {
+      "node_id": "event_356a2f92a86d3205",
+      "node_type": "event",
+      "title": "User praised the created todo file",
+      "description": "User praised the created todo file",
+      "participants": [
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: User praised the created todo file. User praised the created todo file. Concepts: notes/todo.md"
+    },
+    {
+      "node_id": "event_7777fc818ebce585",
+      "node_type": "event",
+      "title": "User asked to change the second todo item to start with - [x]",
+      "description": "User asked to change the second todo item to start with - [x]",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_3c345a8aed30f94c",
+        "concept_302ee7bb4366d21c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "把 todo.md 的第二项改成 - [x] 开头。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: User asked to change the second todo item to start with - [x]. User asked to change the second todo item to start with - [x]. Concepts: notes/todo.md, [x], todo item"
+    },
+    {
+      "node_id": "event_23feb0d54ed18438",
+      "node_type": "event",
+      "title": "Assistant reported that notes/todo.md had only the date line and asked for the second todo's content",
+      "description": "Assistant reported that notes/todo.md had only the date line and asked for the second todo's content",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_302ee7bb4366d21c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "`notes/todo.md` 目前只有日期一行，还没有任何待办项。请告诉我第二条待办的内容（或者确认要添加哪一条并标记为 `- [x]`）。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: Assistant reported that notes/todo.md had only the date line and asked for the second todo's content. Assistant reported that notes/todo.md had only the date line and asked for the second todo's content. Concepts: notes/todo.md, todo item"
+    },
+    {
+      "node_id": "event_e5944fb9d9ddf321",
+      "node_type": "event",
+      "title": "User told the assistant to decide the todo content",
+      "description": "User told the assistant to decide the todo content",
+      "participants": [
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_302ee7bb4366d21c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: User told the assistant to decide the todo content. User told the assistant to decide the todo content. Concepts: todo item"
+    },
+    {
+      "node_id": "event_2a4719aba4bd5708",
+      "node_type": "event",
+      "title": "Assistant added two todo items and marked the second as completed",
+      "description": "Assistant added two todo items and marked the second as completed",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a",
+        "concept_302ee7bb4366d21c",
+        "concept_3c345a8aed30f94c",
+        "concept_f78a71af8bbf8cc2"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "[assistant]: 已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: Assistant added two todo items and marked the second as completed. Assistant added two todo items and marked the second as completed. Concepts: notes/todo.md, todo item, [x], readme"
+    },
+    {
+      "node_id": "event_cefd6d345cd8fc3e",
+      "node_type": "event",
+      "title": "User accepted the updated todo file",
+      "description": "User accepted the updated todo file",
+      "participants": [
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_c8f89d196ba7391a"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Event: User accepted the updated todo file. User accepted the updated todo file. Concepts: notes/todo.md"
+    },
+    {
+      "node_id": "concept_98f54143ab4e86b2",
+      "node_type": "concept",
+      "name": "project",
+      "aliases": [],
+      "description": "project",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: project. project"
+    },
+    {
+      "node_id": "fact_50a572128a46327d",
+      "node_type": "fact",
+      "subject": "project",
+      "predicate": "has_file",
+      "object": "notes/todo.md",
+      "description": "project has file notes/todo.md",
+      "subject_id": "concept_98f54143ab4e86b2",
+      "object_id": "concept_c8f89d196ba7391a",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: project has file notes/todo.md"
+    },
+    {
+      "node_id": "fact_7f7740d46410902a",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "specified",
+      "object": "notes/todo.md format",
+      "description": "User specified notes/todo.md format",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_0668f64fb89f28b1",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: User specified notes/todo.md format"
+    },
+    {
+      "node_id": "fact_4a805df6f5585290",
+      "node_type": "fact",
+      "subject": "notes/todo.md",
+      "predicate": "has_first_line",
+      "object": "current date",
+      "description": "notes/todo.md has first line current date",
+      "subject_id": "concept_c8f89d196ba7391a",
+      "object_id": "concept_93a2c75c704a4b6f",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: notes/todo.md has first line current date"
+    },
+    {
+      "node_id": "fact_864c19cfe1ed675a",
+      "node_type": "fact",
+      "subject": "notes/todo.md",
+      "predicate": "uses_checkbox_prefix",
+      "object": "- [ ]",
+      "description": "notes/todo.md uses checkbox prefix - [ ]",
+      "subject_id": "concept_c8f89d196ba7391a",
+      "object_id": "concept_cdcd5c9a3a475f22",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "每行一个待办、用 - [ ] 开头、文件第一行写当天日期。",
+        "第二项已使用 `- [x]` 开头。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:49.629Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: notes/todo.md uses checkbox prefix - [ ]",
+      "derived_from_event_ids": []
+    },
+    {
+      "node_id": "concept_17d3c191c1b21ef9",
+      "node_type": "concept",
+      "name": "reading project readme",
+      "aliases": [
+        "reading project README"
+      ],
+      "description": "reading project readme",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: reading project readme. reading project readme (reading project README)"
+    },
+    {
+      "node_id": "fact_0ef1582f6c09305e",
+      "node_type": "fact",
+      "subject": "notes/todo.md",
+      "predicate": "contains_todo_item",
+      "object": "reading project README",
+      "description": "notes/todo.md contains todo item reading project README",
+      "subject_id": "concept_c8f89d196ba7391a",
+      "object_id": "concept_17d3c191c1b21ef9",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "- [ ] 阅读项目 README，了解运行与测试方式"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: notes/todo.md contains todo item reading project README"
+    },
+    {
+      "node_id": "concept_f8d20165b2ce6de1",
+      "node_type": "concept",
+      "name": "creating notes/todo.md",
+      "aliases": [],
+      "description": "creating notes/todo.md",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: creating notes/todo.md. creating notes/todo.md"
+    },
+    {
+      "node_id": "fact_e1532b357eca9f69",
+      "node_type": "fact",
+      "subject": "notes/todo.md",
+      "predicate": "contains_completed_todo_item",
+      "object": "creating notes/todo.md",
+      "description": "notes/todo.md contains completed todo item creating notes/todo.md",
+      "subject_id": "concept_c8f89d196ba7391a",
+      "object_id": "concept_f8d20165b2ce6de1",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "- [x] 创建 notes/todo.md 并确认格式"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: notes/todo.md contains completed todo item creating notes/todo.md"
+    },
+    {
+      "node_id": "concept_27a9612b3207eb0f",
+      "node_type": "concept",
+      "name": "assistant",
+      "aliases": [],
+      "description": "assistant",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Concept: assistant. assistant"
+    },
+    {
+      "node_id": "fact_181f5b9f6eaa2305",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "delegates_todo_content_decisions",
+      "object": "assistant",
+      "description": "User delegates todo content decisions assistant",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_27a9612b3207eb0f",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "3ad471ca"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。"
+      ],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Fact: User delegates todo content decisions assistant"
+    },
+    {
+      "node_id": "claim_229773e156461ed6",
+      "node_type": "claim",
+      "source_person_id": "p_12dea96fec205935",
+      "target": "notes/todo.md",
+      "target_id": "concept_c8f89d196ba7391a",
+      "content": "meets the requested format",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Claim by User about notes/todo.md: meets the requested format"
+    },
+    {
+      "node_id": "claim_b0a93ea24dfcd177",
+      "node_type": "claim",
+      "source_person_id": "p_12dea96fec205935",
+      "target": "notes/todo.md",
+      "target_id": "concept_c8f89d196ba7391a",
+      "content": "is acceptable after the update",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [],
+      "created_at": "2026-10-25T13:46:45.275Z",
+      "updated_at": "2026-10-25T13:46:45.275Z",
+      "source_session_id": "3ad471ca",
+      "embedding_text": "Claim by User about notes/todo.md: is acceptable after the update"
+    },
+    {
+      "node_id": "fact_c37aa42d68e14739",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "todo_file_convention",
+      "object": "notes/todo.md",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_c8f89d196ba7391a",
+      "description": "The user maintains a todo list at notes/todo.md and prefers standard Markdown checkbox formatting, including using '- [x]' to mark completed items.",
+      "confidence": 0.8,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.8400000000000001,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_e35f7632d7617d10",
+        "event_356a2f92a86d3205",
+        "event_7777fc818ebce585",
+        "event_cefd6d345cd8fc3e"
+      ],
+      "derived_from_event_ids": [
+        "event_e35f7632d7617d10",
+        "event_356a2f92a86d3205",
+        "event_7777fc818ebce585",
+        "event_cefd6d345cd8fc3e"
+      ],
+      "evidence": [
+        "帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。",
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。",
+        "把 todo.md 的第二项改成 - [x] 开头。"
+      ],
+      "created_at": "2026-10-25T13:46:46.802Z",
+      "updated_at": "2026-10-25T13:46:46.802Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User todo file convention notes/todo.md: The user maintains a todo list at notes/todo.md and prefers standard Markdown checkbox formatting, including using '- [x]' to mark completed items."
+    },
+    {
+      "node_id": "fact_51d33d46f22f07bf",
+      "node_type": "fact",
+      "subject": "Assistant",
+      "predicate": "todo_file_maintenance_convention",
+      "object": "notes/todo.md",
+      "subject_id": "p_27a9612b3207eb0f",
+      "object_id": "concept_c8f89d196ba7391a",
+      "description": "When maintaining notes/todo.md, Assistant records the current date as the first line, asks the user for todo item content rather than inventing it, and appends items while marking completed ones.",
+      "confidence": 0.85,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.8600000000000001,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_f6833811765f8b85",
+        "event_8a6b7a0315c3b286",
+        "event_23feb0d54ed18438",
+        "event_2a4719aba4bd5708"
+      ],
+      "derived_from_event_ids": [
+        "event_f6833811765f8b85",
+        "event_8a6b7a0315c3b286",
+        "event_23feb0d54ed18438",
+        "event_2a4719aba4bd5708"
+      ],
+      "evidence": [
+        "已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。",
+        "把待办发给我，我会按 `- [ ] 内容` 的格式逐行追加。",
+        "`notes/todo.md` 目前只有日期一行，还没有任何待办项。请告诉我第二条待办的内容（或者确认要添加哪一条并标记为 `- [x]`）。"
+      ],
+      "created_at": "2026-10-25T13:46:48.210Z",
+      "updated_at": "2026-10-25T13:46:48.210Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "Assistant todo file maintenance convention notes/todo.md: When maintaining notes/todo.md, Assistant records the current date as the first line, asks the user for todo item content rather than inventing it, and appends items while marking completed ones."
+    },
+    {
+      "node_id": "fact_9235505506a07bca",
+      "node_type": "fact",
+      "subject": "Assistant",
+      "predicate": "todo_item_content_sourcing",
+      "object": "todo item",
+      "subject_id": "p_27a9612b3207eb0f",
+      "object_id": "concept_302ee7bb4366d21c",
+      "description": "When appending todo items to notes/todo.md, the assistant asks the user to supply the item content rather than inventing it, and confirms what is already present in the file before adding.",
+      "confidence": 0.65,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.7,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_8a6b7a0315c3b286",
+        "event_23feb0d54ed18438",
+        "event_2a4719aba4bd5708"
+      ],
+      "derived_from_event_ids": [
+        "event_8a6b7a0315c3b286",
+        "event_23feb0d54ed18438",
+        "event_2a4719aba4bd5708"
+      ],
+      "evidence": [
+        "把待办发给我，我会按 `- [ ] 内容` 的格式逐行追加。",
+        "`notes/todo.md` 目前只有日期一行，还没有任何待办项。请告诉我第二条待办的内容（或者确认要添加哪一条并标记为 `- [x]`）。",
+        "[assistant]: 已创建 `notes/todo.md`，第一行为当天日期 `2026-10-25`。"
+      ],
+      "created_at": "2026-10-25T13:46:49.476Z",
+      "updated_at": "2026-10-25T13:46:49.476Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "Assistant todo item content sourcing todo item: When appending todo items to notes/todo.md, the assistant asks the user to supply the item content rather than inventing it, and confirms what is already present in the file before adding."
+    },
+    {
+      "node_id": "p_ee48404aa1eca802",
+      "node_type": "person",
+      "canonical_name": "林娜",
+      "aliases": [],
+      "description": "Person: 林娜",
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "林娜"
+    },
+    {
+      "node_id": "p_4e999891ae7c8b13",
+      "node_type": "person",
+      "canonical_name": "张伟",
+      "aliases": [],
+      "description": "Person: 张伟",
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "张伟"
+    },
+    {
+      "node_id": "p_51ae7043ed226260",
+      "node_type": "person",
+      "canonical_name": "王芳",
+      "aliases": [],
+      "description": "Person: 王芳",
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "王芳"
+    },
+    {
+      "node_id": "concept_a0feb779b9488c95",
+      "node_type": "concept",
+      "name": "notes/done.md",
+      "aliases": [],
+      "description": "已完成事项清单文件，按 notes/todo.md 的格式新建。",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: notes/done.md. 已完成事项清单文件，按 notes/todo.md 的格式新建。"
+    },
+    {
+      "node_id": "concept_7e1e2e3c164a4c2c",
+      "node_type": "concept",
+      "name": "todo 格式",
+      "aliases": [],
+      "description": "首行为日期、之后每行用 \"- [x] 内容\" 记录一条事项的清单写法。",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: todo 格式. 首行为日期、之后每行用 \"- [x] 内容\" 记录一条事项的清单写法。"
+    },
+    {
+      "node_id": "concept_ee48404aa1eca802",
+      "node_type": "concept",
+      "name": "林娜",
+      "aliases": [],
+      "description": "用户的妻子，儿科医生，在市儿童医院工作。",
+      "mention_count": 4,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 林娜. 用户的妻子，儿科医生，在市儿童医院工作。"
+    },
+    {
+      "node_id": "concept_55d72f3b348d3835",
+      "node_type": "concept",
+      "name": "儿科医生",
+      "aliases": [],
+      "description": "林娜的职业，用户明确说明过。",
+      "mention_count": 8,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 儿科医生. 林娜的职业，用户明确说明过。"
+    },
+    {
+      "node_id": "concept_f1a5adf91bbc9e31",
+      "node_type": "concept",
+      "name": "市儿童医院",
+      "aliases": [],
+      "description": "林娜的工作单位。",
+      "mention_count": 8,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 市儿童医院. 林娜的工作单位。"
+    },
+    {
+      "node_id": "concept_d42672cafb22c069",
+      "node_type": "concept",
+      "name": "产品评审会",
+      "aliases": [],
+      "description": "上周三用户与张伟、王芳召开的会议，会上决定把发布周期改为双周。",
+      "mention_count": 6,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 产品评审会. 上周三用户与张伟、王芳召开的会议，会上决定把发布周期改为双周。"
+    },
+    {
+      "node_id": "concept_4bc93e06480116bd",
+      "node_type": "concept",
+      "name": "双周发布",
+      "aliases": [],
+      "description": "评审会定下的正式发布周期决议，目前仍然有效。",
+      "mention_count": 6,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 双周发布. 评审会定下的正式发布周期决议，目前仍然有效。"
+    },
+    {
+      "node_id": "concept_d9216671f27540cb",
+      "node_type": "concept",
+      "name": "每月一次",
+      "aliases": [],
+      "description": "张伟个人倾向的发布节奏，尚未推翻双周决议。",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 每月一次. 张伟个人倾向的发布节奏，尚未推翻双周决议。"
+    },
+    {
+      "node_id": "concept_e062a495668f8925",
+      "node_type": "concept",
+      "name": "浦东",
+      "aliases": [],
+      "description": "用户目前的居住地。",
+      "mention_count": 8,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 浦东. 用户目前的居住地。"
+    },
+    {
+      "node_id": "event_758de83bfc9f08e5",
+      "node_type": "event",
+      "title": "用户要求按 todo 格式新建 notes/done.md",
+      "description": "用户要求按 todo 格式新建 notes/done.md",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_a0feb779b9488c95",
+        "concept_7e1e2e3c164a4c2c",
+        "concept_c8f89d196ba7391a"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "再帮我建一个 notes/done.md，还是用 todo 那个格式。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户要求按 todo 格式新建 notes/done.md. 用户要求按 todo 格式新建 notes/done.md. Concepts: notes/done.md, todo 格式, notes/todo.md"
+    },
+    {
+      "node_id": "event_5f9c78102f3c8bb0",
+      "node_type": "event",
+      "title": "用户告知妻子的姓名、职业和工作单位",
+      "description": "用户告知妻子的姓名、职业和工作单位",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_ee48404aa1eca802",
+        "concept_55d72f3b348d3835",
+        "concept_f1a5adf91bbc9e31"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户告知妻子的姓名、职业和工作单位. 用户告知妻子的姓名、职业和工作单位. Concepts: 林娜, 儿科医生, 市儿童医院"
+    },
+    {
+      "node_id": "event_0f452c31de49d0ab",
+      "node_type": "event",
+      "title": "用户告知上周三与张伟、王芳开了产品评审会并决定双周发布",
+      "description": "用户告知上周三与张伟、王芳开了产品评审会并决定双周发布",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_d42672cafb22c069",
+        "concept_4bc93e06480116bd"
+      ],
+      "time_expression": "上周三",
+      "resolved_time": "2026-10-18",
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "上周三我和张伟、王芳开了产品评审会，会上决定把发布周期改成双周。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户告知上周三与张伟、王芳开了产品评审会并决定双周发布. 用户告知上周三与张伟、王芳开了产品评审会并决定双周发布. Concepts: 产品评审会, 双周发布"
+    },
+    {
+      "node_id": "concept_4e999891ae7c8b13",
+      "node_type": "concept",
+      "name": "张伟",
+      "aliases": [],
+      "description": "张伟",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 张伟. 张伟"
+    },
+    {
+      "node_id": "event_1fa31a7c2bc9913c",
+      "node_type": "event",
+      "title": "用户告知张伟认为双周发布太激进并倾向每月一次",
+      "description": "用户告知张伟认为双周发布太激进并倾向每月一次",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_4e999891ae7c8b13",
+        "concept_4bc93e06480116bd",
+        "concept_d9216671f27540cb"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "张伟觉得双周发布太激进了，他倾向每月一次。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户告知张伟认为双周发布太激进并倾向每月一次. 用户告知张伟认为双周发布太激进并倾向每月一次. Concepts: 张伟, 双周发布, 每月一次"
+    },
+    {
+      "node_id": "event_d733a72d212e58b0",
+      "node_type": "event",
+      "title": "用户询问妻子的工作",
+      "description": "用户询问妻子的工作",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_ee48404aa1eca802",
+        "concept_55d72f3b348d3835",
+        "concept_f1a5adf91bbc9e31"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我妻子是做什么工作的？"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户询问妻子的工作. 用户询问妻子的工作. Concepts: 林娜, 儿科医生, 市儿童医院"
+    },
+    {
+      "node_id": "event_5692294e7938f436",
+      "node_type": "event",
+      "title": "用户询问评审会决议和张伟的态度",
+      "description": "用户询问评审会决议和张伟的态度",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_d42672cafb22c069",
+        "concept_4bc93e06480116bd",
+        "concept_d9216671f27540cb"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "上次评审会都决定了什么？张伟是什么态度？"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户询问评审会决议和张伟的态度. 用户询问评审会决议和张伟的态度. Concepts: 产品评审会, 双周发布, 每月一次"
+    },
+    {
+      "node_id": "event_b52e37057ddea54d",
+      "node_type": "event",
+      "title": "用户告知目前住在浦东",
+      "description": "用户告知目前住在浦东",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_e062a495668f8925"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我现在住在浦东。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Event: 用户告知目前住在浦东. 用户告知目前住在浦东. Concepts: 浦东"
+    },
+    {
+      "node_id": "fact_a45984a8bb4c00c1",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "lives_in",
+      "object": "浦东",
+      "description": "User lives in 浦东",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_e062a495668f8925",
+      "confidence": 0.6,
+      "lifecycle": "archived",
+      "is_latest": false,
+      "valid_from": "2026-10-25",
+      "mention_count": 2,
+      "source_sessions": [
+        "d5b46d5c",
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "我现在住在浦东。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: User lives in 浦东",
+      "valid_to": "2026-10-25"
+    },
+    {
+      "node_id": "fact_bcbacff6dce3cab9",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "has_wife_named",
+      "object": "林娜",
+      "description": "User has wife named 林娜",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_ee48404aa1eca802",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "[user]: 记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: User has wife named 林娜"
+    },
+    {
+      "node_id": "fact_63887e25efa23c6a",
+      "node_type": "fact",
+      "subject": "林娜",
+      "predicate": "works_as",
+      "object": "儿科医生",
+      "description": "林娜 works as 儿科医生",
+      "subject_id": "p_ee48404aa1eca802",
+      "object_id": "concept_55d72f3b348d3835",
+      "confidence": 0.8,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 2,
+      "source_sessions": [
+        "d5b46d5c",
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "[user]: 记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T14:20:17.958Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: 林娜 works as 儿科医生"
+    },
+    {
+      "node_id": "fact_c6628e6168b8fa28",
+      "node_type": "fact",
+      "subject": "林娜",
+      "predicate": "works_at",
+      "object": "市儿童医院",
+      "description": "林娜 works at 市儿童医院",
+      "subject_id": "p_ee48404aa1eca802",
+      "object_id": "concept_f1a5adf91bbc9e31",
+      "confidence": 0.8,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 2,
+      "source_sessions": [
+        "d5b46d5c",
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "在市儿童医院工作"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T14:20:17.958Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: 林娜 works at 市儿童医院"
+    },
+    {
+      "node_id": "fact_958fd0496aaefce8",
+      "node_type": "fact",
+      "subject": "notes/done.md",
+      "predicate": "follows_format_of",
+      "object": "notes/todo.md",
+      "description": "notes/done.md follows format of notes/todo.md",
+      "subject_id": "concept_a0feb779b9488c95",
+      "object_id": "concept_c8f89d196ba7391a",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "再帮我建一个 notes/done.md，还是用 todo 那个格式。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: notes/done.md follows format of notes/todo.md"
+    },
+    {
+      "node_id": "fact_b92838bceb7258a1",
+      "node_type": "fact",
+      "subject": "notes/todo.md",
+      "predicate": "uses_item_format",
+      "object": "todo 格式",
+      "description": "notes/todo.md uses item format todo 格式",
+      "subject_id": "concept_c8f89d196ba7391a",
+      "object_id": "concept_7e1e2e3c164a4c2c",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "第一行是当天日期 `2026-10-25`，与 todo 文件一致。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: notes/todo.md uses item format todo 格式"
+    },
+    {
+      "node_id": "fact_1828b18353a39d6e",
+      "node_type": "fact",
+      "subject": "产品评审会",
+      "predicate": "decided_release_cycle",
+      "object": "双周发布",
+      "description": "产品评审会 decided release cycle 双周发布",
+      "subject_id": "concept_d42672cafb22c069",
+      "object_id": "concept_4bc93e06480116bd",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "会上决定把发布周期改成双周。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: 产品评审会 decided release cycle 双周发布"
+    },
+    {
+      "node_id": "fact_6a631e6d0395ecb5",
+      "node_type": "fact",
+      "subject": "张伟",
+      "predicate": "attended",
+      "object": "产品评审会",
+      "description": "张伟 attended 产品评审会",
+      "subject_id": "p_4e999891ae7c8b13",
+      "object_id": "concept_d42672cafb22c069",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "上周三我和张伟、王芳开了产品评审会"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: 张伟 attended 产品评审会"
+    },
+    {
+      "node_id": "fact_ebe9325fdd741b8c",
+      "node_type": "fact",
+      "subject": "王芳",
+      "predicate": "attended",
+      "object": "产品评审会",
+      "description": "王芳 attended 产品评审会",
+      "subject_id": "p_51ae7043ed226260",
+      "object_id": "concept_d42672cafb22c069",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d5b46d5c"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "上周三我和张伟、王芳开了产品评审会"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Fact: 王芳 attended 产品评审会"
+    },
+    {
+      "node_id": "claim_18493879a3c6a28c",
+      "node_type": "claim",
+      "source_person_id": "p_4e999891ae7c8b13",
+      "target": "双周发布",
+      "target_id": "concept_4bc93e06480116bd",
+      "content": "太激进",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [
+        "张伟觉得双周发布太激进了"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Claim by 张伟 about 双周发布: 太激进"
+    },
+    {
+      "node_id": "concept_ca25ac8314801a5a",
+      "node_type": "concept",
+      "name": "发布节奏",
+      "aliases": [],
+      "description": "发布节奏",
+      "mention_count": 1,
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Concept: 发布节奏. 发布节奏"
+    },
+    {
+      "node_id": "claim_e33623b1efd09aa3",
+      "node_type": "claim",
+      "source_person_id": "p_4e999891ae7c8b13",
+      "target": "发布节奏",
+      "target_id": "concept_ca25ac8314801a5a",
+      "content": "倾向每月一次",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [
+        "他倾向每月一次。"
+      ],
+      "created_at": "2026-10-25T13:50:00.411Z",
+      "updated_at": "2026-10-25T13:50:00.411Z",
+      "source_session_id": "d5b46d5c",
+      "embedding_text": "Claim by 张伟 about 发布节奏: 倾向每月一次"
+    },
+    {
+      "node_id": "fact_a4abcb2575a32cba",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "todo_checkbox_format_preference",
+      "object": "notes/todo.md",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_c8f89d196ba7391a",
+      "description": "User prefers notes/ markdown files written in a todo-style checkbox format and expects completed items to be marked with `- [x]`.",
+      "confidence": 0.85,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.94,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_e35f7632d7617d10",
+        "event_356a2f92a86d3205",
+        "event_7777fc818ebce585",
+        "event_cefd6d345cd8fc3e",
+        "event_758de83bfc9f08e5"
+      ],
+      "derived_from_event_ids": [
+        "event_e35f7632d7617d10",
+        "event_356a2f92a86d3205",
+        "event_7777fc818ebce585",
+        "event_cefd6d345cd8fc3e",
+        "event_758de83bfc9f08e5"
+      ],
+      "evidence": [
+        "帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。",
+        "[user]: 帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。",
+        "把 todo.md 的第二项改成 - [x] 开头。"
+      ],
+      "created_at": "2026-10-25T13:50:03.110Z",
+      "updated_at": "2026-10-25T13:50:03.110Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User todo checkbox format preference notes/todo.md: User prefers notes/ markdown files written in a todo-style checkbox format and expects completed items to be marked with `- [x]`."
+    },
+    {
+      "node_id": "fact_00ff5a7f12b72715",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "biweekly_release_cadence_disagreement",
+      "object": "双周发布",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_4bc93e06480116bd",
+      "description": "张伟对双周发布节奏持保留态度，认为过于激进并倾向改为每月一次，使双周发布决策存在后续调整的争议。",
+      "confidence": 0.72,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.728,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_1fa31a7c2bc9913c",
+        "event_5692294e7938f436",
+        "event_0f452c31de49d0ab"
+      ],
+      "derived_from_event_ids": [
+        "event_0f452c31de49d0ab",
+        "event_1fa31a7c2bc9913c",
+        "event_5692294e7938f436"
+      ],
+      "evidence": [
+        "张伟觉得双周发布太激进了，他倾向每月一次。",
+        "上次评审会都决定了什么？张伟是什么态度？",
+        "上周三我和张伟、王芳开了产品评审会，会上决定把发布周期改成双周。"
+      ],
+      "created_at": "2026-10-25T13:50:04.619Z",
+      "updated_at": "2026-10-25T13:50:04.619Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User biweekly release cadence disagreement 双周发布: 张伟对双周发布节奏持保留态度，认为过于激进并倾向改为每月一次，使双周发布决策存在后续调整的争议。"
+    },
+    {
+      "node_id": "concept_9dffd978d7e7a0af",
+      "node_type": "concept",
+      "name": "徐汇",
+      "aliases": [],
+      "description": "User's current place of residence after moving there last month.",
+      "mention_count": 7,
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Concept: 徐汇. User's current place of residence after moving there last month."
+    },
+    {
+      "node_id": "concept_a3b272a614d9ab01",
+      "node_type": "concept",
+      "name": "notes/profile.md",
+      "aliases": [],
+      "description": "File the assistant proposed creating under notes/ to record the user's residence.",
+      "mention_count": 3,
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Concept: notes/profile.md. File the assistant proposed creating under notes/ to record the user's residence."
+    },
+    {
+      "node_id": "event_77e0d32ecb33715e",
+      "node_type": "event",
+      "title": "User stated they moved to Xuhui last month",
+      "description": "The user reported that they relocated to Xuhui in the previous month, which the assistant recorded as the current residence.",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_9dffd978d7e7a0af",
+        "concept_e062a495668f8925"
+      ],
+      "time_expression": "上个月",
+      "resolved_time": "2026-09-25",
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我上个月搬到徐汇了。"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Event: User stated they moved to Xuhui last month. The user reported that they relocated to Xuhui in the previous month, which the assistant recorded as the current residence.. Concepts: 徐汇, 浦东"
+    },
+    {
+      "node_id": "event_5eecaa46eb5e6a58",
+      "node_type": "event",
+      "title": "Assistant offered to create notes/profile.md with residence record",
+      "description": "The assistant asked whether it should update the notes by creating a profile.md file stating residence in Xuhui from 2026-09.",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_a3b272a614d9ab01",
+        "concept_9dffd978d7e7a0af"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "需要我顺便更新一下 notes 里的记录吗？（比如在 notes/ 下建一个 profile.md 写下“2026-09 起居住徐汇”）"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Event: Assistant offered to create notes/profile.md with residence record. The assistant asked whether it should update the notes by creating a profile.md file stating residence in Xuhui from 2026-09.. Concepts: notes/profile.md, 徐汇"
+    },
+    {
+      "node_id": "event_a0b8a5812d7b72cd",
+      "node_type": "event",
+      "title": "Assistant invalidated the prior Pudong residence record",
+      "description": "The assistant marked the earlier record of living in Pudong as void after the user's move report.",
+      "participants": [
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_e062a495668f8925",
+        "concept_9dffd978d7e7a0af"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "之前记录里的“住在浦东”已作废。"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Event: Assistant invalidated the prior Pudong residence record. The assistant marked the earlier record of living in Pudong as void after the user's move report.. Concepts: 浦东, 徐汇"
+    },
+    {
+      "node_id": "fact_8e714b2f9a9439db",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "resides_in",
+      "object": "徐汇",
+      "description": "User resides in 徐汇",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_9dffd978d7e7a0af",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "0693700f"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "我上个月搬到徐汇了。"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Fact: User resides in 徐汇"
+    },
+    {
+      "node_id": "fact_e4b6a1838e9d430b",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "previously_resided_in",
+      "object": "浦东",
+      "description": "User previously resided in 浦东",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_e062a495668f8925",
+      "confidence": 0.6,
+      "lifecycle": "archived",
+      "is_latest": false,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "0693700f"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "之前记录里的“住在浦东”已作废。"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T14:20:58.419Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Fact: User previously resided in 浦东",
+      "valid_to": "2026-10-25"
+    },
+    {
+      "node_id": "fact_91dadf02354025d8",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "moved_residence",
+      "object": "徐汇",
+      "description": "User moved residence 徐汇",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_9dffd978d7e7a0af",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "0693700f"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "我上个月搬到徐汇了。"
+      ],
+      "created_at": "2026-10-25T13:51:08.254Z",
+      "updated_at": "2026-10-25T13:51:08.254Z",
+      "source_session_id": "0693700f",
+      "embedding_text": "Fact: User moved residence 徐汇"
+    },
+    {
+      "node_id": "concept_2e42f7fd7404029c",
+      "node_type": "concept",
+      "name": "长期记忆",
+      "aliases": [],
+      "description": "Memory store holding person, fact and event records the assistant searches before answering.",
+      "mention_count": 7,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: 长期记忆. Memory store holding person, fact and event records the assistant searches before answering."
+    },
+    {
+      "node_id": "concept_1dd49f25c5e0a213",
+      "node_type": "concept",
+      "name": "居住地记录",
+      "aliases": [],
+      "description": "Memory entries tracking which district the user lives in and when he moved.",
+      "mention_count": 4,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: 居住地记录. Memory entries tracking which district the user lives in and when he moved."
+    },
+    {
+      "node_id": "concept_7b0b1455e836b22d",
+      "node_type": "concept",
+      "name": "宠物记录",
+      "aliases": [],
+      "description": "Absent memory entry about the user's dog; the assistant found none.",
+      "mention_count": 3,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: 宠物记录. Absent memory entry about the user's dog; the assistant found none."
+    },
+    {
+      "node_id": "event_97a6bb6a538ff03b",
+      "node_type": "event",
+      "title": "User asked which district he lives in now and before",
+      "description": "User asked which district he lives in now and before",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_1dd49f25c5e0a213",
+        "concept_2e42f7fd7404029c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我现在住哪个区？我以前住哪？"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: User asked which district he lives in now and before. User asked which district he lives in now and before. Concepts: 居住地记录, 长期记忆"
+    },
+    {
+      "node_id": "event_2507c2f6868ed7a8",
+      "node_type": "event",
+      "title": "Assistant reported 浦东 as current residence and 徐汇 as previous",
+      "description": "Assistant reported 浦东 as current residence and 徐汇 as previous",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_1dd49f25c5e0a213",
+        "concept_2e42f7fd7404029c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "**现在**：**浦东**（2026-10-25 你说“我现在住在浦东”，这是最新一条）。"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: Assistant reported 浦东 as current residence and 徐汇 as previous. Assistant reported 浦东 as current residence and 徐汇 as previous. Concepts: 居住地记录, 长期记忆"
+    },
+    {
+      "node_id": "event_30ea8d15e2ff51ce",
+      "node_type": "event",
+      "title": "User asked for the name of his dog",
+      "description": "User asked for the name of his dog",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_7b0b1455e836b22d",
+        "concept_2e42f7fd7404029c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我的狗叫什么名字？"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: User asked for the name of his dog. User asked for the name of his dog. Concepts: 宠物记录, 长期记忆"
+    },
+    {
+      "node_id": "event_cf8f7bb0c6df7ced",
+      "node_type": "event",
+      "title": "Assistant found no pet records in memory or notes directory",
+      "description": "Assistant found no pet records in memory or notes directory",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_7b0b1455e836b22d",
+        "concept_2e42f7fd7404029c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "记忆里没有关于你养狗的任何记录，所以我目前不知道你的狗叫什么名字。"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: Assistant found no pet records in memory or notes directory. Assistant found no pet records in memory or notes directory. Concepts: 宠物记录, 长期记忆"
+    },
+    {
+      "node_id": "event_954cd0525ddb03bb",
+      "node_type": "event",
+      "title": "User asked who among his contacts is best to consult about the children's hospital",
+      "description": "User asked who among his contacts is best to consult about the children's hospital",
+      "participants": [
+        "p_12dea96fec205935",
+        "p_27a9612b3207eb0f"
+      ],
+      "concepts": [
+        "concept_55d72f3b348d3835",
+        "concept_f1a5adf91bbc9e31",
+        "concept_2e42f7fd7404029c"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "我想找人请教一下儿童医院方面的事，我认识的人里谁最合适，为什么？"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: User asked who among his contacts is best to consult about the children's hospital. User asked who among his contacts is best to consult about the children's hospital. Concepts: 儿科医生, 市儿童医院, 长期记忆"
+    },
+    {
+      "node_id": "event_d710f575fb2a1233",
+      "node_type": "event",
+      "title": "Assistant recommended 林娜 as the best contact for hospital questions",
+      "description": "Assistant recommended 林娜 as the best contact for hospital questions",
+      "participants": [
+        "p_27a9612b3207eb0f",
+        "p_12dea96fec205935"
+      ],
+      "concepts": [
+        "concept_55d72f3b348d3835",
+        "concept_f1a5adf91bbc9e31"
+      ],
+      "session_time": "2026-10-25",
+      "archived": false,
+      "evidence": [
+        "最合适的是你妻子 **林娜**，理由很直接："
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Event: Assistant recommended 林娜 as the best contact for hospital questions. Assistant recommended 林娜 as the best contact for hospital questions. Concepts: 儿科医生, 市儿童医院"
+    },
+    {
+      "node_id": "fact_2e4356dfa0696c5d",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "previously_lived_in",
+      "object": "徐汇",
+      "description": "User previously lived in 徐汇",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_9dffd978d7e7a0af",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "上个月搬到徐汇了"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Fact: User previously lived in 徐汇"
+    },
+    {
+      "node_id": "concept_12dea96fec205935",
+      "node_type": "concept",
+      "name": "user",
+      "aliases": [
+        "User"
+      ],
+      "description": "user",
+      "mention_count": 1,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: user. user (User)"
+    },
+    {
+      "node_id": "fact_0607c4047f3fc608",
+      "node_type": "fact",
+      "subject": "林娜",
+      "predicate": "is_wife_of",
+      "object": "User",
+      "description": "林娜 is wife of User",
+      "subject_id": "p_ee48404aa1eca802",
+      "object_id": "concept_12dea96fec205935",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "只有你妻子林娜（儿科医生，市儿童医院）和居住地的记录"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Fact: 林娜 is wife of User"
+    },
+    {
+      "node_id": "concept_ebb624edf3a11e42",
+      "node_type": "concept",
+      "name": "todo.md and done.md",
+      "aliases": [],
+      "description": "todo.md and done.md",
+      "mention_count": 1,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: todo.md and done.md. todo.md and done.md"
+    },
+    {
+      "node_id": "concept_c13195fef5882628",
+      "node_type": "concept",
+      "name": "notes directory",
+      "aliases": [],
+      "description": "notes directory",
+      "mention_count": 1,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: notes directory. notes directory"
+    },
+    {
+      "node_id": "fact_80d506981559f1ea",
+      "node_type": "fact",
+      "subject": "notes directory",
+      "predicate": "contains",
+      "object": "todo.md and done.md",
+      "description": "notes directory contains todo.md and done.md",
+      "subject_id": "concept_c13195fef5882628",
+      "object_id": "concept_ebb624edf3a11e42",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "项目内的 `notes/` 目录：只有 `todo.md` 和 `done.md`，没有谈到狗。"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Fact: notes directory contains todo.md and done.md"
+    },
+    {
+      "node_id": "concept_3747e7b2cee93a65",
+      "node_type": "concept",
+      "name": "宠物",
+      "aliases": [],
+      "description": "宠物",
+      "mention_count": 1,
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Concept: 宠物. 宠物"
+    },
+    {
+      "node_id": "fact_b65752565155b6e2",
+      "node_type": "fact",
+      "subject": "长期记忆",
+      "predicate": "has_no_records_about",
+      "object": "宠物",
+      "description": "长期记忆 has no records about 宠物",
+      "subject_id": "concept_2e42f7fd7404029c",
+      "object_id": "concept_3747e7b2cee93a65",
+      "confidence": 0.6,
+      "lifecycle": "candidate",
+      "is_latest": true,
+      "valid_from": "2026-10-25",
+      "mention_count": 1,
+      "source_sessions": [
+        "d186be13"
+      ],
+      "supported_by_event_ids": [],
+      "evidence": [
+        "长期记忆（人物、事实、事件）：只有你妻子林娜（儿科医生，市儿童医院）和居住地的记录，没有任何宠物相关条目。"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Fact: 长期记忆 has no records about 宠物"
+    },
+    {
+      "node_id": "claim_1905ca225912a79b",
+      "node_type": "claim",
+      "source_person_id": "p_27a9612b3207eb0f",
+      "target": "居住地记录",
+      "target_id": "concept_1dd49f25c5e0a213",
+      "content": "9 月搬徐汇、10 月又说住浦东，这段记录有点来回，需要理顺",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [
+        "苏州记录里这段有点来回，9 月搬徐汇、10 月又说住浦东"
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Claim by Assistant about 居住地记录: 9 月搬徐汇、10 月又说住浦东，这段记录有点来回，需要理顺"
+    },
+    {
+      "node_id": "claim_85366c4fd11554a5",
+      "node_type": "claim",
+      "source_person_id": "p_27a9612b3207eb0f",
+      "target": "林娜",
+      "target_id": "p_ee48404aa1eca802",
+      "content": "是最适合请教儿童医院事务的人，因为专业和单位都对口",
+      "confidence": 0.6,
+      "lifecycle": "stable",
+      "evidence": [
+        "最合适的是你妻子 **林娜**，理由很直接："
+      ],
+      "created_at": "2026-10-25T14:20:17.256Z",
+      "updated_at": "2026-10-25T14:20:17.256Z",
+      "source_session_id": "d186be13",
+      "embedding_text": "Claim by Assistant about 林娜: 是最适合请教儿童医院事务的人，因为专业和单位都对口"
+    },
+    {
+      "node_id": "fact_6600955de62656a5",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "spouse_is_pediatrician",
+      "object": "儿科医生",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_55d72f3b348d3835",
+      "description": "用户的妻子是一名儿科医生，用户会就儿童医院相关事宜向她或相关人脉咨询。",
+      "confidence": 0.9,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.8,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_5f9c78102f3c8bb0",
+        "event_d733a72d212e58b0",
+        "event_954cd0525ddb03bb"
+      ],
+      "derived_from_event_ids": [
+        "event_5f9c78102f3c8bb0",
+        "event_d733a72d212e58b0",
+        "event_954cd0525ddb03bb"
+      ],
+      "evidence": [
+        "记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。",
+        "我妻子是做什么工作的？",
+        "我想找人请教一下儿童医院方面的事，我认识的人里谁最合适，为什么？"
+      ],
+      "created_at": "2026-10-25T14:20:19.648Z",
+      "updated_at": "2026-10-25T14:20:19.648Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User spouse is pediatrician 儿科医生: 用户的妻子是一名儿科医生，用户会就儿童医院相关事宜向她或相关人脉咨询。"
+    },
+    {
+      "node_id": "fact_2b99e3e505685957",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "wife_works_at_city_childrens_hospital",
+      "object": "市儿童医院",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_f1a5adf91bbc9e31",
+      "description": "The user has a personal connection to the city children's hospital through his wife, who works there, and he tends to seek advice from contacts about hospital-related matters.",
+      "confidence": 0.75,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.74,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_5f9c78102f3c8bb0",
+        "event_d733a72d212e58b0",
+        "event_954cd0525ddb03bb"
+      ],
+      "derived_from_event_ids": [
+        "event_5f9c78102f3c8bb0",
+        "event_d733a72d212e58b0",
+        "event_954cd0525ddb03bb"
+      ],
+      "evidence": [
+        "记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。",
+        "我妻子是做什么工作的？",
+        "我想找人请教一下儿童医院方面的事，我认识的人里谁最合适，为什么？"
+      ],
+      "created_at": "2026-10-25T14:20:22.573Z",
+      "updated_at": "2026-10-25T14:20:22.573Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User wife works at city childrens hospital 市儿童医院: The user has a personal connection to the city children's hospital through his wife, who works there, and he tends to seek advice from contacts about hospital-related matters."
+    },
+    {
+      "node_id": "fact_6de08168eec350f5",
+      "node_type": "fact",
+      "subject": "User",
+      "predicate": "relies_on_long_term_memory_recall",
+      "object": "长期记忆",
+      "subject_id": "p_12dea96fec205935",
+      "object_id": "concept_2e42f7fd7404029c",
+      "description": "The user relies on the assistant's long-term memory to recall personal details (e.g., past and current residence, pet names, and which contacts to consult) rather than restating them.",
+      "confidence": 0.8,
+      "lifecycle": "stable",
+      "is_latest": true,
+      "importance": 0.76,
+      "valid_from": "2026-10-25",
+      "supported_by_event_ids": [
+        "event_97a6bb6a538ff03b",
+        "event_30ea8d15e2ff51ce",
+        "event_954cd0525ddb03bb"
+      ],
+      "derived_from_event_ids": [
+        "event_97a6bb6a538ff03b",
+        "event_30ea8d15e2ff51ce",
+        "event_954cd0525ddb03bb"
+      ],
+      "evidence": [
+        "我现在住哪个区？我以前住哪？",
+        "我的狗叫什么名字？",
+        "我想找人请教一下儿童医院方面的事，我认识的人里谁最合适，为什么？"
+      ],
+      "created_at": "2026-10-25T14:20:23.717Z",
+      "updated_at": "2026-10-25T14:20:23.717Z",
+      "source_session_id": "consolidation",
+      "embedding_text": "User relies on long term memory recall 长期记忆: The user relies on the assistant's long-term memory to recall personal details (e.g., past and current residence, pet names, and which contacts to consult) rather than restating them."
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_e35f7632d7617d10",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_e35f7632d7617d10",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_e35f7632d7617d10",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_e35f7632d7617d10",
+      "target_id": "concept_0668f64fb89f28b1",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_f6833811765f8b85",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_f6833811765f8b85",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_f6833811765f8b85",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_f6833811765f8b85",
+      "target_id": "concept_93a2c75c704a4b6f",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_8a6b7a0315c3b286",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_8a6b7a0315c3b286",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_8a6b7a0315c3b286",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_8a6b7a0315c3b286",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_8a6b7a0315c3b286",
+      "target_id": "concept_cdcd5c9a3a475f22",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_356a2f92a86d3205",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_356a2f92a86d3205",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_7777fc818ebce585",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_7777fc818ebce585",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_7777fc818ebce585",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_7777fc818ebce585",
+      "target_id": "concept_3c345a8aed30f94c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_7777fc818ebce585",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_23feb0d54ed18438",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_23feb0d54ed18438",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_23feb0d54ed18438",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_23feb0d54ed18438",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_e5944fb9d9ddf321",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_e5944fb9d9ddf321",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_2a4719aba4bd5708",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_2a4719aba4bd5708",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_2a4719aba4bd5708",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_2a4719aba4bd5708",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_2a4719aba4bd5708",
+      "target_id": "concept_3c345a8aed30f94c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_2a4719aba4bd5708",
+      "target_id": "concept_f78a71af8bbf8cc2",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_cefd6d345cd8fc3e",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "event_cefd6d345cd8fc3e",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "concept_98f54143ab4e86b2",
+      "target_id": "fact_50a572128a46327d",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_50a572128a46327d",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_7f7740d46410902a",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_7f7740d46410902a",
+      "target_id": "concept_0668f64fb89f28b1",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "concept_c8f89d196ba7391a",
+      "target_id": "fact_4a805df6f5585290",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_4a805df6f5585290",
+      "target_id": "concept_93a2c75c704a4b6f",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "concept_c8f89d196ba7391a",
+      "target_id": "fact_864c19cfe1ed675a",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_864c19cfe1ed675a",
+      "target_id": "concept_cdcd5c9a3a475f22",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "concept_c8f89d196ba7391a",
+      "target_id": "fact_0ef1582f6c09305e",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_0ef1582f6c09305e",
+      "target_id": "concept_17d3c191c1b21ef9",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "concept_c8f89d196ba7391a",
+      "target_id": "fact_e1532b357eca9f69",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_e1532b357eca9f69",
+      "target_id": "concept_f8d20165b2ce6de1",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_181f5b9f6eaa2305",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "fact_181f5b9f6eaa2305",
+      "target_id": "concept_27a9612b3207eb0f",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "claim_229773e156461ed6",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "claim_229773e156461ed6",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "claim_b0a93ea24dfcd177",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "claim_b0a93ea24dfcd177",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:45.275Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_c37aa42d68e14739",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.8,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "fact_c37aa42d68e14739",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "fact_c37aa42d68e14739",
+      "target_id": "event_e35f7632d7617d10",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "fact_c37aa42d68e14739",
+      "target_id": "event_356a2f92a86d3205",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "fact_c37aa42d68e14739",
+      "target_id": "event_7777fc818ebce585",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "fact_c37aa42d68e14739",
+      "target_id": "event_cefd6d345cd8fc3e",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:46.802Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "fact_51d33d46f22f07bf",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.85,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "fact_51d33d46f22f07bf",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "fact_51d33d46f22f07bf",
+      "target_id": "event_f6833811765f8b85",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "fact_51d33d46f22f07bf",
+      "target_id": "event_8a6b7a0315c3b286",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "fact_51d33d46f22f07bf",
+      "target_id": "event_23feb0d54ed18438",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "fact_51d33d46f22f07bf",
+      "target_id": "event_2a4719aba4bd5708",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:48.210Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "fact_9235505506a07bca",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.65,
+      "created_at": "2026-10-25T13:46:49.476Z"
+    },
+    {
+      "source_id": "fact_9235505506a07bca",
+      "target_id": "concept_302ee7bb4366d21c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:49.476Z"
+    },
+    {
+      "source_id": "fact_9235505506a07bca",
+      "target_id": "event_8a6b7a0315c3b286",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:49.476Z"
+    },
+    {
+      "source_id": "fact_9235505506a07bca",
+      "target_id": "event_23feb0d54ed18438",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:49.476Z"
+    },
+    {
+      "source_id": "fact_9235505506a07bca",
+      "target_id": "event_2a4719aba4bd5708",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:46:49.476Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_758de83bfc9f08e5",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_758de83bfc9f08e5",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_758de83bfc9f08e5",
+      "target_id": "concept_a0feb779b9488c95",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_758de83bfc9f08e5",
+      "target_id": "concept_7e1e2e3c164a4c2c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_758de83bfc9f08e5",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_5f9c78102f3c8bb0",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_5f9c78102f3c8bb0",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5f9c78102f3c8bb0",
+      "target_id": "concept_ee48404aa1eca802",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5f9c78102f3c8bb0",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5f9c78102f3c8bb0",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_0f452c31de49d0ab",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_0f452c31de49d0ab",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_0f452c31de49d0ab",
+      "target_id": "concept_d42672cafb22c069",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_0f452c31de49d0ab",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_1fa31a7c2bc9913c",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_1fa31a7c2bc9913c",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_1fa31a7c2bc9913c",
+      "target_id": "concept_4e999891ae7c8b13",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_1fa31a7c2bc9913c",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_1fa31a7c2bc9913c",
+      "target_id": "concept_d9216671f27540cb",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_d733a72d212e58b0",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_d733a72d212e58b0",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_d733a72d212e58b0",
+      "target_id": "concept_ee48404aa1eca802",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_d733a72d212e58b0",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_d733a72d212e58b0",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_5692294e7938f436",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_5692294e7938f436",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5692294e7938f436",
+      "target_id": "concept_d42672cafb22c069",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5692294e7938f436",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_5692294e7938f436",
+      "target_id": "concept_d9216671f27540cb",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_b52e37057ddea54d",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_b52e37057ddea54d",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "event_b52e37057ddea54d",
+      "target_id": "concept_e062a495668f8925",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_a45984a8bb4c00c1",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_a45984a8bb4c00c1",
+      "target_id": "concept_e062a495668f8925",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_bcbacff6dce3cab9",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_bcbacff6dce3cab9",
+      "target_id": "concept_ee48404aa1eca802",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_ee48404aa1eca802",
+      "target_id": "fact_63887e25efa23c6a",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_63887e25efa23c6a",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_ee48404aa1eca802",
+      "target_id": "fact_c6628e6168b8fa28",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_c6628e6168b8fa28",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "concept_a0feb779b9488c95",
+      "target_id": "fact_958fd0496aaefce8",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_958fd0496aaefce8",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "concept_c8f89d196ba7391a",
+      "target_id": "fact_b92838bceb7258a1",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_b92838bceb7258a1",
+      "target_id": "concept_7e1e2e3c164a4c2c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "concept_d42672cafb22c069",
+      "target_id": "fact_1828b18353a39d6e",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_1828b18353a39d6e",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_4e999891ae7c8b13",
+      "target_id": "fact_6a631e6d0395ecb5",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_6a631e6d0395ecb5",
+      "target_id": "concept_d42672cafb22c069",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_51ae7043ed226260",
+      "target_id": "fact_ebe9325fdd741b8c",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "fact_ebe9325fdd741b8c",
+      "target_id": "concept_d42672cafb22c069",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_4e999891ae7c8b13",
+      "target_id": "claim_18493879a3c6a28c",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "claim_18493879a3c6a28c",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_4e999891ae7c8b13",
+      "target_id": "claim_e33623b1efd09aa3",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "claim_e33623b1efd09aa3",
+      "target_id": "concept_ca25ac8314801a5a",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:00.411Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_a4abcb2575a32cba",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.85,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "concept_c8f89d196ba7391a",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "event_e35f7632d7617d10",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "event_356a2f92a86d3205",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "event_7777fc818ebce585",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "event_cefd6d345cd8fc3e",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "fact_a4abcb2575a32cba",
+      "target_id": "event_758de83bfc9f08e5",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:03.110Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_00ff5a7f12b72715",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.72,
+      "created_at": "2026-10-25T13:50:04.619Z"
+    },
+    {
+      "source_id": "fact_00ff5a7f12b72715",
+      "target_id": "concept_4bc93e06480116bd",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:04.619Z"
+    },
+    {
+      "source_id": "fact_00ff5a7f12b72715",
+      "target_id": "event_1fa31a7c2bc9913c",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:04.619Z"
+    },
+    {
+      "source_id": "fact_00ff5a7f12b72715",
+      "target_id": "event_5692294e7938f436",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:04.619Z"
+    },
+    {
+      "source_id": "fact_00ff5a7f12b72715",
+      "target_id": "event_0f452c31de49d0ab",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T13:50:04.619Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_77e0d32ecb33715e",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_77e0d32ecb33715e",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_77e0d32ecb33715e",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_77e0d32ecb33715e",
+      "target_id": "concept_e062a495668f8925",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_5eecaa46eb5e6a58",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_5eecaa46eb5e6a58",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_5eecaa46eb5e6a58",
+      "target_id": "concept_a3b272a614d9ab01",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_5eecaa46eb5e6a58",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_a0b8a5812d7b72cd",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_a0b8a5812d7b72cd",
+      "target_id": "concept_e062a495668f8925",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "event_a0b8a5812d7b72cd",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_8e714b2f9a9439db",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "fact_8e714b2f9a9439db",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_e4b6a1838e9d430b",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "fact_e4b6a1838e9d430b",
+      "target_id": "concept_e062a495668f8925",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_91dadf02354025d8",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "fact_91dadf02354025d8",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:08.254Z"
+    },
+    {
+      "source_id": "fact_8e714b2f9a9439db",
+      "target_id": "fact_a45984a8bb4c00c1",
+      "edge_type": "SUPERSEDES",
+      "weight": 1,
+      "created_at": "2026-10-25T13:51:10.865Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_97a6bb6a538ff03b",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_97a6bb6a538ff03b",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_97a6bb6a538ff03b",
+      "target_id": "concept_1dd49f25c5e0a213",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_97a6bb6a538ff03b",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_2507c2f6868ed7a8",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_2507c2f6868ed7a8",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_2507c2f6868ed7a8",
+      "target_id": "concept_1dd49f25c5e0a213",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_2507c2f6868ed7a8",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_30ea8d15e2ff51ce",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_30ea8d15e2ff51ce",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_30ea8d15e2ff51ce",
+      "target_id": "concept_7b0b1455e836b22d",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_30ea8d15e2ff51ce",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_cf8f7bb0c6df7ced",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_cf8f7bb0c6df7ced",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_cf8f7bb0c6df7ced",
+      "target_id": "concept_7b0b1455e836b22d",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_cf8f7bb0c6df7ced",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_954cd0525ddb03bb",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_954cd0525ddb03bb",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_954cd0525ddb03bb",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_954cd0525ddb03bb",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_954cd0525ddb03bb",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "event_d710f575fb2a1233",
+      "edge_type": "PARTICIPATED_IN",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "event_d710f575fb2a1233",
+      "edge_type": "MENTIONED_IN",
+      "weight": 0.5,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_d710f575fb2a1233",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "event_d710f575fb2a1233",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_2e4356dfa0696c5d",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "fact_2e4356dfa0696c5d",
+      "target_id": "concept_9dffd978d7e7a0af",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_ee48404aa1eca802",
+      "target_id": "fact_0607c4047f3fc608",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "fact_0607c4047f3fc608",
+      "target_id": "concept_12dea96fec205935",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "concept_c13195fef5882628",
+      "target_id": "fact_80d506981559f1ea",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "fact_80d506981559f1ea",
+      "target_id": "concept_ebb624edf3a11e42",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "concept_2e42f7fd7404029c",
+      "target_id": "fact_b65752565155b6e2",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "fact_b65752565155b6e2",
+      "target_id": "concept_3747e7b2cee93a65",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "claim_1905ca225912a79b",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "claim_1905ca225912a79b",
+      "target_id": "concept_1dd49f25c5e0a213",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_27a9612b3207eb0f",
+      "target_id": "claim_85366c4fd11554a5",
+      "edge_type": "CLAIMS",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "claim_85366c4fd11554a5",
+      "target_id": "p_ee48404aa1eca802",
+      "edge_type": "ABOUT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:17.256Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_6600955de62656a5",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.9,
+      "created_at": "2026-10-25T14:20:19.648Z"
+    },
+    {
+      "source_id": "fact_6600955de62656a5",
+      "target_id": "concept_55d72f3b348d3835",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:19.648Z"
+    },
+    {
+      "source_id": "fact_6600955de62656a5",
+      "target_id": "event_5f9c78102f3c8bb0",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:19.648Z"
+    },
+    {
+      "source_id": "fact_6600955de62656a5",
+      "target_id": "event_d733a72d212e58b0",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:19.648Z"
+    },
+    {
+      "source_id": "fact_6600955de62656a5",
+      "target_id": "event_954cd0525ddb03bb",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:19.648Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_2b99e3e505685957",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.75,
+      "created_at": "2026-10-25T14:20:22.573Z"
+    },
+    {
+      "source_id": "fact_2b99e3e505685957",
+      "target_id": "concept_f1a5adf91bbc9e31",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:22.573Z"
+    },
+    {
+      "source_id": "fact_2b99e3e505685957",
+      "target_id": "event_5f9c78102f3c8bb0",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:22.573Z"
+    },
+    {
+      "source_id": "fact_2b99e3e505685957",
+      "target_id": "event_d733a72d212e58b0",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:22.573Z"
+    },
+    {
+      "source_id": "fact_2b99e3e505685957",
+      "target_id": "event_954cd0525ddb03bb",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:22.573Z"
+    },
+    {
+      "source_id": "p_12dea96fec205935",
+      "target_id": "fact_6de08168eec350f5",
+      "edge_type": "HAS_ATTRIBUTE",
+      "weight": 0.8,
+      "created_at": "2026-10-25T14:20:23.717Z"
+    },
+    {
+      "source_id": "fact_6de08168eec350f5",
+      "target_id": "concept_2e42f7fd7404029c",
+      "edge_type": "ABOUT_CONCEPT",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:23.717Z"
+    },
+    {
+      "source_id": "fact_6de08168eec350f5",
+      "target_id": "event_97a6bb6a538ff03b",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:23.717Z"
+    },
+    {
+      "source_id": "fact_6de08168eec350f5",
+      "target_id": "event_30ea8d15e2ff51ce",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:23.717Z"
+    },
+    {
+      "source_id": "fact_6de08168eec350f5",
+      "target_id": "event_954cd0525ddb03bb",
+      "edge_type": "SUPPORTED_BY",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:23.717Z"
+    },
+    {
+      "source_id": "fact_2e4356dfa0696c5d",
+      "target_id": "fact_e4b6a1838e9d430b",
+      "edge_type": "SUPERSEDES",
+      "weight": 1,
+      "created_at": "2026-10-25T14:20:58.419Z"
+    }
+  ]
+}

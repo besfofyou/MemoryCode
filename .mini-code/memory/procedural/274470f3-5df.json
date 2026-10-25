@@ -1,0 +1,27 @@
+{
+  "id": "274470f3-5df",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "用户以“上周三”“昨天”等相对说法给出时间且需落库时，先按当前日期换算成具体日期，若周起始日不同会导致多个候选值（如周一起算 vs 周日起算），列出候选并请用户确认后固定。",
+  "createdAt": "2026-10-25T13:48:18.205Z",
+  "updatedAt": "2026-10-25T13:48:18.205Z",
+  "lastAccessedAt": "2026-10-25T13:48:18.205Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "dates",
+    "memory",
+    "clarification"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "b2e704b98172496d2e5026acfe7100ddf568fe017a712cbb718991d42ffd2397",
+  "origin": "agent",
+  "durability": "durable"
+}

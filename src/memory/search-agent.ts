@@ -4,6 +4,7 @@ import { GraphStore } from './graph-store.js'
 import { VectorStore } from './vector-store.js'
 import { SEARCH_AGENT_SYSTEM, SEARCH_AGENT_STEP } from './cogmem-prompts.js'
 import { isRetrievable, rerank } from './retrieval-policy.js'
+import { factTemporalLabel } from './fact-conflicts.js'
 import { fill } from './json-util.js'
 import { memoryModelText } from './model-call.js'
 
@@ -129,6 +130,7 @@ function nodeToString(n: AnyGraphNode): string {          // 所有类型都带 
     case 'concept': return `[Concept:${n.node_id}] ${n.name}`
     case 'event':   return `[Event:${n.node_id}] ${n.title}${(n.resolved_time ?? n.session_time) ? ` (${n.resolved_time ?? n.session_time})` : ''}: ${n.description}`
     case 'claim':   return `[Claim:${n.node_id}] ${n.content}`
-    case 'fact':    return `[Fact:${n.node_id}${n.lifecycle === 'candidate' ? ',candidate' : ''}] ${n.description || `${n.subject} ${n.predicate} ${n.object}`}`
+    // 双时间轴随事实一起展示：stated=陈述时间（裁决依据），since=生效时间（不参与裁决）
+    case 'fact':    return `[Fact:${n.node_id}${n.lifecycle === 'candidate' ? ',candidate' : ''}] ${n.description || `${n.subject} ${n.predicate} ${n.object}`} ${factTemporalLabel(n)}`
   }
 }

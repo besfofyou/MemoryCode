@@ -2,6 +2,7 @@ import type { ModelAdapter } from '../types.js'
 import type { FactNode } from './types.js'
 import { GraphStore } from './graph-store.js'
 import { VectorStore, cosineSimilarity } from './vector-store.js'
+import { canonicalPredicate, statedAtOf, effectiveFromOf } from './fact-conflicts.js'
 import { extractJsonObject } from './json-util.js'
 import { memoryModelText } from './model-call.js'
 import { tokenize } from './filesystem.js'
@@ -9,8 +10,7 @@ import { tokenize } from './filesystem.js'
 const FULL_MERGE = 0.95        // = CogMem fact_high_threshold
 const CONFLICT_CANDIDATE = 0.80
 const isActive = (f: FactNode) => (f.lifecycle ?? 'stable') !== 'archived' && f.is_latest !== false
-const normPred = (p: string) => p.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^(is_|has_)/, '')
-const rank = (f: FactNode) => [f.lifecycle === 'stable' ? 1 : 0, f.valid_from ?? f.created_at, f.confidence, f.supported_by_event_ids.length] as const
+const rank = (f: FactNode) => [f.lifecycle === 'stable' ? 1 : 0, statedAtOf(f), f.confidence, f.supported_by_event_ids.length] as const
 
 /**
  * = CogMem FactDeduplicator + ClaimReconciler（事实部分）
@@ -36,14 +36,16 @@ export class FactReconciler {
       for (const g of this.activeFactsOf(f)) {
         if (g.node_id === f.node_id) continue
         const sim = this.similarity(f, g)
-        const samePred = normPred(f.predicate) === normPred(g.predicate)
+        // 谓词先做同义归一（lives_in/resides_in/moved_home → lives_in），否则换措辞的更新永远匹配不上
+        const samePred = canonicalPredicate(f.predicate) === canonicalPredicate(g.predicate)
         const sameObj = (f.object_id ?? f.object.toLowerCase()) === (g.object_id ?? g.object.toLowerCase())
         if ((samePred && sameObj) || sim >= FULL_MERGE) {
           const [keep, drop] = this.pickCanonical(f, g)
           this.merge(drop, keep); merged++
           if (drop === f) break
         } else if (samePred || sim >= CONFLICT_CANDIDATE) {
-          pairs.push((f.valid_from ?? f.created_at) >= (g.valid_from ?? g.created_at) ? [f, g] : [g, f])
+          // P0 时间双轴：新旧按陈述时间（会话顺序）排序，生效时间不参与裁决
+          pairs.push(statedAtOf(f) >= statedAtOf(g) ? [f, g] : [g, f])
         }
       }
     }
@@ -65,7 +67,7 @@ export class FactReconciler {
     return inter / Math.max(1, ta.size + tb.size - inter)
   }
 
-  /** = CogMem _select_canonical_fact：stable 优先，其次 valid_from 较新、置信度高、支撑证据多 */
+  /** = CogMem _select_canonical_fact：stable 优先，其次陈述时间较新、置信度高、支撑证据多 */
   private pickCanonical(a: FactNode, b: FactNode): [FactNode, FactNode] {
     const ra = rank(a), rb = rank(b)
     for (let i = 0; i < ra.length; i++) if (ra[i] !== rb[i]) return ra[i] > rb[i] ? [a, b] : [b, a]
@@ -90,8 +92,14 @@ export class FactReconciler {
   /** = CogMem SUPERSEDES 版本链：旧事实保留在图中供追溯，但移出向量索引、不参与默认检索 */
   private supersede(newer: FactNode, older: FactNode) {
     const now = new Date().toISOString()
-    this.graph.addEdge({ source_id: newer.node_id, target_id: older.node_id, edge_type: 'SUPERSEDES', weight: 1, created_at: now })
-    Object.assign(older, { lifecycle: 'archived', is_latest: false, valid_to: newer.valid_from ?? now.slice(0, 10), updated_at: now })
+    this.graph.addEdge({
+      source_id: newer.node_id, target_id: older.node_id, edge_type: 'SUPERSEDES', weight: 1,
+      created_at: now, metadata: { reason: 'llm_confirmed' },
+    })
+    Object.assign(older, {
+      lifecycle: 'archived', is_latest: false, valid_to: effectiveFromOf(newer),
+      superseded_by: newer.node_id, supersede_reason: 'llm_confirmed', updated_at: now,
+    } as Partial<FactNode>)
     newer.is_latest = true
     this.vectors.remove(older.node_id)
   }

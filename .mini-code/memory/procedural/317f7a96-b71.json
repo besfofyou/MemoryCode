@@ -1,0 +1,27 @@
+{
+  "id": "317f7a96-b71",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "回答关于用户个人信息（居住地、联系人、宠物等）的问题前，先查两处：长期记忆（人物/事实/事件条目，通常带日期）与项目内 `notes/` 目录（如 `todo.md`、`done.md`，可新增 `notes/profile.md` 记录时间线）。查不到时明确列出已检索范围，并提出把信息记成事实条目或写入 `notes/profile.md`。",
+  "createdAt": "2026-10-25T14:20:03.373Z",
+  "updatedAt": "2026-10-25T14:20:03.373Z",
+  "lastAccessedAt": "2026-10-25T14:20:03.373Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "notes",
+    "personal-facts"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "229d3d1c51ca0447577c6f2f3326e72ba276fdd7406940d626eb80eb4bdeb589",
+  "origin": "agent",
+  "durability": "durable"
+}

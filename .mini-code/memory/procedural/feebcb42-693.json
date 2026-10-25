@@ -1,0 +1,27 @@
+{
+  "id": "feebcb42-693",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "notes/todo.md 的格式约定：第一行写当天日期（YYYY-MM-DD），之后每行一个待办，未完成项以 `- [ ] ` 开头，已完成项以 `- [x] ` 开头。",
+  "createdAt": "2026-10-25T13:46:14.209Z",
+  "updatedAt": "2026-10-25T13:46:14.209Z",
+  "lastAccessedAt": "2026-10-25T13:46:14.209Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "3ad471ca",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": "81abcd5b-4e9",
+  "supersededAt": null,
+  "tags": [
+    "convention",
+    "todo",
+    "markdown"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "82508cb0f1a9535cdb600fcf0affd53c7ba3eb849d168b5f79f4fb9364c736d8",
+  "origin": "agent",
+  "durability": "durable"
+}

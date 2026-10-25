@@ -30,14 +30,16 @@ class CapturingDistillModel implements ModelAdapter {
 const CONVERSATION: ChatMessage[] = [
   { role: 'user', content: 'Alice asked: what language does this project use? Please check the configuration files.' },
   { role: 'assistant', content: 'The project uses TypeScript with strict mode and NodeNext module resolution.' },
-  { role: 'user', content: 'Thanks. Also confirm the test command works.' },
+  { role: 'user', content: 'Right. Just so you know, this project uses TypeScript — please remember that. Also confirm the test command works.' },
   { role: 'assistant', content: 'npm test runs the full unit test suite successfully.' },
 ]
 
 const EXTRACTION_JSON = JSON.stringify({
   events: [{ type: 'event', title: 'User asked about the tech stack', participants: ['Alice'], time: 'today', concepts: ['TypeScript'] }],
-  facts: [{ type: 'fact', subject: 'project', predicate: 'uses', object: 'TypeScript' }],
+  // P0 防回写：facts 必须源自用户陈述（source: 'user' + 用户行内可验证的引文），否则会被抽取器跳过
+  facts: [{ type: 'fact', subject: 'project', predicate: 'uses', object: 'TypeScript', source: 'user', evidence: 'this project uses TypeScript' }],
   claims: [],
+  invalidations: [],
   persons: [{ name: 'Alice' }],
   concepts: [{ name: 'TypeScript' }],
 })

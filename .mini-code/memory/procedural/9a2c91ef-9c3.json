@@ -1,0 +1,31 @@
+{
+  "id": "9a2c91ef-9c3",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "会议记录（用户提供，2026-10-25 口述）：上周三，用户与张伟、王芳开了产品评审会，会上决定将产品发布周期改为「双周」（此前周期未说明）。\n日期换算（今天 2026-10-25 是周日）：按周一起算，「上周三」= 2026-10-14；按周日起算则为 2026-10-21，具体以用户确认为准。\n后续涉及发布节奏、迭代排期、评审流程的问题，应默认参考该决定（双周发布）。",
+  "createdAt": "2026-10-25T13:48:12.828Z",
+  "updatedAt": "2026-10-25T13:48:12.828Z",
+  "lastAccessedAt": "2026-10-25T13:48:12.828Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "tool",
+    "trigger": "manual_tool"
+  },
+  "confidence": 0.7,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "会议",
+    "产品评审会",
+    "张伟",
+    "王芳",
+    "发布周期",
+    "双周",
+    "决策"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "32821e5719bf50f819a7e071d38ac57cc9b0d3467e5623e5dce9d2af3aaa8407",
+  "origin": "user",
+  "durability": "durable"
+}

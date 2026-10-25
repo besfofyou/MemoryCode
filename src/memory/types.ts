@@ -161,6 +161,13 @@ export interface FactNode extends GraphNode {
   is_latest?: boolean
   valid_from?: string
   valid_to?: string
+  /** P0 时间双轴：陈述时间（该事实最近一次被用户陈述的时刻，ISO）。冲突裁决的唯一依据 */
+  stated_at?: string
+  /** P0 时间双轴：生效时间（事实在世界中开始为真的日期 YYYY-MM-DD）。仅展示/追溯，不参与新旧裁决 */
+  effective_from?: string
+  /** 归档时记录：被哪条新事实取代 / 因何种原因作废 */
+  superseded_by?: string
+  supersede_reason?: string
   importance?: number
   mention_count?: number
   derived_from_event_ids?: string[]      // 参与合成的全部事件（SUPPORTED_BY 只保留 5 条）
@@ -196,14 +203,23 @@ export interface GraphEdge {
 
 // LLM 原始输出与图节点分开定义，避免再出现字段名对不上
 export interface RawEvent { title?: string; description?: string; participants?: string[]; time?: string; concepts?: string[]; evidence?: string }
-export interface RawFact  { subject?: string; predicate?: string; object?: string; evidence?: string }
+export interface RawFact  {
+  subject?: string; predicate?: string; object?: string; evidence?: string
+  /** 该陈述来自谁：'user' 才能落成 fact；assistant 自身的推理/回答不得回写为事实 */
+  source?: 'user' | 'assistant'
+  /** 事实何时开始为真（绝对日期或相对表达，如 "2026-09-25" / "last month"）；现在时陈述省略 */
+  effective_from?: string
+}
 export interface RawClaim { source?: string; target?: string; content?: string; evidence?: string }
+/** 用户明示作废：之前记住的某条事实不再成立（如"之前记录里的…已作废"） */
+export interface RawInvalidation { subject?: string; predicate?: string; object?: string; evidence?: string }
 
 /** 结构化抽取结果 */
 export interface ExtractionResult {
   events: RawEvent[]
   facts: RawFact[]
   claims: RawClaim[]
+  invalidations: RawInvalidation[]
   persons: { name: string; aliases?: string[] }[]
   concepts: { name: string; description?: string }[]
 }

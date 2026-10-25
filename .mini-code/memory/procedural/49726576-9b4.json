@@ -1,0 +1,27 @@
+{
+  "id": "49726576-9b4",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "当记忆条目之间存在时间或地点冲突时（如先记录住徐汇、后来又记录住浦东），按时间戳取最新一条作为现状，对旧记录明确标注其已作废或存疑，并向用户提示冲突、请用户确认后修正记录。",
+  "createdAt": "2026-10-25T14:20:10.317Z",
+  "updatedAt": "2026-10-25T14:20:10.317Z",
+  "lastAccessedAt": "2026-10-25T14:20:10.317Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "d186be13",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "冲突处理",
+    "时间线"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "cf292e5a64f4885a8f4df3054a82d4357c5d940162501e614e692d8bec603274",
+  "origin": "agent",
+  "durability": "durable"
+}

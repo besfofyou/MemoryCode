@@ -2,7 +2,8 @@ import type { ModelAdapter } from '../types.js'
 import type { EventNode, FactNode, PersonNode, ConceptNode } from './types.js'
 import { GraphStore } from './graph-store.js'
 import { VectorStore } from './vector-store.js'
-import { stableId } from './graph-ids.js'
+import { stableId, canonicalPersonName } from './graph-ids.js'
+import { resolveWriteConflicts } from './fact-conflicts.js'
 import { extractJsonObject, fill } from './json-util.js'
 import { memoryModelText } from './model-call.js'
 import { CONSOLIDATION_CLUSTER_SYSTEM, CONSOLIDATION_CLUSTER_USER } from './cogmem-prompts.js'
@@ -37,6 +38,9 @@ export class MemoryConsolidator {
 
     const tasks = this.clusterEvents()
       .filter(c => c.events.length >= minEvents && this.hasUnconsolidatedEvents(c))
+      // P0 防回写：助手自身的回答/行为是推理产物，合成出的"助手行为事实"会固化推理错误；
+      // 这类约定应进技能库（procedural），不进用户语义事实图谱
+      .filter(c => !this.isAssistantPerson(c.personId))
       .sort((a, b) => maxTime(b.events).localeCompare(maxTime(a.events)))
       .slice(0, opts.maxClusters ?? 5)                         // 限制每次会话结束时的 LLM 调用数
 
@@ -51,6 +55,12 @@ export class MemoryConsolidator {
     }
     if (batch.length) await this.vectorStore.addBatch(batch)
     return { factsCreated, factsUpdated, promoted, touchedFactIds }
+  }
+
+  /** 主参与者是否是 Assistant 本人（按规范化人名判定，含别名归一） */
+  private isAssistantPerson(personId: string): boolean {
+    const node = this.graph.getNode(personId)
+    return node?.node_type === 'person' && node.canonical_name === canonicalPersonName('Assistant')
   }
 
   /** = CogMem _get_participated_events + _cluster_events_by_concept；只取主参与者 */
@@ -131,15 +141,17 @@ export class MemoryConsolidator {
       Object.assign(existing, {
         description: s.content, confidence: Math.max(existing.confidence, s.confidence), importance, evidence,
         lifecycle: 'stable', is_latest: true, updated_at: now, embedding_text,
+        // 陈述时间不刷新：合成事实的裁决权重不得超过用户此后的亲口陈述
         derived_from_event_ids: [...new Set([...(existing.derived_from_event_ids ?? []), ...derived])],
         supported_by_event_ids: support.map(e => e.node_id),
       })
     } else {
+      const effectiveFrom = s.valid_from ?? evTime(s.events[s.events.length - 1]).slice(0, 10)
       this.graph.addNode({
         node_id: id, node_type: 'fact', subject: person.canonical_name, predicate: s.predicate, object: concept.name,
         subject_id: c.personId, object_id: c.conceptId, description: s.content,
         confidence: s.confidence, lifecycle: 'stable', is_latest: true, importance,
-        valid_from: s.valid_from ?? evTime(s.events[s.events.length - 1]).slice(0, 10),
+        stated_at: now, effective_from: effectiveFrom, valid_from: effectiveFrom,
         supported_by_event_ids: support.map(e => e.node_id), derived_from_event_ids: derived, evidence,
         created_at: now, updated_at: now, source_session_id: 'consolidation', embedding_text,
       } satisfies FactNode)
@@ -148,6 +160,9 @@ export class MemoryConsolidator {
     }
     for (const e of support) this.graph.addEdge({ source_id: id, target_id: e.node_id, edge_type: 'SUPPORTED_BY', weight: 1, created_at: now })
     batch.push({ id, text: embedding_text })
+    // P0 写入时冲突消解：合成事实与既有同键活跃事实的冲突当刻裁决（按 stated_at）
+    const factNode = this.graph.getNode(id)
+    if (factNode?.node_type === 'fact') resolveWriteConflicts(this.graph, this.vectorStore, factNode)
     // 注意：不再把原始 Event 标为 archived（与 CogMem 默认 archive_original_events=False 一致）
     return { id, created }
   }

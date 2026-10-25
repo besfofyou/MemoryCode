@@ -1,0 +1,30 @@
+{
+  "id": "6e811eab-ee2",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "用户个人信息（长期有效）：用户的妻子叫林娜，职业是儿科医生，在市儿童医院工作。涉及医疗/儿科话题或提到\"我妻子\"时，指的就是林娜。",
+  "createdAt": "2026-10-25T13:47:44.780Z",
+  "updatedAt": "2026-10-25T13:47:44.780Z",
+  "lastAccessedAt": "2026-10-25T13:47:44.780Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "tool",
+    "trigger": "manual_tool"
+  },
+  "confidence": 0.7,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "用户信息",
+    "家庭",
+    "妻子",
+    "林娜",
+    "儿科医生",
+    "市儿童医院"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "acc84dae57b161ce5758bf6f96adccb32741449e166d98ebbc18d53789abeaff",
+  "origin": "user",
+  "durability": "durable"
+}

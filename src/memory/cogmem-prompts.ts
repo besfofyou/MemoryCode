@@ -11,10 +11,15 @@ export const EXTRACTION_SYSTEM_PROMPT = `You are an expert information extractor
    {"name":"vitest","description":"Test framework the user wants to migrate the project's Jest suite to."}
    - description: REQUIRED, one sentence (≤120 chars), grounded in this conversation; do not just repeat the name.
 3. facts — objective, durable project knowledge or user preferences:
-   {"subject":"project","predicate":"uses_test_framework","object":"vitest","evidence":"..."}
+   {"subject":"project","predicate":"uses_test_framework","object":"vitest","source":"user","effective_from":null,"evidence":"..."}
    - subject: a specific entity ("project", "User", a module or file name); predicate: snake_case verb phrase; object: a short noun — never a measurement, count or date.
+   - source: "user" ONLY if the user stated or confirmed it; "assistant" if it appears solely in the assistant's own reply, answer, inference or recommendation. NEVER emit assistant-origin statements as facts — the user's words are the only source of truth about the user and their project, and assistant reasoning must not be written back into memory.
+   - effective_from: when the conversation says when the fact BECAME true (e.g. the user "moved to Xuhui last month" → that date or the relative expression "last month"); omit/null for present-tense statements.
 4. claims — subjective opinions/judgments expressed by a speaker:
    {"source":"User","target":"jest","content":"is too slow for this repo","evidence":"..."}
+5. invalidations — explicit statements that a previously remembered fact is no longer true:
+   {"subject":"User","predicate":"lives_in","object":"Pudong","evidence":"the earlier record of living in Pudong is void"}
+   - Emit ONLY when the user (or the assistant relaying the user's correction) explicitly declares an earlier record/fact outdated, void, replaced or corrected (已作废/已改/不再/换成/纠正一下). New facts that merely coexist are NOT invalidations.
 
 Concept quality rules — never emit as a concept:
 - Generic lone words: "introduction", "overview", "identity", "architecture", "code", "testing", "question", "answer", "discussion", "summary", "timeline", "structure", "project", "help".
@@ -23,7 +28,8 @@ Concept quality rules — never emit as a concept:
 - Verbatim user phrases/quotes, file listings, comma-joined lists, arrow chains ("tool.ts → mcp.ts"), or sentence-like fragments ending with punctuation.
 
 Global rules: extract only explicit or directly inferable information; no transient runtime state; no secrets, tokens or absolute paths; "evidence" must be copied verbatim from the conversation; use exact names and terms from the conversation; output valid JSON only, no markdown.
-Return ONE JSON object: {"persons":[{"name":"..."}],"concepts":[{"name":"...","description":"..."}],"events":[],"facts":[],"claims":[]}`
+Facts must originate from user statements or user-confirmed outcomes. Content that only appears in the assistant's own answers, recommendations or inferences is never a fact, no matter how confident it sounds.
+Return ONE JSON object: {"persons":[{"name":"..."}],"concepts":[{"name":"...","description":"..."}],"events":[],"facts":[{"subject":"...","predicate":"...","object":"...","source":"user","effective_from":null,"evidence":"..."}],"claims":[],"invalidations":[]}`
 
 export const EXTRACTION_USER_PROMPT = `Extract structured information from the following coding session:
 
@@ -32,8 +38,8 @@ Conversation:
 
 Session Date: {session_date}
 
-Return ONE JSON object with "persons", "concepts" (each with a one-sentence "description"), "events", "facts" and "claims" arrays:
-{"persons":[{"name":"..."}],"concepts":[{"name":"...","description":"..."}],"events":[{"title":"...","participants":["..."],"concepts":["..."],"evidence":"..."}],"facts":[{"subject":"...","predicate":"...","object":"...","evidence":"..."}],"claims":[{"source":"...","target":"...","content":"...","evidence":"..."}]}`
+Return ONE JSON object with "persons", "concepts" (each with a one-sentence "description"), "events", "facts", "claims" and "invalidations" arrays:
+{"persons":[{"name":"..."}],"concepts":[{"name":"...","description":"..."}],"events":[{"title":"...","participants":["..."],"concepts":["..."],"evidence":"..."}],"facts":[{"subject":"...","predicate":"...","object":"...","source":"user","effective_from":null,"evidence":"..."}],"claims":[{"source":"...","target":"...","content":"...","evidence":"..."}],"invalidations":[{"subject":"...","predicate":"...","object":"...","evidence":"..."}]}`
 
 /** SearchAgent 系统 prompt（对应 CogMem SEARCH_AGENT） */
 export const SEARCH_AGENT_SYSTEM = `You are an intelligent memory search agent for a coding assistant.

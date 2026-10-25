@@ -1,0 +1,27 @@
+{
+  "id": "43a6123c-3ac",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "记录会议结论时，将“会议正式决议”与“某人个人意见/保留意见”分开记录，前者标注参会人和日期并保持生效状态，后者注明未推翻决议；查询时分别回答两者。",
+  "createdAt": "2026-10-25T13:49:49.522Z",
+  "updatedAt": "2026-10-25T13:49:49.522Z",
+  "lastAccessedAt": "2026-10-25T13:49:49.522Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "d5b46d5c",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "meeting-notes",
+    "decision-tracking"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "195dd56efef1e4e3284bb98fd056ea8eabf5bd5bbd3873f046b922c5e063d1cf",
+  "origin": "agent",
+  "durability": "durable"
+}

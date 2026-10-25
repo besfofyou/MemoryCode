@@ -1,0 +1,29 @@
+[
+  {
+    "validation_count": 5,
+    "promoted": [],
+    "demoted": [],
+    "retired": [],
+    "stabilized": [],
+    "mutated": []
+  },
+  {
+    "validation_count": 10,
+    "promoted": [],
+    "demoted": [],
+    "retired": [],
+    "stabilized": [],
+    "mutated": []
+  },
+  {
+    "validation_count": 15,
+    "promoted": [
+      "distill_a4ee1eb9",
+      "distill_7f439b21"
+    ],
+    "demoted": [],
+    "retired": [],
+    "stabilized": [],
+    "mutated": []
+  }
+]

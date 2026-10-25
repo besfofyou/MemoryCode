@@ -1,0 +1,27 @@
+{
+  "id": "8b1a479f-72f",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "当用户提供某人的立场或会议结论并要求记录时，把“个人意见”与“有效决议”分成两条独立记录，各自标注提出人、日期和当前状态（例如“决议=双周，某人主张每月，未推翻决议”）；若用户可能想改动现行决议，先询问是改为新值还是标记为“待复议”，得到确认后再更新。",
+  "createdAt": "2026-10-25T13:49:02.882Z",
+  "updatedAt": "2026-10-25T13:49:02.882Z",
+  "lastAccessedAt": "2026-10-25T13:49:02.882Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "记忆管理",
+    "会议记录",
+    "决策状态"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "9e9bba863226a80cf94c6dec072511e0bbc17b5cc59d27909a7c35dc8f05530f",
+  "origin": "agent",
+  "durability": "durable"
+}

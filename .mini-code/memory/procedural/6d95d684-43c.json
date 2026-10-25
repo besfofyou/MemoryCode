@@ -1,0 +1,27 @@
+{
+  "id": "6d95d684-43c",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "当同一事实在记忆中存在多条互相矛盾的带日期记录时：取时间最新的一条作为当前值，按时间顺序呈现轨迹，并显式标注哪一段存在冲突、请用户确认后修正，而不是静默择一。",
+  "createdAt": "2026-10-25T14:20:03.464Z",
+  "updatedAt": "2026-10-25T14:20:03.464Z",
+  "lastAccessedAt": "2026-10-25T14:20:03.464Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "conflict-resolution",
+    "timeline"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "ab6f1f16d61c914323c93fac9b655360a934b9d0b6cb81a37c9916ff9f2476c8",
+  "origin": "agent",
+  "durability": "durable"
+}

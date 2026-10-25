@@ -1,0 +1,27 @@
+{
+  "id": "d32c4647-8d2",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "回答用户的个人记忆类问题（居住地、亲友、宠物等）时，不仅要查长期记忆，还要查项目 notes/ 目录（目前含 todo.md、done.md，个人档案事实可写入 notes/profile.md），并在回答中说明检索范围。",
+  "createdAt": "2026-10-25T14:20:10.221Z",
+  "updatedAt": "2026-10-25T14:20:10.221Z",
+  "lastAccessedAt": "2026-10-25T14:20:10.221Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "d186be13",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "notes",
+    "检索范围"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "62d107903433f5348e4d3f89be463950d5c79013322ab1c16a9368305b76dd4f",
+  "origin": "agent",
+  "durability": "durable"
+}

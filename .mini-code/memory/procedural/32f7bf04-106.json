@@ -1,0 +1,27 @@
+{
+  "id": "32f7bf04-106",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "把用户口述的相对时间（如“上周三”）转成具体日期时，若周起始约定不明确（周一算或周日算）会产生两个候选日期，应把候选日期列出让用户确认后再固定，不要自行选一个写入记录。",
+  "createdAt": "2026-10-25T13:49:49.486Z",
+  "updatedAt": "2026-10-25T13:49:49.486Z",
+  "lastAccessedAt": "2026-10-25T13:49:49.486Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "d5b46d5c",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "date-handling",
+    "ambiguity",
+    "clarification"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "15104558dbfe3df22c25005a121492b4ccce978d2fb94d006355d151b25a8757",
+  "origin": "agent",
+  "durability": "durable"
+}

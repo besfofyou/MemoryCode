@@ -116,6 +116,15 @@ export async function buildSystemPrompt(
 
   // ========== 替换后的动态记忆注入 ==========
   const memory = extras?.memory
+  if (memory?.runtime) {
+    parts.push([
+      'Long-term memory protocol:',
+      '- If your reply states that something has been recorded/updated/invalidated in memory (e.g. 已记录 / 已作废 / 已更新), you MUST have actually called memory_write (or memory_forget) in the same turn. Never claim a memory operation you did not perform.',
+      '- When the user corrects or supersedes a previously remembered fact, call memory_write with the correction in the same turn; the memory system settles conflicts by statement time (latest statement wins).',
+      '- Answer questions about remembered personal/project facts with memory_read first. Recalled facts carry two timestamps: "stated" (when the user said it — the winner of any disagreement) and "since" (when it became true — background only, never a recency signal). If recalled records contradict each other, surface the conflict and ask the user; never invent a reconciliation timeline.',
+      '- Facts about the user come only from the user\'s own statements. Your own inferences, recommendations or answers must never be presented as remembered facts.',
+    ].join('\n'))
+  }
   if (memory?.runtime && memory.userQuery) {
     const memoryContext = await memory.runtime.getMemoryContext(memory.userQuery)
     if (memoryContext) {

@@ -1,0 +1,206 @@
+{
+  "general_skills": [
+    {
+      "skill_id": "distill_a4ee1eb9",
+      "title": "项目待办文件约定：路径 notes/todo.md，第一行为当天日期（ISO 格式 YYYY-MM-DD），其后每行一个待办，未完成用 \"- [ ] 内容\"，已…",
+      "principle": "项目待办文件约定：路径 notes/todo.md，第一行为当天日期（ISO 格式 YYYY-MM-DD），其后每行一个待办，未完成用 \"- [ ] 内容\"，已完成用 \"- [x] 内容\"。",
+      "when_to_apply": "在该项目中创建、追加或修改 notes/todo.md 待办条目时",
+      "tags": [
+        "conventions",
+        "markdown",
+        "todo"
+      ],
+      "usage_count": 6,
+      "success_count": 6,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:45:39.933Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_7f439b21",
+      "title": "按序号修改文件条目（如\"把第二项改成…\"）前，先确认该条目已存在；若文件只有标题/日期而无条目，应说明当前内容并请用户提供条目内容，不要自行编造占位条目",
+      "principle": "按序号修改文件条目（如\"把第二项改成…\"）前，先确认该条目已存在；若文件只有标题/日期而无条目，应说明当前内容并请用户提供条目内容，不要自行编造占位条目。",
+      "when_to_apply": "用户以序号引用文件中的行/条目并要求修改时",
+      "tags": [
+        "editing",
+        "verification",
+        "clarification"
+      ],
+      "usage_count": 5,
+      "success_count": 5,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:45:39.933Z",
+      "updatedAt": "2026-10-25T14:19:07.462Z"
+    },
+    {
+      "skill_id": "distill_bc92ec3a",
+      "title": "当用户要求修改的文件内容中目标项并不存在时，先向用户说明现状并请求补充内容，而不是直接编造条目；仅在用户明确授权（如“你自己决定”）后才自行补充占位内容",
+      "principle": "当用户要求修改的文件内容中目标项并不存在时，先向用户说明现状并请求补充内容，而不是直接编造条目；仅在用户明确授权（如“你自己决定”）后才自行补充占位内容。",
+      "when_to_apply": "用户指令引用了文件中不存在的行/条目/字段时",
+      "tags": [
+        "workflow",
+        "clarification",
+        "file-edit"
+      ],
+      "usage_count": 5,
+      "success_count": 5,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:46:14.272Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_8bd349bb",
+      "title": "用户以“上周三”“昨天”等相对说法给出时间且需落库时，先按当前日期换算成具体日期，若周起始日不同会导致多个候选值（如周一起算 vs 周日起算），列出候选并请用户…",
+      "principle": "用户以“上周三”“昨天”等相对说法给出时间且需落库时，先按当前日期换算成具体日期，若周起始日不同会导致多个候选值（如周一起算 vs 周日起算），列出候选并请用户确认后固定。",
+      "when_to_apply": "把含相对时间表述的事件记入长期记忆或日志时",
+      "tags": [
+        "dates",
+        "memory",
+        "clarification"
+      ],
+      "usage_count": 3,
+      "success_count": 3,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:48:18.221Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_197ac077",
+      "title": "当用户提供某人的立场或会议结论并要求记录时，把“个人意见”与“有效决议”分成两条独立记录，各自标注提出人、日期和当前状态（例如“决议=双周，某人主张每月，未推翻…",
+      "principle": "当用户提供某人的立场或会议结论并要求记录时，把“个人意见”与“有效决议”分成两条独立记录，各自标注提出人、日期和当前状态（例如“决议=双周，某人主张每月，未推翻决议”）；若用户可能想改动现行决议，先询问是改为新值还是标记为“待复议”，得到确认后再更新。",
+      "when_to_apply": "需要把他人观点、会议决定等长期记忆化，且存在意见与决议冲突或决议可能被变更时",
+      "tags": [
+        "记忆管理",
+        "会议记录",
+        "决策状态"
+      ],
+      "usage_count": 2,
+      "success_count": 2,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:49:02.901Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_906bd0f2",
+      "title": "把用户口述的相对时间（如“上周三”）转成具体日期时，若周起始约定不明确（周一算或周日算）会产生两个候选日期，应把候选日期列出让用户确认后再固定，不要自行选一个写…",
+      "principle": "把用户口述的相对时间（如“上周三”）转成具体日期时，若周起始约定不明确（周一算或周日算）会产生两个候选日期，应把候选日期列出让用户确认后再固定，不要自行选一个写入记录。",
+      "when_to_apply": "用户用相对时间描述事件且需要落成绝对日期时",
+      "tags": [
+        "date-handling",
+        "ambiguity",
+        "clarification"
+      ],
+      "usage_count": 1,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:49:49.548Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_18100461",
+      "title": "记录会议结论时，将“会议正式决议”与“某人个人意见/保留意见”分开记录，前者标注参会人和日期并保持生效状态，后者注明未推翻决议；查询时分别回答两者",
+      "principle": "记录会议结论时，将“会议正式决议”与“某人个人意见/保留意见”分开记录，前者标注参会人和日期并保持生效状态，后者注明未推翻决议；查询时分别回答两者。",
+      "when_to_apply": "记录或检索会议决议、以及存在分歧意见的场景",
+      "tags": [
+        "memory",
+        "meeting-notes",
+        "decision-tracking"
+      ],
+      "usage_count": 1,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T13:49:49.548Z",
+      "updatedAt": "2026-10-25T14:19:30.483Z"
+    },
+    {
+      "skill_id": "distill_89c859ba",
+      "title": "回答关于用户个人信息（居住地、联系人、宠物等）的问题前，先查两处：长期记忆（人物/事实/事件条目，通常带日期）与项目内 `notes/` 目录（如 `todo.…",
+      "principle": "回答关于用户个人信息（居住地、联系人、宠物等）的问题前，先查两处：长期记忆（人物/事实/事件条目，通常带日期）与项目内 `notes/` 目录（如 `todo.md`、`done.md`，可新增 `notes/profile.md` 记录时间线）。查不到时明确列出已检索范围，并提出把信息记成事实条目或写入 `notes/profile.md`。",
+      "when_to_apply": "需要回答用户个人事实类问题（住址、家庭成员、宠物等），或需要把用户提供的新个人信息持久化时",
+      "tags": [
+        "memory",
+        "notes",
+        "personal-facts"
+      ],
+      "usage_count": 0,
+      "success_count": 0,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T14:20:03.528Z",
+      "updatedAt": "2026-10-25T14:20:03.528Z"
+    },
+    {
+      "skill_id": "distill_989da306",
+      "title": "当同一事实在记忆中存在多条互相矛盾的带日期记录时：取时间最新的一条作为当前值，按时间顺序呈现轨迹，并显式标注哪一段存在冲突、请用户确认后修正，而不是静默择一",
+      "principle": "当同一事实在记忆中存在多条互相矛盾的带日期记录时：取时间最新的一条作为当前值，按时间顺序呈现轨迹，并显式标注哪一段存在冲突、请用户确认后修正，而不是静默择一。",
+      "when_to_apply": "检索到的记忆条目在时间线上前后不一致或存在被作废的旧记录时",
+      "tags": [
+        "memory",
+        "conflict-resolution",
+        "timeline"
+      ],
+      "usage_count": 0,
+      "success_count": 0,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T14:20:03.528Z",
+      "updatedAt": "2026-10-25T14:20:03.528Z"
+    },
+    {
+      "skill_id": "distill_8b63b56c",
+      "title": "当记忆条目之间存在时间或地点冲突时（如先记录住徐汇、后来又记录住浦东），按时间戳取最新一条作为现状，对旧记录明确标注其已作废或存疑，并向用户提示冲突、请用户确认…",
+      "principle": "当记忆条目之间存在时间或地点冲突时（如先记录住徐汇、后来又记录住浦东），按时间戳取最新一条作为现状，对旧记录明确标注其已作废或存疑，并向用户提示冲突、请用户确认后修正记录。",
+      "when_to_apply": "检索到互相矛盾的多条记忆记录时",
+      "tags": [
+        "memory",
+        "冲突处理",
+        "时间线"
+      ],
+      "usage_count": 0,
+      "success_count": 0,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-25T14:20:10.386Z",
+      "updatedAt": "2026-10-25T14:20:10.386Z"
+    }
+  ],
+  "task_specific_skills": {},
+  "common_mistakes": []
+}
