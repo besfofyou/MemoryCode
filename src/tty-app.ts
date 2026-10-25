@@ -1384,8 +1384,9 @@ async function handleInput(
     }
     const counts = bank.counts()
     const skills = bank.allSkills()
+    const retiredNote = counts.retired > 0 ? `, ${counts.retired} retired` : ''
     const lines = [
-      `SkillBank: ${counts.total} skills (${counts.general} general, ${counts.taskSpecific} task-specific)`,
+      `SkillBank: ${counts.total} skills (${counts.general} general, ${counts.taskSpecific} task-specific${retiredNote})`,
       '',
       ...skills.map(s => {
         const fitness = s.usage_count >= 5

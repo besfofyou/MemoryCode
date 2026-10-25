@@ -15,7 +15,17 @@ import { buildSystemPrompt } from '../../src/prompt.js'
 import { tryHandleLocalCommand } from '../../src/cli-commands.js'
 import { createMemoryTools } from '../../src/tools/memory-tools.js'
 import { FixedModel, MockEmbeddingClient } from './cogmem-helpers.js'
-import type { ChatMessage } from '../../src/types.js'
+import type { AgentStep, ChatMessage, ModelAdapter, ModelRequestOptions } from '../../src/types.js'
+
+/** 记录每次调用收到的对话内容（蒸馏调用把对话放在最后一条 user 消息里） */
+class CapturingDistillModel implements ModelAdapter {
+  readonly conversations: string[] = []
+  async next(messages: ChatMessage[], _options?: ModelRequestOptions): Promise<AgentStep> {
+    const last = messages[messages.length - 1]
+    this.conversations.push(typeof last?.content === 'string' ? last.content : '')
+    return { type: 'assistant', content: JSON.stringify({ skills: [], summary: '' }) }
+  }
+}
 
 const CONVERSATION: ChatMessage[] = [
   { role: 'user', content: 'Alice asked: what language does this project use? Please check the configuration files.' },
@@ -253,12 +263,34 @@ describe('CogMem integration', () => {
       })
       assert.match(prompt, /# Learned Skills \(dynamic\)/)
 
-      // SkillForge 信用分配：final 延迟到下一条用户消息结算
-      await runtime.completeTurn({ outcome: 'final', messages: [], userQuery: 'npm check workflow' })
+      // SkillForge 信用分配：final 延迟到下一条用户消息结算（工作轮需有工具调用轨迹）
+      await runtime.completeTurn({
+        outcome: 'final',
+        userQuery: 'npm check workflow',
+        messages: [
+          { role: 'user', content: 'npm check workflow' },
+          { role: 'tool_result', toolUseId: 't1', toolName: 'run_checks', content: 'checks passed', isError: false },
+          { role: 'assistant', content: 'Checks passed.' },
+        ] as ChatMessage[],
+      })
       assert.equal(runtime.skillBank.data.general_skills[0]!.usage_count, 0)
       await runtime.getMemoryContext('还是报错')
       assert.equal(runtime.skillBank.data.general_skills[0]!.usage_count, 1)
       assert.equal(runtime.skillBank.data.general_skills[0]!.success_count, 0)
+      assert.equal(runtime.skillBank.data.general_skills[0]!.recent_failures.length, 1)
+
+      // 纯对话轮（无工具调用）不记账：技能被展示但未被使用，闲聊不得污染 usage/failures
+      await runtime.getMemoryContext('帮我看看这个配置')
+      await runtime.completeTurn({
+        outcome: 'final',
+        userQuery: '帮我看看这个配置',
+        messages: [
+          { role: 'user', content: '帮我看看这个配置' },
+          { role: 'assistant', content: '这个配置声明了脚本与依赖。' },
+        ],
+      })
+      await runtime.getMemoryContext('还是报错')
+      assert.equal(runtime.skillBank.data.general_skills[0]!.usage_count, 1)
       assert.equal(runtime.skillBank.data.general_skills[0]!.recent_failures.length, 1)
 
       // awaiting_user 不计分
@@ -271,6 +303,45 @@ describe('CogMem integration', () => {
       assert.match(report ?? '', /CogMem Knowledge Graph/)
       assert.match(report ?? '', /persons: 0/)
     } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('incremental skill distillation only receives messages since the last run', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'minicode-cogmem-delta-'))
+    const memoryRoot = path.join(root, 'memory')
+    const model = new CapturingDistillModel()
+    process.env.MINI_CODE_SKILL_DISTILL_EVERY = '2'
+    try {
+      await mkdir(memoryRoot, { recursive: true })
+      const runtime = await MemoryRuntime.create(root, memoryRoot)
+      runtime.initModel(model)
+
+      const build = (turns: number): ChatMessage[] => {
+        const messages: ChatMessage[] = []
+        for (let i = 1; i <= turns; i++) {
+          messages.push({ role: 'user', content: `user turn ${i}` })
+          messages.push({ role: 'assistant', content: `assistant turn ${i}` })
+        }
+        return messages
+      }
+
+      await runtime.completeTurn({ outcome: 'awaiting_user', messages: build(1), userQuery: 'user turn 1' })
+      await runtime.completeTurn({ outcome: 'awaiting_user', messages: build(2), userQuery: 'user turn 2' })
+      await (runtime as unknown as { bgSkillDistill: Promise<unknown> | null }).bgSkillDistill
+      await runtime.completeTurn({ outcome: 'awaiting_user', messages: build(3), userQuery: 'user turn 3' })
+      await runtime.completeTurn({ outcome: 'awaiting_user', messages: build(4), userQuery: 'user turn 4' })
+      await (runtime as unknown as { bgSkillDistill: Promise<unknown> | null }).bgSkillDistill
+
+      // 第一次蒸馏收到全量（此时即增量），第二次只收到第 3、4 轮的新消息
+      assert.equal(model.conversations.length, 2)
+      assert.ok(model.conversations[0]!.includes('user turn 1'))
+      assert.ok(model.conversations[1]!.includes('user turn 3'))
+      assert.ok(model.conversations[1]!.includes('user turn 4'))
+      assert.ok(!model.conversations[1]!.includes('user turn 1'))
+      assert.ok(!model.conversations[1]!.includes('user turn 2'))
+    } finally {
+      delete process.env.MINI_CODE_SKILL_DISTILL_EVERY
       await rm(root, { recursive: true, force: true })
     }
   })

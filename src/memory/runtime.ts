@@ -21,6 +21,9 @@ import { feedbackFromNextUserMessage, immediateSignal, summarizeLastTurn, type C
 import { MEMORY_CONTEXT_BUDGET, SKILL_BANK_CONFIG } from './constants.js'
 import type { Skill, MemoryRetrievalResult } from './types.js'
 
+/** 增量蒸馏的回退窗口：compaction 缩短 messages 后至少重蒸馏的尾部消息数 */
+const MIN_DISTILL_DELTA_MESSAGES = 12
+
 export class MemoryRuntime {
   // ---- CogMem 核心组件 ----
   readonly graph: GraphStore
@@ -51,6 +54,7 @@ export class MemoryRuntime {
   private readonly graphPath: string
   private readonly vectorPath: string
   private turnsSinceSkillDistill = 0
+  private lastSkillDistillIdx = 0
   private bgSkillDistill: Promise<unknown> | null = null
   private saveChain: Promise<void> = Promise.resolve()
 
@@ -169,6 +173,8 @@ export class MemoryRuntime {
   }
 
   private credit(skills: Skill[], success: boolean, task: string, trajectory: string) {
+    // 纯对话轮（无任何工具调用）里技能只是被展示而非被使用，记账会让闲聊污染 usage/fitness
+    if (!skills.length || !trajectory.trim()) return
     this.skillBank.recordEpisode(skills, success, { task, trajectory })
     if (!success) this.sessionFailures.push({ task, trajectory })
   }
@@ -220,8 +226,13 @@ export class MemoryRuntime {
     const every = Number(process.env.MINI_CODE_SKILL_DISTILL_EVERY ?? 3)
     if (this.model && ++this.turnsSinceSkillDistill >= every && !this.bgSkillDistill) {
       this.turnsSinceSkillDistill = 0
-      const snapshot = [...args.messages]
-      this.bgSkillDistill = distillSessionEnd(snapshot, this.model, this.proceduralStore, `turn-${this.turnIndex}`, { skillBank: this.skillBank })
+      // 只蒸馏上次蒸馏之后的新消息；若上下文收敛缩短了 messages 导致索引越界，则回退到尾部窗口
+      const start = this.lastSkillDistillIdx <= args.messages.length
+        ? this.lastSkillDistillIdx
+        : Math.max(0, args.messages.length - MIN_DISTILL_DELTA_MESSAGES)
+      const delta = args.messages.slice(start)
+      this.lastSkillDistillIdx = args.messages.length
+      this.bgSkillDistill = distillSessionEnd(delta, this.model, this.proceduralStore, `turn-${this.turnIndex}`, { skillBank: this.skillBank })
         .then(r => this.log(`incremental-skill ${JSON.stringify(r)}`))
         .then(() => this.skillBank.save())
         .catch(e => this.log(`incremental-skill FAILED: ${e}`))
@@ -234,7 +245,7 @@ export class MemoryRuntime {
   /** 把 SkillForge 的 analyze_failures 接回来 */
   private async learnFromSessionFailures(): Promise<void> {
     if (!this.skillMutator || this.sessionFailures.length < 2) return   // 至少 2 次失败才触发，控制成本
-    const room = 80 - this.skillBank.size
+    const room = this.forgeEngine.capacity - this.skillBank.size
     if (room <= 0) return
     const created = await this.skillMutator.analyzeFailures(
       this.sessionFailures.slice(-8), this.skillBank, Math.min(3, room),

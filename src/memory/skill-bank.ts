@@ -1,7 +1,10 @@
 import { readFile, rename } from 'node:fs/promises'
 import type { Skill, SkillBankData, SkillLifecycle } from './types.js'
-import { tokenize } from './filesystem.js'
+import { tokenize, tokenSignature, setOverlap, latinTokensDuplicate } from './filesystem.js'
 import { writeJsonAtomic } from './fs-util.js'
+
+/** retired 墓碑上限：淘汰记录只保留最近这么多条供去重参考，防止 skill-bank.json 无限增长 */
+export const MAX_RETIRED_SKILLS = 40
 
 function skillDefaults(lifecycle: SkillLifecycle = 'active'): Partial<Skill> {
   const now = new Date().toISOString()
@@ -89,14 +92,16 @@ export class SkillBank {
   }
 
   // —— 语义去重 ——
-  findNearDuplicate(text: string, threshold = 0.6): Skill | null {
-    const a = new Set(tokenize(text))
-    if (!a.size) return null
+  // 双通道：全量 token 重叠（中文措辞稀释后阈值从 0.6 放宽到 0.5），
+  // 或拉丁 token（命令/路径/标识符）高度重合——后者抓「同一操作换个说法」的重复
+  findNearDuplicate(text: string, threshold = 0.5): Skill | null {
+    const a = tokenSignature(text)
+    if (!a.all.size) return null
     for (const s of this.allSkills(true)) {
-      const b = new Set(tokenize(`${s.title} ${s.principle}`))
-      if (!b.size) continue
-      let inter = 0; for (const t of a) if (b.has(t)) inter++
-      if (inter / Math.min(a.size, b.size) > threshold) return s
+      const b = tokenSignature(`${s.title} ${s.principle}`)
+      if (!b.all.size) continue
+      if (setOverlap(a.all, b.all) > threshold) return s
+      if (latinTokensDuplicate(a, b)) return s
     }
     return null
   }
@@ -242,16 +247,61 @@ export class SkillBank {
       this.data.task_specific_skills[group] = skills.filter(s => s.skill_id !== skillId)
       if (this.data.task_specific_skills[group].length < before) removed = true
     }
+    if (removed) this.detachLineage(skillId)
     return removed
   }
 
+  // —— 软淘汰：标记 retired 而非删除 ——
+  // 记录保留在库中，findNearDuplicate 据此拦截「同一差技能被蒸馏器反复重新学习」的churn；
+  // 检索/进化均只看存活技能（allSkills 默认排除 retired），行为与删除一致
+  retire(skillId: string): boolean {
+    const skill = this.getSkill(skillId)
+    if (!skill || skill.lifecycle === 'retired') return false
+    skill.lifecycle = 'retired'
+    skill.updatedAt = new Date().toISOString()
+    this.pruneRetired()
+    return true
+  }
+
+  /** retired 墓碑超限时丢弃最旧的，并摘除其对谱系的引用 */
+  private pruneRetired(): void {
+    const retired = this.allSkills(true).filter(s => s.lifecycle === 'retired')
+    if (retired.length <= MAX_RETIRED_SKILLS) return
+    const drop = new Set(retired
+      .sort((a, b) => (a.updatedAt ?? '').localeCompare(b.updatedAt ?? ''))
+      .slice(0, retired.length - MAX_RETIRED_SKILLS)
+      .map(s => s.skill_id))
+    this.data.general_skills = this.data.general_skills.filter(s => !drop.has(s.skill_id))
+    for (const group of Object.keys(this.data.task_specific_skills)) {
+      this.data.task_specific_skills[group] = this.data.task_specific_skills[group].filter(s => !drop.has(s.skill_id))
+    }
+    for (const id of drop) this.detachLineage(id)
+  }
+
+  /** 硬删除后谱系会留下悬空引用：父的 children 移除该 ID，其子技能的 parent_id 置空 */
+  private detachLineage(skillId: string): void {
+    for (const s of this.allSkills(true)) {
+      if (s.children?.length) s.children = s.children.filter(id => id !== skillId)
+      if (s.parent_id === skillId) s.parent_id = null
+    }
+  }
+
+  // —— 查询 skill 所属分类（变异子技能继承父技能的任务分组） ——
+  categoryOf(skillId: string): string {
+    if (this.data.general_skills.some(s => s.skill_id === skillId)) return 'general'
+    for (const [group, skills] of Object.entries(this.data.task_specific_skills)) {
+      if (skills.some(s => s.skill_id === skillId)) return group
+    }
+    return 'general'
+  }
+
   // —— 统计 ——
-  counts(): { general: number; taskSpecific: number; total: number } {
-    const taskSpecific = Object.values(this.data.task_specific_skills)
-      .reduce((sum, arr) => sum + arr.length, 0)
+  counts(): { general: number; taskSpecific: number; retired: number; total: number } {
+    const live = (arr: Skill[]) => arr.filter(s => s.lifecycle !== 'retired').length
     return {
-      general: this.data.general_skills.length,
-      taskSpecific,
+      general: live(this.data.general_skills),
+      taskSpecific: Object.values(this.data.task_specific_skills).reduce((sum, arr) => sum + live(arr), 0),
+      retired: this.allSkills(true).length - this.size,
       total: this.size,
     }
   }

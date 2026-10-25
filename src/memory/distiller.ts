@@ -3,15 +3,15 @@
 import { randomUUID } from 'node:crypto'
 import type { ModelAdapter, ChatMessage } from '../types.js'
 import type { MemoryFilesystem } from './filesystem.js'
-import { tokenize } from './filesystem.js'
+import { tokenSignature, setOverlap, latinTokensDuplicate } from './filesystem.js'
 import { validateMemoryWrite, sanitizeMemoryContent, sanitizeSkill } from './safety.js'
 import type { SkillBank } from './skill-bank.js'
 import { extractJsonObject } from './json-util.js'
 import { memoryModelText } from './model-call.js'
 
-const DISTILL_PROMPT = `Extract concise, durable information useful in a future coding session from the conversation.
+const DISTILL_PROMPT = `Extract concise, durable skills useful in a future coding session from the conversation.
 Return only JSON with this shape:
-{"facts":[{"content":"...","tags":["..."],"durability":"durable|volatile"}],"skills":[{"content":"...","when_to_apply":"...","tags":["..."],"durability":"durable|volatile"}],"summary":"..."}.
+{"skills":[{"content":"...","when_to_apply":"...","tags":["..."],"durability":"durable|volatile"}],"summary":"..."}.
 
 ## Rules for "summary" (episodic layer)
 - Write as a **neutral third-person event record**, e.g. "用户请求列出项目文件树，助手遍历了目录并输出结果".
@@ -19,17 +19,6 @@ Return only JSON with this shape:
 - Use precise verbs: "排除/跳过" (deliberately excluded), NOT "遗漏" (accidentally omitted);
   "选择/决定" (chose), NOT "忘记" (forgot). Distinguish intentional actions from mistakes.
 - If the assistant intentionally skipped something and explained why, describe it as a deliberate decision.
-
-## Rules for "facts" (semantic layer)
-- Facts are verified, **durable** project details or user preferences.
-- Do NOT record transient runtime states (e.g. "submodule directory is currently empty",
-  "currently on branch X") — these expire after one user action.
-- Do NOT merely list file names that were seen; instead extract the **knowledge behind** them:
-  project purpose, tech stack, architecture relationships, build/test commands.
-- Do NOT include machine-local absolute paths (e.g. "D:\\path\\to\\project").
-  Use relative paths or describe the project location generically.
-- Aim for **high information density**: prefer one merged sentence over multiple trivial entries.
-  E.g. "项目含中英双语文档、test/ 下有完整单元测试、external/ 下引用了4个子模块" is better than 3 separate entries.
 
 ## Rules for "skills" (procedural layer)
 - Skills are **cross-scenario reusable** procedures or workflows, NOT one-off tricks for a single task.
@@ -46,16 +35,42 @@ Return only JSON with this shape:
 
 const MAX_PER_MESSAGE_CHARS = 1500
 
-export type DistillResult = { factsCount: number; skillsCount: number; bankAdded: number; reason?: string }
+export type DistillResult = { skillsCount: number; bankAdded: number; reason?: string }
 
 type DistilledItem = { content?: unknown; tags?: unknown; durability?: unknown }
 
-// parseDistilledItems：用括号配对解析替代贪婪正则
+// —— 标题提取 ——
+// 句读切分前先把「代码里的点」临时替换为 \u0000，防止 package.json、src/agent-loop.ts、
+// *.ts、model.next、.gitignore、小数被当成句号把标题拦腰截断（生产数据里 10 条标题截断 6 条）
+const SENTINEL = '\u0000'
+const DOT_PATTERNS: RegExp[] = [
+  // 文件路径链（可含多级，如 eslint.config.js）以已知扩展名结尾
+  /([A-Za-z0-9_*/-]+(?:\.[A-Za-z0-9_*/-]+)*)\.(?:ts|tsx|js|jsx|mjs|cjs|json|md|markdown|sh|bash|zsh|py|ya?ml|toml|lock)\b/g,
+  // 小写标识符.小写标识符（model.next、example.com）
+  /([a-z][A-Za-z0-9]+)\.([a-z][A-Za-z0-9]+)(?![A-Za-z0-9])/g,
+  // 裸扩展名/点文件（".ts 文件"、"补 .gitignore"），前面不能是字母数字
+  /(?<![A-Za-z0-9])\.([a-z][A-Za-z0-9_-]*)/g,
+  // 小数（1.5 小时）
+  /(\d)\.(\d)/g,
+]
+
+/** 从 principle 首句生成标题：先保护代码里的点，再按中英文句读切分（普通 ASCII 句号仍是边界），超长补省略号 */
+export function extractTitle(raw: string): string {
+  let protectedText = raw
+  for (const pattern of DOT_PATTERNS) {
+    protectedText = protectedText.replace(pattern, (match) => match.replace(/\./g, SENTINEL))
+  }
+  const firstSentence = protectedText.split(/[。.！？!?\n]/)[0] ?? ''
+  const title = firstSentence.split(SENTINEL).join('.').trim()
+  if (!title) return 'Untitled'
+  return title.length > 80 ? `${title.slice(0, 80)}…` : title
+}
+
+// parseDistilledItems：用括号配对解析替代贪婪正则（facts 由 extractor.ts 的图谱层负责，此处不再解析）
 function parseDistilledItems(content: string) {
   const parsed = extractJsonObject(content) as Record<string, unknown> | null
   if (!parsed) return null
   return {
-    facts: Array.isArray(parsed.facts) ? parsed.facts as DistilledItem[] : [],
     skills: Array.isArray(parsed.skills) ? parsed.skills as DistilledItem[] : [],
     summary: typeof parsed.summary === 'string' ? parsed.summary : '',
   }
@@ -82,17 +97,6 @@ function compressForDistillation(messages: ChatMessage[]): string {
 
     return `[${message.role}]: ${content}`
   }).filter(Boolean).join('\n').slice(0, 8_000)
-}
-
-function computeTokenOverlap(a: string, b: string): number {
-  const tokensA = new Set(tokenize(a))
-  const tokensB = new Set(tokenize(b))
-  if (tokensA.size === 0 || tokensB.size === 0) return 0
-  let intersection = 0
-  for (const t of tokensA) {
-    if (tokensB.has(t)) intersection++
-  }
-  return intersection / Math.min(tokensA.size, tokensB.size)
 }
 
 function safeTags(tags: unknown): string[] {
@@ -132,7 +136,7 @@ export async function distillSessionEnd(
 ): Promise<DistillResult> {
   const relevant = messages.filter(message => extractText(message) !== null).slice(-30)
   const userTurnCount = relevant.filter(message => message.role === 'user').length
-  if (userTurnCount < 2) return { factsCount: 0, skillsCount: 0, bankAdded: 0, reason: `only ${userTurnCount} user turn(s)` }
+  if (userTurnCount < 2) return { skillsCount: 0, bankAdded: 0, reason: `only ${userTurnCount} user turn(s)` }
 
   const maxSkills = userTurnCount <= 3 ? 2 : userTurnCount <= 8 ? 3 : 4
 
@@ -145,10 +149,10 @@ export async function distillSessionEnd(
       { role: 'system', content: DISTILL_PROMPT },
       { role: 'user', content: conversation + guidanceNote },
     ])
-    if (!text) return { factsCount: 0, skillsCount: 0, bankAdded: 0, reason: 'model returned no text (tool_calls?)' }
+    if (!text) return { skillsCount: 0, bankAdded: 0, reason: 'model returned no text (tool_calls?)' }
     const extracted = parseDistilledItems(text)
-    if (!extracted) return { factsCount: 0, skillsCount: 0, bankAdded: 0, reason: `unparseable: ${text.slice(0, 200)}` }
-    if (!extracted.skills.length) return { factsCount: 0, skillsCount: 0, bankAdded: 0, reason: 'model returned empty skills' }
+    if (!extracted) return { skillsCount: 0, bankAdded: 0, reason: `unparseable: ${text.slice(0, 200)}` }
+    if (!extracted.skills.length) return { skillsCount: 0, bankAdded: 0, reason: 'model returned empty skills' }
 
     let skillsCount = 0
     let bankAdded = 0
@@ -162,10 +166,11 @@ export async function distillSessionEnd(
     ): Promise<boolean> {
       if (typeof content !== 'string' || content.trim().length < 10) return false
       const normalized = sanitizeMemoryContent(content.trim().slice(0, 500))
+      const sig = tokenSignature(normalized)
 
       for (const existing of writtenContents) {
-        const overlap = computeTokenOverlap(normalized, existing)
-        if (overlap > 0.6) return false
+        const prev = tokenSignature(existing)
+        if (setOverlap(sig.all, prev.all) > 0.6 || latinTokensDuplicate(sig, prev)) return false
       }
 
       if (!(await writeValidated(proceduralStore, normalized, tags, sessionId, 'auto_distill', durability))) return false
@@ -191,7 +196,7 @@ export async function distillSessionEnd(
         if (options.skillBank.findNearDuplicate(raw)) continue
         const candidate = sanitizeSkill({
           skill_id: `distill_${randomUUID().slice(0, 8)}`,
-          title: raw.split(/[。.!？\n]/)[0]?.slice(0, 80) || 'Untitled',
+          title: extractTitle(raw),
           principle: raw,
           when_to_apply: typeof (skill as any).when_to_apply === 'string' ? (skill as any).when_to_apply : '',
           tags: safeTags(skill.tags),
@@ -203,8 +208,9 @@ export async function distillSessionEnd(
       }
     }
 
-    return { factsCount: 0, skillsCount, bankAdded, reason: reasons.join('; ') || undefined }
+    const reason = reasons.join('; ') || undefined
+    return reason ? { skillsCount, bankAdded, reason } : { skillsCount, bankAdded }
   } catch (e) {
-    return { factsCount: 0, skillsCount: 0, bankAdded: 0, reason: String(e) }
+    return { skillsCount: 0, bankAdded: 0, reason: String(e) }
   }
 }

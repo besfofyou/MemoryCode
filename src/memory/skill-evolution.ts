@@ -82,6 +82,9 @@ export class ForgeEngine {
     return (skill.success_count ?? 0) / Math.max(usage, 1)
   }
 
+  /** 库容量上限（runtime.learnFromSessionFailures 等处据此计算可用名额） */
+  get capacity(): number { return this.config.maxTotalSkills }
+
   // —— 核心：一次进化周期 ——
   async maybeEvolve(
     bank: SkillBank,
@@ -106,9 +109,22 @@ export class ForgeEngine {
     }
 
     // 1. Promotion: trial → active
+    // 试用期以 usage 为准；转正前按 fitness 把关——fitness 已低于淘汰线的 trial
+    // 直接淘汰（trial → retired），避免低质技能晋升后再占用 (retireMinUsage - promoteMinUsage) 次检索曝光
     for (const skill of bank.allSkills()) {
-      if (skill.lifecycle === 'trial' && skill.usage_count >= this.config.promoteMinUsage) {
+      if (skill.lifecycle !== 'trial' || skill.usage_count < this.config.promoteMinUsage) continue
+      const fit = this.fitness(skill)
+      if (fit < this.config.retireFitnessThreshold) {
+        if (bank.retire(skill.skill_id)) {
+          summary.retired.push({
+            skill_id: skill.skill_id,
+            fitness: Math.round(fit * 10000) / 10000,
+            reason: 'trial',
+          })
+        }
+      } else {
         skill.lifecycle = 'active'
+        skill.updatedAt = new Date().toISOString()
         summary.promoted.push(skill.skill_id)
       }
     }
@@ -117,11 +133,12 @@ export class ForgeEngine {
     for (const skill of bank.allSkills()) {
       if (skill.lifecycle === 'stable' && this.fitness(skill) < this.config.demoteFitnessThreshold) {
         skill.lifecycle = 'active'
+        skill.updatedAt = new Date().toISOString()
         summary.demoted.push(skill.skill_id)
       }
     }
 
-    // 3. Retirement: active → 移除
+    // 3. Retirement: active → retired（软淘汰，保留墓碑供去重）
     const retireCandidates: Array<[number, Skill]> = []
     for (const skill of bank.allSkills()) {
       const minUsage = skill.generation === 0
@@ -138,10 +155,11 @@ export class ForgeEngine {
     }
     retireCandidates.sort((a, b) => a[0] - b[0])
     for (const [score, skill] of retireCandidates.slice(0, this.config.maxRetirementsPerCycle)) {
-      if (bank.remove(skill.skill_id)) {
+      if (bank.retire(skill.skill_id)) {
         summary.retired.push({
           skill_id: skill.skill_id,
           fitness: Math.round(score * 10000) / 10000,
+          reason: 'fitness',
         })
       }
     }
@@ -154,6 +172,7 @@ export class ForgeEngine {
         skill.usage_count >= this.config.stabilizeMinUsage
       ) {
         skill.lifecycle = 'stable'
+        skill.updatedAt = new Date().toISOString()
         summary.stabilized.push(skill.skill_id)
       }
     }
@@ -190,7 +209,7 @@ export class ForgeEngine {
         child.usage_count = 0
         child.success_count = 0
         child.children = []
-        if (bank.add(child)) {
+        if (bank.add(child, bank.categoryOf(parent.skill_id))) {
           parent.children.push(child.skill_id)
           summary.mutated.push({
             parent_id: parent.skill_id,
@@ -220,7 +239,7 @@ export class ForgeEngine {
         this.fitness(s) < this.fitness(min) ? s : min
       )
       const score = this.fitness(victim)
-      if (bank.remove(victim.skill_id)) {
+      if (bank.retire(victim.skill_id)) {
         summary.retired.push({
           skill_id: victim.skill_id,
           fitness: Math.round(score * 10000) / 10000,

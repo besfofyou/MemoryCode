@@ -278,3 +278,40 @@ export function tokenize(text: string): string[] {
     : Array.from({ length: run.length - 1 }, (_, index) => run.slice(index, index + 2)))
   return [...latin, ...cjk].filter(token => token.length > 1)
 }
+
+// —— 重复检测的 token 工具（SkillBank 与 distiller 共用） ——
+
+export type TokenSignature = {
+  /** 全量 token（含 CJK 二元组），用于整体重叠度 */
+  all: Set<string>
+  /** 拉丁 token（命令、路径、标识符）——中文转述时最稳定的部分 */
+  latin: Set<string>
+}
+
+const LATIN_TOKEN = /^[a-z0-9]+$/
+
+export function tokenSignature(text: string): TokenSignature {
+  const tokens = tokenize(text)
+  return {
+    all: new Set(tokens),
+    latin: new Set(tokens.filter(t => LATIN_TOKEN.test(t))),
+  }
+}
+
+export function setOverlap(a: Set<string>, b: Set<string>): number {
+  if (!a.size || !b.size) return 0
+  let intersection = 0
+  for (const t of a) if (b.has(t)) intersection++
+  return intersection / Math.min(a.size, b.size)
+}
+
+/**
+ * 拉丁通道：命令/路径/标识符交集 ≥3 且重叠率 >0.7 时，视为同一操作的不同表述。
+ * 中文措辞差异会稀释全量 token 重叠率，但「跑什么命令、看哪个文件」几乎不变。
+ */
+export function latinTokensDuplicate(a: TokenSignature, b: TokenSignature): boolean {
+  if (a.latin.size < 2 || b.latin.size < 2) return false
+  let intersection = 0
+  for (const t of a.latin) if (b.latin.has(t)) intersection++
+  return intersection >= 3 && intersection / Math.min(a.latin.size, b.latin.size) > 0.7
+}
