@@ -1,0 +1,27 @@
+{
+  "id": "44f8dbad-492",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/ 的验证命令：`npm test`（Jest + supertest，44 用例）与 `npm run test:unit`（node:test，44 用例），两套都需全绿；启动用 `node src/server.js`，默认端口 3000。config.js 集中解析环境变量，生产环境强制校验 JWT_SECRET。",
+  "createdAt": "2026-10-26T12:53:22.800Z",
+  "updatedAt": "2026-10-26T12:53:22.800Z",
+  "lastAccessedAt": "2026-10-26T12:53:22.800Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "85354be6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "testing",
+    "commands",
+    "simu"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "fd42158c058f0f58d376ac28f12505e1caa08ac78d35eeafce45dc3a99d5cd97",
+  "origin": "agent",
+  "durability": "durable"
+}

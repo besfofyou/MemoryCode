@@ -26,6 +26,7 @@ function skillDefaults(lifecycle: SkillLifecycle = 'active'): Partial<Skill> {
 export type RetrieveOptions = {
   fitness?: (s: Skill) => number   // 由 ForgeEngine 注入，复用 warmup 逻辑
   exploreSlots?: number            // 留给 trial skill 的探索名额
+  random?: () => number            // 探索槽加权采样的随机源（测试可注入确定性序列）
 }
 
 export class SkillBank {
@@ -106,6 +107,98 @@ export class SkillBank {
     return null
   }
 
+  /**
+   * 事后合并存量近重复 skill。
+   *
+   * 入库时的 findNearDuplicate 只能拦截增量，拦不了存量池里已并存的重复
+   * （蒸馏器换个措辞就会把同一经验再学一遍，usage 被分流、谁也到不了晋升阈值）。
+   * 每个进化周期调用一次：重复对内选胜者（生命周期更成熟 → fitness 更高 → usage 更多 → 文本更全），
+   * 败者的 usage/success/recent_failures/tags/谱系并入胜者，然后软淘汰为墓碑——
+   * 墓碑继续拦截蒸馏器重学，同时不再占据检索名额。
+   *
+   * 为保护已验证技能的统计不被污染，仅当重复对中至少一方是 trial 时才合并。
+   * 返回 { loserId, winnerId } 列表（loser 已被 retire）。
+   */
+  mergeNearDuplicates(
+    fitness: (s: Skill) => number,
+    threshold = 0.5,
+  ): Array<{ loserId: string; winnerId: string }> {
+    const live = this.allSkills()
+    const signatures = new Map<string, ReturnType<typeof tokenSignature>>()
+    const sigOf = (s: Skill) => {
+      let sig = signatures.get(s.skill_id)
+      if (!sig) {
+        sig = tokenSignature(`${s.title} ${s.principle}`)
+        signatures.set(s.skill_id, sig)
+      }
+      return sig
+    }
+    const absorbed = new Set<string>()
+    const mergedPairs: Array<{ loserId: string; winnerId: string }> = []
+
+    for (let i = 0; i < live.length; i++) {
+      const a = live[i]!
+      if (absorbed.has(a.skill_id)) continue
+      for (let j = i + 1; j < live.length; j++) {
+        const b = live[j]!
+        if (absorbed.has(b.skill_id)) continue
+        if (a.lifecycle !== 'trial' && b.lifecycle !== 'trial') continue
+        const sa = sigOf(a)
+        const sb = sigOf(b)
+        if (!sa.all.size || !sb.all.size) continue
+        if (setOverlap(sa.all, sb.all) <= threshold && !latinTokensDuplicate(sa, sb)) continue
+
+        const winner = this.pickMergeWinner(a, b, fitness)
+        const loser = winner === a ? b : a
+        this.absorbInto(winner, loser)
+        this.retire(loser.skill_id)
+        absorbed.add(loser.skill_id)
+        mergedPairs.push({ loserId: loser.skill_id, winnerId: winner.skill_id })
+      }
+    }
+    return mergedPairs
+  }
+
+  /** 合并胜者选择：生命周期更成熟者优先，其次 fitness、usage，最后文本更全者 */
+  private pickMergeWinner(a: Skill, b: Skill, fitness: (s: Skill) => number): Skill {
+    const rank: Record<SkillLifecycle, number> = { trial: 0, active: 1, stable: 2, retired: -1 }
+    if (rank[a.lifecycle] !== rank[b.lifecycle]) return rank[a.lifecycle] > rank[b.lifecycle] ? a : b
+    const fa = fitness(a)
+    const fb = fitness(b)
+    if (fa !== fb) return fa > fb ? a : b
+    if ((a.usage_count ?? 0) !== (b.usage_count ?? 0)) return (a.usage_count ?? 0) > (b.usage_count ?? 0) ? a : b
+    return a.principle.length >= b.principle.length ? a : b
+  }
+
+  /** 把败者的统计、标签与谱系并入胜者（调用方负责随后 retire 败者） */
+  private absorbInto(winner: Skill, loser: Skill): void {
+    winner.usage_count = (winner.usage_count ?? 0) + (loser.usage_count ?? 0)
+    winner.success_count = (winner.success_count ?? 0) + (loser.success_count ?? 0)
+    winner.recent_failures = [...(winner.recent_failures ?? []), ...(loser.recent_failures ?? [])].slice(-15)
+    winner.tags = [...new Set([...(winner.tags ?? []), ...(loser.tags ?? [])])]
+    if (!winner.when_to_apply && loser.when_to_apply) winner.when_to_apply = loser.when_to_apply
+
+    // 谱系重接：败者的子技能改挂胜者；败者的父技能改指向胜者
+    for (const childId of loser.children ?? []) {
+      if (childId === winner.skill_id) continue
+      const child = this.getSkill(childId)
+      if (child) child.parent_id = winner.skill_id
+      if (!winner.children.includes(childId)) winner.children.push(childId)
+    }
+    if (loser.parent_id && loser.parent_id !== winner.skill_id) {
+      const parent = this.getSkill(loser.parent_id)
+      if (parent) {
+        parent.children = (parent.children ?? []).filter(id => id !== loser.skill_id)
+        if (!parent.children.includes(winner.skill_id)) parent.children.push(winner.skill_id)
+      }
+      if (!winner.parent_id) winner.parent_id = loser.parent_id
+    }
+    // 处理 winner 与 loser 互为父子/同节点的边角
+    winner.children = (winner.children ?? []).filter(id => id !== loser.skill_id)
+    if (winner.parent_id === loser.skill_id) winner.parent_id = loser.parent_id ?? null
+    winner.updatedAt = new Date().toISOString()
+  }
+
   // —— 任务类型检测（面向编码场景） ——
   detectTaskType(userRequest: string): string {
     const text = userRequest.toLowerCase()
@@ -134,16 +227,44 @@ export class SkillBank {
 
   private rank(pool: Skill[], query: Set<string>, k: number, opts: RetrieveOptions): Skill[] {
     const fit = opts.fitness ?? (() => 0.5)
+    const random = opts.random ?? Math.random
     const live = pool.filter(s => s.lifecycle !== 'retired')
     const score = (s: Skill) =>
       0.6 * this.relevance(query, s) + 0.4 * fit(s) + (s.lifecycle === 'stable' ? 0.1 : 0)
     const established = live.filter(s => s.lifecycle !== 'trial').sort((a, b) => score(b) - score(a))
     const trials = live.filter(s => s.lifecycle === 'trial')
-      .sort((a, b) => (a.usage_count - b.usage_count) || (this.relevance(query, b) - this.relevance(query, a)))
     const slots = Math.min(opts.exploreSlots ?? 2, trials.length, k)
-    const picked = [...established.slice(0, k - slots), ...trials.slice(0, slots)]
-    // established 不够时用剩余 trial 补齐
-    for (const s of trials.slice(slots)) { if (picked.length >= k) break; picked.push(s) }
+    const explored = this.sampleTrials(trials, query, slots, random)
+    const exploredIds = new Set(explored.map(s => s.skill_id))
+    const picked = [...established.slice(0, k - slots), ...explored]
+    // established 不够时用剩余 trial 按相关性补齐
+    const rest = trials.filter(s => !exploredIds.has(s.skill_id))
+      .sort((a, b) => this.relevance(query, b) - this.relevance(query, a))
+    for (const s of rest) { if (picked.length >= k) break; picked.push(s) }
+    return picked
+  }
+
+  /**
+   * trial 探索槽的不放回加权采样：权重 = (0.2 + 相关性) / (1 + usage)。
+   * 旧实现按 usage 严格升序取前 N，把曝光均匀摊到所有 trial 上——
+   * 生产中没有任何技能能积累到晋升阈值；加权采样让「相关且低 usage」的技能更快累积曝光，
+   * 同时保留其他 trial 被探索的非零概率。
+   */
+  private sampleTrials(trials: Skill[], query: Set<string>, n: number, random: () => number): Skill[] {
+    const remaining = [...trials]
+    const picked: Skill[] = []
+    while (picked.length < n && remaining.length > 0) {
+      const weights = remaining.map(s =>
+        Math.max(1e-6, (0.2 + this.relevance(query, s)) / (1 + (s.usage_count ?? 0))))
+      const total = weights.reduce((sum, w) => sum + w, 0)
+      let r = random() * total
+      let idx = weights.length - 1
+      for (let i = 0; i < weights.length; i++) {
+        r -= weights[i]!
+        if (r <= 0) { idx = i; break }
+      }
+      picked.push(remaining.splice(idx, 1)[0]!)
+    }
     return picked
   }
 
@@ -217,6 +338,19 @@ export class SkillBank {
       }
       skill.updatedAt = new Date().toISOString()
     }
+  }
+
+  /**
+   * 蒸馏器再次提取出等价技能 = 该经验跨会话反复出现的信号。
+   * 记为一次成功使用：旧行为是直接丢弃重复提取，信号随之丢失，
+   * 导致反复出现的经验也永远到不了晋升阈值。
+   */
+  reinforce(skill: Skill): void {
+    if (skill.lifecycle === 'retired') return
+    this.ensureFields(skill)
+    skill.usage_count += 1
+    skill.success_count += 1
+    skill.updatedAt = new Date().toISOString()
   }
 
   // —— 添加新 skill ——

@@ -19,7 +19,11 @@
     "bash -lc bash -lc find . -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" -maxdepth 2 | head -60",
     "bash -lc bash -lc find src test bin docs external -type d -not -path \"*/node_modules/*\" | head -80",
     "bash -lc bash -lc wc -l src/*.ts src/*/*.ts 2>/dev/null | sort -n | tail -40",
-    "date +%Y-%m-%d"
+    "date +%Y-%m-%d",
+    "node --input-type=module -e const { spawnSync } = await import('node:child_process'); const fs = await import('node:fs'); const r = spawnSync(process.execPath, ['--test', 'test/middleware.test.mjs'], { encoding: 'utf8' }); fs.writeFileSync('test-output.txt', 'EXIT=' + r.status + '\nSTDOUT:\n' + r.stdout + '\nSTDERR:\n' + r.stderr); console.log('done', r.status);",
+    "node capture.mjs --test test/middleware.test.mjs",
+    "node capture.mjs --test",
+    "node --input-type=module -e const { spawn } = await import('node:child_process'); const p = spawn(process.execPath, ['src/server.js'], { env: { ...process.env, PORT: '3998', JWT_SECRET: 'smoke-test-secret-123456', LOG_LEVEL: 'debug' } }); let out = ''; p.stdout.on('data', (d) => (out += d)); await new Promise((r) => setTimeout(r, 1200)); const base = 'http://127.0.0.1:3998'; const h = await fetch(base + '/health'); const u = await fetch(base + '/api/users'); const n = await fetch(base + '/api/nope'); const bad = await fetch(base + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{bad json' }); console.log('health', h.status, h.headers.get('x-request-id')); console.log('users', u.status, JSON.stringify(await u.json())); console.log('404', n.status, JSON.stringify(await n.json())); console.log('badjson', bad.status, JSON.stringify(await bad.json())); p.kill(); await new Promise((r) => setTimeout(r, 300)); console.log('--- server logs ---'); console.log(out.trim());"
   ],
   "deniedCommandPatterns": [],
   "allowedEditPatterns": [],

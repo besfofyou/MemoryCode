@@ -1,0 +1,29 @@
+{
+  "id": "2b353c47-0b3",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "Express 应用的中间件/路由注册顺序约定：先 `disable('x-powered-by')`，`trust proxy` 必须在 logger 与限流之前；requestLogger 放最前以覆盖 404/429/静态资源并注入 req.id；全局限流在 body 解析之前；静态资源后挂 SPA 兜底且必须对非 GET/HEAD 及 `/api` 前缀放行；notFound 在所有路由之后；4 参 errorHandler 最后。",
+  "createdAt": "2026-10-26T15:47:58.558Z",
+  "updatedAt": "2026-10-26T15:47:58.558Z",
+  "lastAccessedAt": "2026-10-26T15:47:58.558Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "中间件",
+    "app.js",
+    "顺序",
+    "simu"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "49f82d617f5f9139180bb8f54cda61070af7de0e1649f993986f46bf413160f2",
+  "origin": "agent",
+  "durability": "durable"
+}

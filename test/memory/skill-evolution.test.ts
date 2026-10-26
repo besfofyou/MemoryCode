@@ -175,6 +175,37 @@ describe('ForgeEngine lifecycle state machine', () => {
     })
   })
 
+  it('merges near-duplicate trials before promotion so recurring skills can cross the usage bar', async () => {
+    await withEnv(async (bank, engine) => {
+      // 生产样本：蒸馏器换措辞把同一经验学了两遍，usage 被分流（各 2 次，谁也到不了 4）
+      const a = makeSkill({
+        skill_id: 'a1',
+        title: '改动后运行 test/run-tests.mjs 聚合执行全部测试用例做验证',
+        principle: '改动或分析 MiniCode-main 后，验证测试通过 test/run-tests.mjs 聚合执行（测试文件本身是 node:test 风格的 .ts）；代码风格检查由 eslint.config.js 约束。',
+        usage_count: 2, success_count: 2,
+      })
+      const b = makeSkill({
+        skill_id: 'b2',
+        title: '测试位于 test/ 下，由 run-tests.mjs 聚合执行',
+        principle: '测试位于 test/ 下的 .ts 文件（node:test 风格），由 run-tests.mjs 聚合执行；改动后应运行该聚合脚本做验证。',
+        usage_count: 2, success_count: 2,
+      })
+      bank.add(a)
+      bank.add(b)
+
+      const summary = await engine.maybeEvolve(bank)
+      const mergedEntry = summary!.retired.find(r => r.reason === 'merged')
+      assert.ok(mergedEntry, '重复对应在晋升前先合并（败者转为墓碑）')
+      const winnerId = mergedEntry!.skill_id === 'a1' ? 'b2' : 'a1'
+      const winner = bank.getSkill(winnerId)!
+      assert.equal(winner.usage_count, 4, '败者的 usage 应并入胜者')
+      assert.equal(winner.lifecycle, 'active', '合并后 usage 越过 promoteMinUsage，同周期晋升')
+      assert.deepEqual(summary!.promoted, [winnerId])
+      // 败者墓碑仍拦截蒸馏器重学
+      assert.ok(bank.findNearDuplicate('改动后运行 test/run-tests.mjs 聚合执行全部测试用例做验证'))
+    })
+  })
+
   it('enforces the capacity cap by retiring the least-fit live skill', async () => {
     await withEnv(async (bank, engine) => {
       for (let i = 0; i < 5; i++) {

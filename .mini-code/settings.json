@@ -2,7 +2,7 @@
   "model": "deepseek-flash",
   "env": {
     "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
-    "ANTHROPIC_API_KEY": "sk-098fad053548473c885154c1051dec5a",
+    "ANTHROPIC_API_KEY": "sk-dc4f37d2577749a1ac505ef3e4c62ec0",
     "ANTHROPIC_MODEL": "deepseek-flash"
   },
   "mcpServers": {}

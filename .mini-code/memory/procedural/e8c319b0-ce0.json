@@ -1,0 +1,28 @@
+{
+  "id": "e8c319b0-ce0",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/ 项目为纯 ESM、零构建的 Express 4.19 骨架，依赖仅 express + jsonwebtoken + dotenv，测试栈为 jest + supertest；完整回归用 `npm test`，仅跑单元测试用 `npm run test:unit`。",
+  "createdAt": "2026-10-26T12:37:21.639Z",
+  "updatedAt": "2026-10-26T12:37:21.639Z",
+  "lastAccessedAt": "2026-10-26T12:37:21.639Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "testing",
+    "jest",
+    "npm"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "603a25e9c13cd17d3d174852fedb0c52439728fa883698a30c410ab83e260295",
+  "origin": "agent",
+  "durability": "durable"
+}

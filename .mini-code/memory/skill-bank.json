@@ -1,14 +1,88 @@
 {
   "general_skills": [
     {
-      "skill_id": "distill_a4ee1eb9",
-      "title": "项目待办文件约定：路径 notes/todo.md，第一行为当天日期（ISO 格式 YYYY-MM-DD），其后每行一个待办，未完成用 \"- [ ] 内容\"，已…",
-      "principle": "项目待办文件约定：路径 notes/todo.md，第一行为当天日期（ISO 格式 YYYY-MM-DD），其后每行一个待办，未完成用 \"- [ ] 内容\"，已完成用 \"- [x] 内容\"。",
-      "when_to_apply": "在该项目中创建、追加或修改 notes/todo.md 待办条目时",
+      "skill_id": "distill_671ca55d",
+      "title": "当基于长期记忆回答个人信息并遇到互相矛盾的记录时，按陈述时间取最新记录作为当前事实，同时显式列出矛盾点请用户确认，不静默丢弃旧记录",
+      "principle": "当基于长期记忆回答个人信息并遇到互相矛盾的记录时，按陈述时间取最新记录作为当前事实，同时显式列出矛盾点请用户确认，不静默丢弃旧记录。",
+      "when_to_apply": "在依据存储记忆汇总用户个人经历、身份或状态且发现多条记录冲突时",
       "tags": [
-        "conventions",
-        "markdown",
-        "todo"
+        "memory",
+        "conflict-resolution",
+        "personal-facts"
+      ],
+      "usage_count": 9,
+      "success_count": 8,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T11:40:16.838Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
+    },
+    {
+      "skill_id": "distill_64330f44",
+      "title": "回答基于记忆/记录的人物关系类问题时，先给出记录中唯一可确认的交集，再用表格并列各人角色与差异（如“作者/建设者”vs“评审参与者”），最后显式声明记录中缺失的…",
+      "principle": "回答基于记忆/记录的人物关系类问题时，先给出记录中唯一可确认的交集，再用表格并列各人角色与差异（如“作者/建设者”vs“评审参与者”），最后显式声明记录中缺失的事实（如同属一团队、此前是否有过合作）并邀请用户补充。",
+      "when_to_apply": "当用户询问某两人/多人之间的关系、共同项目或技术观点对比，而信息仅来自已有记忆记录时",
+      "tags": [
+        "记忆检索",
+        "人物关系",
+        "事实边界"
+      ],
+      "usage_count": 9,
+      "success_count": 8,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T11:40:39.163Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
+    },
+    {
+      "skill_id": "distill_5428e439",
+      "title": "区分“一起做项目”与“一起评审项目”：代码作者/建设者与 review 参与者应分开归类回答，避免把评审人算作项目合作者",
+      "principle": "区分“一起做项目”与“一起评审项目”：代码作者/建设者与 review 参与者应分开归类回答，避免把评审人算作项目合作者。",
+      "when_to_apply": "回答“我和谁一起做过某技术/某项目”这类问题时，记录中同时存在开发与评审两类参与记录",
+      "tags": [
+        "角色区分",
+        "项目归属"
+      ],
+      "usage_count": 8,
+      "success_count": 7,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T11:40:39.163Z",
+      "updatedAt": "2026-10-26T15:50:41.104Z"
+    },
+    {
+      "skill_id": "distill_5c92fb5c",
+      "title": "从个人记忆/笔记中回答事实性问题时，若发现多条相互矛盾的记录，按「陈述时间最新者优先」的规则取值，同时在回答中显式列出矛盾条目并请用户确认后再更新记录",
+      "principle": "从个人记忆/笔记中回答事实性问题时，若发现多条相互矛盾的记录，按「陈述时间最新者优先」的规则取值，同时在回答中显式列出矛盾条目并请用户确认后再更新记录。",
+      "when_to_apply": "当需要基于历史记忆、笔记或日志回答事实性问题（如当前公司、住址、状态）且发现多条不一致记录时",
+      "tags": [
+        "记忆检索",
+        "冲突消解",
+        "一致性"
       ],
       "usage_count": 6,
       "success_count": 6,
@@ -17,78 +91,60 @@
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:45:39.933Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
+      "createdAt": "2026-10-26T11:41:10.463Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
     },
     {
-      "skill_id": "distill_7f439b21",
-      "title": "按序号修改文件条目（如\"把第二项改成…\"）前，先确认该条目已存在；若文件只有标题/日期而无条目，应说明当前内容并请用户提供条目内容，不要自行编造占位条目",
-      "principle": "按序号修改文件条目（如\"把第二项改成…\"）前，先确认该条目已存在；若文件只有标题/日期而无条目，应说明当前内容并请用户提供条目内容，不要自行编造占位条目。",
-      "when_to_apply": "用户以序号引用文件中的行/条目并要求修改时",
+      "skill_id": "distill_57b72660",
+      "title": "梳理人物/事件关系时，先区分每个主体在事件中的角色（建设者、评审参与者、被咨询者等），再回答「共同交集」类问题；对记录中无依据的关联（如同团队、同公司、此前合作…",
+      "principle": "梳理人物/事件关系时，先区分每个主体在事件中的角色（建设者、评审参与者、被咨询者等），再回答「共同交集」类问题；对记录中无依据的关联（如同团队、同公司、此前合作）明确说明「无记录、不做推断」，并提示用户可补充。",
+      "when_to_apply": "回答「某两人/两方有何交集」「谁参与过某项目」这类关系型问题时",
       "tags": [
-        "editing",
-        "verification",
-        "clarification"
+        "关系梳理",
+        "角色区分",
+        "不臆测"
       ],
-      "usage_count": 5,
-      "success_count": 5,
+      "usage_count": 7,
+      "success_count": 7,
       "lifecycle": "active",
       "parent_id": null,
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:45:39.933Z",
-      "updatedAt": "2026-10-25T14:19:07.462Z"
+      "createdAt": "2026-10-26T11:41:10.463Z",
+      "updatedAt": "2026-10-26T15:49:43.941Z"
     },
     {
-      "skill_id": "distill_bc92ec3a",
-      "title": "当用户要求修改的文件内容中目标项并不存在时，先向用户说明现状并请求补充内容，而不是直接编造条目；仅在用户明确授权（如“你自己决定”）后才自行补充占位内容",
-      "principle": "当用户要求修改的文件内容中目标项并不存在时，先向用户说明现状并请求补充内容，而不是直接编造条目；仅在用户明确授权（如“你自己决定”）后才自行补充占位内容。",
-      "when_to_apply": "用户指令引用了文件中不存在的行/条目/字段时",
+      "skill_id": "distill_6d0bedf0",
+      "title": "simu/ 项目为纯 ESM、零构建的 Express 4.19 骨架，依赖仅 express + jsonwebtoken + dotenv，测试栈为 jes…",
+      "principle": "simu/ 项目为纯 ESM、零构建的 Express 4.19 骨架，依赖仅 express + jsonwebtoken + dotenv，测试栈为 jest + supertest；完整回归用 `npm test`，仅跑单元测试用 `npm run test:unit`。",
+      "when_to_apply": "在 simu（或同构 Express 骨架）项目中修改代码后需要验证时。",
       "tags": [
-        "workflow",
-        "clarification",
-        "file-edit"
-      ],
-      "usage_count": 5,
-      "success_count": 5,
-      "lifecycle": "trial",
-      "parent_id": null,
-      "generation": 0,
-      "children": [],
-      "recent_failures": [],
-      "createdAt": "2026-10-25T13:46:14.272Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
-    },
-    {
-      "skill_id": "distill_8bd349bb",
-      "title": "用户以“上周三”“昨天”等相对说法给出时间且需落库时，先按当前日期换算成具体日期，若周起始日不同会导致多个候选值（如周一起算 vs 周日起算），列出候选并请用户…",
-      "principle": "用户以“上周三”“昨天”等相对说法给出时间且需落库时，先按当前日期换算成具体日期，若周起始日不同会导致多个候选值（如周一起算 vs 周日起算），列出候选并请用户确认后固定。",
-      "when_to_apply": "把含相对时间表述的事件记入长期记忆或日志时",
-      "tags": [
-        "dates",
-        "memory",
-        "clarification"
+        "express",
+        "testing",
+        "jest",
+        "npm"
       ],
       "usage_count": 3,
       "success_count": 3,
-      "lifecycle": "trial",
+      "lifecycle": "active",
       "parent_id": null,
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:48:18.221Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
+      "createdAt": "2026-10-26T12:37:21.749Z",
+      "updatedAt": "2026-10-26T15:51:18.247Z"
     },
     {
-      "skill_id": "distill_197ac077",
-      "title": "当用户提供某人的立场或会议结论并要求记录时，把“个人意见”与“有效决议”分成两条独立记录，各自标注提出人、日期和当前状态（例如“决议=双周，某人主张每月，未推翻…",
-      "principle": "当用户提供某人的立场或会议结论并要求记录时，把“个人意见”与“有效决议”分成两条独立记录，各自标注提出人、日期和当前状态（例如“决议=双周，某人主张每月，未推翻决议”）；若用户可能想改动现行决议，先询问是改为新值还是标记为“待复议”，得到确认后再更新。",
-      "when_to_apply": "需要把他人观点、会议决定等长期记忆化，且存在意见与决议冲突或决议可能被变更时",
+      "skill_id": "distill_8e1a1ebb",
+      "title": "分层约定：routes 只负责路径与权限组合，controller 负责参数校验、业务与响应，store 是唯一数据访问层（换数据库只改 store.js）；中…",
+      "principle": "分层约定：routes 只负责路径与权限组合，controller 负责参数校验、业务与响应，store 是唯一数据访问层（换数据库只改 store.js）；中间件与路由的注册顺序集中在 app.js 的 createApp() 工厂，config.js 集中解析环境变量（生产环境强制校验 JWT_SECRET）。",
+      "when_to_apply": "在该 Express 项目中新增资源、路由或替换持久化实现时，按此职责边界放置代码。",
       "tags": [
-        "记忆管理",
-        "会议记录",
-        "决策状态"
+        "express",
+        "architecture",
+        "convention",
+        "layering"
       ],
       "usage_count": 2,
       "success_count": 2,
@@ -97,18 +153,18 @@
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:49:02.901Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
+      "createdAt": "2026-10-26T12:37:21.749Z",
+      "updatedAt": "2026-10-26T15:51:47.390Z"
     },
     {
-      "skill_id": "distill_906bd0f2",
-      "title": "把用户口述的相对时间（如“上周三”）转成具体日期时，若周起始约定不明确（周一算或周日算）会产生两个候选日期，应把候选日期列出让用户确认后再固定，不要自行选一个写…",
-      "principle": "把用户口述的相对时间（如“上周三”）转成具体日期时，若周起始约定不明确（周一算或周日算）会产生两个候选日期，应把候选日期列出让用户确认后再固定，不要自行选一个写入记录。",
-      "when_to_apply": "用户用相对时间描述事件且需要落成绝对日期时",
+      "skill_id": "distill_df699213",
+      "title": "新增资源时的目录模式：routes/index.js 汇总挂载，每个资源一个子目录，内含 routes.js（路径+权限）与 controller.js（校验+…",
+      "principle": "新增资源时的目录模式：routes/index.js 汇总挂载，每个资源一个子目录，内含 routes.js（路径+权限）与 controller.js（校验+业务+响应），数据操作统一走 store.js 的内存 Map。",
+      "when_to_apply": "为该项目添加新的 API 资源或扩展路由时。",
       "tags": [
-        "date-handling",
-        "ambiguity",
-        "clarification"
+        "express",
+        "routing",
+        "project-structure"
       ],
       "usage_count": 1,
       "success_count": 1,
@@ -117,18 +173,109 @@
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:49:49.548Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
+      "createdAt": "2026-10-26T12:37:21.749Z",
+      "updatedAt": "2026-10-26T12:47:30.520Z"
     },
     {
-      "skill_id": "distill_18100461",
-      "title": "记录会议结论时，将“会议正式决议”与“某人个人意见/保留意见”分开记录，前者标注参会人和日期并保持生效状态，后者注明未推翻决议；查询时分别回答两者",
-      "principle": "记录会议结论时，将“会议正式决议”与“某人个人意见/保留意见”分开记录，前者标注参会人和日期并保持生效状态，后者注明未推翻决议；查询时分别回答两者。",
-      "when_to_apply": "记录或检索会议决议、以及存在分歧意见的场景",
+      "skill_id": "distill_6b51525f",
+      "title": "审计 Express 端点是否受独立限流：先看 app.js 里 app.use(rateLimit(",
+      "principle": "审计 Express 端点是否受独立限流：先看 app.js 里 app.use(rateLimit(...)) 的挂载位置与参数（如 windowMs 60_000、max 100），确认是否为全局唯一一处；再在各 *.routes.js 中检索 rateLimit 符号的引用次数与路由中间件链是否为空（如 router.post('/login', login) 无额外中间件）；最后用 `for i in $(seq 1 101); do curl -s -o /dev/null -X POST ... ; done` 观察第 101 次才返回 429，以证明拦截来自全局限流而非端点限流。",
+      "when_to_apply": "需要判断某 Express 端点（登录/注册等易爆破接口）是否具备独立限流、评估暴力破解风险或做安全评审时",
       "tags": [
-        "memory",
-        "meeting-notes",
-        "decision-tracking"
+        "express",
+        "rate-limiting",
+        "security",
+        "code-review"
+      ],
+      "usage_count": 7,
+      "success_count": 7,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T12:39:33.495Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
+    },
+    {
+      "skill_id": "distill_a4e4ebae",
+      "title": "进程内限流中间件的实现要点：用 Map<ip,{count,resetAt}> 做固定窗口计数，过期则开新窗口；keyGenerator 用 normalize…",
+      "principle": "进程内限流中间件的实现要点：用 Map<ip,{count,resetAt}> 做固定窗口计数，过期则开新窗口；keyGenerator 用 normalizeIp 折叠 ::ffff:127.0.0.1 并把 IPv6 按 /64 归并；超限时设置 Retry-After 后 next(new HttpError(429,...)) 走统一错误链（保留 requestId 与结构化日志），并在响应头回写 RateLimit-Limit/Remaining/Reset；用 setInterval(...).unref() 清理过期桶并以 maxKeys 兜底；多实例部署时仅替换 store 为 Redis 的 INCR + PEXPIRE，中间件逻辑不变。",
+      "when_to_apply": "实现或评审基于内存 store 的限流中间件，或需要把单进程限流扩展到多实例时",
+      "tags": [
+        "express",
+        "rate-limiting",
+        "middleware",
+        "redis"
+      ],
+      "usage_count": 2,
+      "success_count": 2,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T12:39:33.495Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
+    },
+    {
+      "skill_id": "distill_797e022c",
+      "title": "simu 项目结构约定：Express 后端在 simu/src（依赖仅 express/jsonwebtoken/dotenv，测试用 jest+supert…",
+      "principle": "simu 项目结构约定：Express 后端在 simu/src（依赖仅 express/jsonwebtoken/dotenv，测试用 jest+supertest），React 前端在 simu/client（Vite）。前端验证命令：cd simu/client && npm install && npm run build（产出 client/dist）；本地开发 npm run dev 起 5173，vite.config.js 已把 /api 代理到 http://localhost:3000（可用 API_TARGET 覆盖）。",
+      "when_to_apply": "在 simu 项目中修改或验证前端/后端代码、启动本地开发环境时",
+      "tags": [
+        "simu",
+        "构建命令",
+        "vite",
+        "express"
+      ],
+      "usage_count": 2,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T12:50:05.401Z",
+      "updatedAt": "2026-10-26T15:50:41.104Z"
+    },
+    {
+      "skill_id": "distill_e2213143",
+      "title": "容器化 Express + Vite/React 单仓库的三阶段 Dockerfile 写法：stage1 client（npm ci + npm run bu…",
+      "principle": "容器化 Express + Vite/React 单仓库的三阶段 Dockerfile 写法：stage1 client（npm ci + npm run build 产出 dist）、stage2 deps（npm ci --omit=dev 只装生产依赖）、stage3 runtime（node:20-alpine，拷贝 src、node_modules 与 dist 到 /app/public）；配套 .dockerignore 排除 node_modules/test/.env/dist。Express 侧需加静态托管与 SPA 兜底路由，并用 config 的 publicDir（PUBLIC_DIR 环境变量可覆盖）指向产物目录。",
+      "when_to_apply": "需要为 Node/Express 后端 + Vite 前端项目编写多阶段 Dockerfile 或补齐静态托管时",
+      "tags": [
+        "docker",
+        "多阶段构建",
+        "express",
+        "vite",
+        "spa-fallback"
+      ],
+      "usage_count": 2,
+      "success_count": 2,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T12:50:05.401Z",
+      "updatedAt": "2026-10-26T15:46:02.255Z"
+    },
+    {
+      "skill_id": "distill_cbff6355",
+      "title": "Express 托管前端静态资源时，若应用挂了 requestLogger 和全局限流，静态资源请求也会各记一条日志并消耗配额；必要时把 /assets 加入 …",
+      "principle": "Express 托管前端静态资源时，若应用挂了 requestLogger 和全局限流，静态资源请求也会各记一条日志并消耗配额；必要时把 /assets 加入 skipRequestLog 与限流的 skip 列表。",
+      "when_to_apply": "给带日志/限流中间件的 Express 应用添加静态文件托管时",
+      "tags": [
+        "express",
+        "中间件",
+        "限流",
+        "日志"
       ],
       "usage_count": 1,
       "success_count": 1,
@@ -137,38 +284,153 @@
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T13:49:49.548Z",
-      "updatedAt": "2026-10-25T14:19:30.483Z"
+      "createdAt": "2026-10-26T12:50:05.401Z",
+      "updatedAt": "2026-10-26T15:44:12.415Z"
     },
     {
-      "skill_id": "distill_89c859ba",
-      "title": "回答关于用户个人信息（居住地、联系人、宠物等）的问题前，先查两处：长期记忆（人物/事实/事件条目，通常带日期）与项目内 `notes/` 目录（如 `todo.…",
-      "principle": "回答关于用户个人信息（居住地、联系人、宠物等）的问题前，先查两处：长期记忆（人物/事实/事件条目，通常带日期）与项目内 `notes/` 目录（如 `todo.md`、`done.md`，可新增 `notes/profile.md` 记录时间线）。查不到时明确列出已检索范围，并提出把信息记成事实条目或写入 `notes/profile.md`。",
-      "when_to_apply": "需要回答用户个人事实类问题（住址、家庭成员、宠物等），或需要把用户提供的新个人信息持久化时",
+      "skill_id": "distill_653f70d9",
+      "title": "评估一个前后端 demo 项目离“可上线”还差什么时，优先检查两块：(1) 持久化——后端是否用进程内 Map/内存存储（重启或多实例丢数据、冷启动重建默认管理…",
+      "principle": "评估一个前后端 demo 项目离“可上线”还差什么时，优先检查两块：(1) 持久化——后端是否用进程内 Map/内存存储（重启或多实例丢数据、冷启动重建默认管理员），前端是否用 localStorage，以及前后端是否真的通过 API 打通（核对后端路由清单与实际请求）；(2) 生产安全——登录/注册等认证路由是否单独限流（不能只吃全局配额）、修改密码/邮箱是否校验旧密码、token 是否有版本号或黑名单可失效、是否启用 helmet/cors/HTTPS。给出结论时同时给出改法，如保留 store 函数签名替换为 Postgres/Redis、把前端 load/save 换成 fetch 调用。",
+      "when_to_apply": "当需要评审一个全栈 demo/MVP 项目的生产就绪度，或用户问“这个项目有什么缺点”时",
       "tags": [
-        "memory",
-        "notes",
-        "personal-facts"
+        "code-review",
+        "security",
+        "persistence",
+        "fullstack"
       ],
-      "usage_count": 0,
-      "success_count": 0,
+      "usage_count": 1,
+      "success_count": 1,
       "lifecycle": "trial",
       "parent_id": null,
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T14:20:03.528Z",
-      "updatedAt": "2026-10-25T14:20:03.528Z"
+      "createdAt": "2026-10-26T12:53:02.917Z",
+      "updatedAt": "2026-10-26T15:49:43.941Z"
     },
     {
-      "skill_id": "distill_989da306",
-      "title": "当同一事实在记忆中存在多条互相矛盾的带日期记录时：取时间最新的一条作为当前值，按时间顺序呈现轨迹，并显式标注哪一段存在冲突、请用户确认后修正，而不是静默择一",
-      "principle": "当同一事实在记忆中存在多条互相矛盾的带日期记录时：取时间最新的一条作为当前值，按时间顺序呈现轨迹，并显式标注哪一段存在冲突、请用户确认后修正，而不是静默择一。",
-      "when_to_apply": "检索到的记忆条目在时间线上前后不一致或存在被作废的旧记录时",
+      "skill_id": "distill_626540c8",
+      "title": "当用户询问其个人事实（任职公司、前东家、住址、履历等）而上下文中没有依据时，应明确说明无从得知并请用户提供，不得凭空给出具体公司名、时间线和地址等信息；项目技术…",
+      "principle": "当用户询问其个人事实（任职公司、前东家、住址、履历等）而上下文中没有依据时，应明确说明无从得知并请用户提供，不得凭空给出具体公司名、时间线和地址等信息；项目技术信息只能从仓库中的文件、依赖与配置推断并标注证据。",
+      "when_to_apply": "当用户询问助手无法从对话或代码库中验证的个人/账户相关信息时",
+      "tags": [
+        "honesty",
+        "hallucination-avoidance",
+        "user-context"
+      ],
+      "usage_count": 6,
+      "success_count": 5,
+      "lifecycle": "active",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T12:53:02.917Z",
+      "updatedAt": "2026-10-26T15:50:41.104Z"
+    },
+    {
+      "skill_id": "distill_29c17a0b",
+      "title": "simu/ 的验证命令：`npm test`（Jest + supertest，44 用例）与 `npm run test:unit`（node:test，44…",
+      "principle": "simu/ 的验证命令：`npm test`（Jest + supertest，44 用例）与 `npm run test:unit`（node:test，44 用例），两套都需全绿；启动用 `node src/server.js`，默认端口 3000。config.js 集中解析环境变量，生产环境强制校验 JWT_SECRET。",
+      "when_to_apply": "修改 simu/ 后端代码后需要回归验证或本地启动服务时",
+      "tags": [
+        "testing",
+        "commands",
+        "simu"
+      ],
+      "usage_count": 1,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T12:53:22.954Z",
+      "updatedAt": "2026-10-26T15:49:43.941Z"
+    },
+    {
+      "skill_id": "distill_d874f798",
+      "title": "simu 项目改完代码的验证命令：`cd simu && npm run test:all`（= `npm test` 跑 node:test 的 api/mi…",
+      "principle": "simu 项目改完代码的验证命令：`cd simu && npm run test:all`（= `npm test` 跑 node:test 的 api/middleware/rateLimit 三个测试文件 + `npm run test:unit` 跑 Jest，串行共 88 个用例）。项目没有 lint / typecheck 脚本，前端改动只能靠 build 校验；在 Windows 终端需用 `npm.cmd`，并以 cwd 指定目录而非 `cd simu && ...`。",
+      "when_to_apply": "在 simu 项目里改完代码、需要给出或执行验证步骤时",
+      "tags": [
+        "simu",
+        "npm",
+        "测试",
+        "验证命令",
+        "windows"
+      ],
+      "usage_count": 2,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [
+        {
+          "task": "如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说",
+          "trajectory": "read_file✓ → read_file✓ → run_command✓ → run_command✗ spawn docker ENOENT"
+        }
+      ],
+      "createdAt": "2026-10-26T15:47:58.771Z",
+      "updatedAt": "2026-10-26T15:51:47.389Z"
+    },
+    {
+      "skill_id": "distill_41061b90",
+      "title": "Express 应用的中间件/路由注册顺序约定：先 `disable('x-powered-by')`，`trust proxy` 必须在 logger 与限流…",
+      "principle": "Express 应用的中间件/路由注册顺序约定：先 `disable('x-powered-by')`，`trust proxy` 必须在 logger 与限流之前；requestLogger 放最前以覆盖 404/429/静态资源并注入 req.id；全局限流在 body 解析之前；静态资源后挂 SPA 兜底且必须对非 GET/HEAD 及 `/api` 前缀放行；notFound 在所有路由之后；4 参 errorHandler 最后。",
+      "when_to_apply": "审查或编写 Express 应用的 app.js 中间件注册顺序时",
+      "tags": [
+        "express",
+        "中间件",
+        "app.js",
+        "顺序",
+        "simu"
+      ],
+      "usage_count": 1,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T15:47:58.771Z",
+      "updatedAt": "2026-10-26T15:51:39.504Z"
+    },
+    {
+      "skill_id": "distill_c6310bac",
+      "title": "处理记忆中互相矛盾的记录：按「陈述时间最新者优先」取值；严格区分键值事实层与概念/事件层，仅出现在概念或事件句子里的关联标为「存疑/记录不足」，不自行补成事实；…",
+      "principle": "处理记忆中互相矛盾的记录：按「陈述时间最新者优先」取值；严格区分键值事实层与概念/事件层，仅出现在概念或事件句子里的关联标为「存疑/记录不足」，不自行补成事实；每条冲突给出记录 ID、生效日期与差异说明，最后请用户确认口径而不擅自改写底层条目。",
+      "when_to_apply": "用户要求核对记忆库/知识库中同一字段的多条不一致记录时",
+      "tags": [
+        "记忆检索",
+        "冲突消解",
+        "证据分级"
+      ],
+      "usage_count": 1,
+      "success_count": 1,
+      "lifecycle": "trial",
+      "parent_id": null,
+      "generation": 0,
+      "children": [],
+      "recent_failures": [],
+      "createdAt": "2026-10-26T15:47:58.771Z",
+      "updatedAt": "2026-10-26T15:49:07.943Z"
+    },
+    {
+      "skill_id": "distill_a9106ff2",
+      "title": "处理记忆图谱中的事实冲突：以记录的 stated（陈述时间）最新者为准取值；键值型 fact 优先于概念/事件句中的描述；同一事实出现多个 from（生效）日期…",
+      "principle": "处理记忆图谱中的事实冲突：以记录的 stated（陈述时间）最新者为准取值；键值型 fact 优先于概念/事件句中的描述；同一事实出现多个 from（生效）日期即视为冲突需并列列出；无键值事实支撑的角色/关系标记为「记录不足/存疑」，不做推断补齐。事实类条目不应擅自改写，需用户明确确认口径后再覆盖（写入工具仅支持流程类记忆）。",
+      "when_to_apply": "需要从记忆图谱中检索并汇总用户事实、判定多条记录取值、或列出冲突点时。",
       "tags": [
         "memory",
         "conflict-resolution",
-        "timeline"
+        "fact-retrieval"
       ],
       "usage_count": 0,
       "success_count": 0,
@@ -177,28 +439,8 @@
       "generation": 0,
       "children": [],
       "recent_failures": [],
-      "createdAt": "2026-10-25T14:20:03.528Z",
-      "updatedAt": "2026-10-25T14:20:03.528Z"
-    },
-    {
-      "skill_id": "distill_8b63b56c",
-      "title": "当记忆条目之间存在时间或地点冲突时（如先记录住徐汇、后来又记录住浦东），按时间戳取最新一条作为现状，对旧记录明确标注其已作废或存疑，并向用户提示冲突、请用户确认…",
-      "principle": "当记忆条目之间存在时间或地点冲突时（如先记录住徐汇、后来又记录住浦东），按时间戳取最新一条作为现状，对旧记录明确标注其已作废或存疑，并向用户提示冲突、请用户确认后修正记录。",
-      "when_to_apply": "检索到互相矛盾的多条记忆记录时",
-      "tags": [
-        "memory",
-        "冲突处理",
-        "时间线"
-      ],
-      "usage_count": 0,
-      "success_count": 0,
-      "lifecycle": "trial",
-      "parent_id": null,
-      "generation": 0,
-      "children": [],
-      "recent_failures": [],
-      "createdAt": "2026-10-25T14:20:10.386Z",
-      "updatedAt": "2026-10-25T14:20:10.386Z"
+      "createdAt": "2026-10-26T15:51:47.387Z",
+      "updatedAt": "2026-10-26T15:51:47.387Z"
     }
   ],
   "task_specific_skills": {},

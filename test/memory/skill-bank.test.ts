@@ -66,3 +66,153 @@ describe('SkillBank.findNearDuplicate', () => {
     assert.equal(bank.findNearDuplicate('回答保持精简，只给结论与关键点，避免长篇大论。'), null)
   })
 })
+
+describe('SkillBank.mergeNearDuplicates', () => {
+  const fitness = (s: Skill) => (s.usage_count ?? 0) < 5 ? 0.5 : (s.success_count ?? 0) / Math.max(s.usage_count ?? 0, 1)
+
+  it('merges paraphrased trials: winner absorbs usage/success/tags and loser becomes a tombstone', () => {
+    const bank = new SkillBank('unused.json')
+    const a = makeSkill('a1', RUN_TESTS_A)
+    a.usage_count = 2
+    a.success_count = 2
+    a.tags = ['workflow']
+    a.lifecycle = 'trial'
+    const b = makeSkill('b2', RUN_TESTS_B)
+    b.usage_count = 3
+    b.success_count = 1
+    b.tags = ['testing']
+    b.recent_failures.push({ task: 't', trajectory: 'tr' })
+    b.lifecycle = 'trial'
+    bank.add(a)
+    a.lifecycle = 'trial'
+    bank.add(b)
+    b.lifecycle = 'trial'
+
+    const merged = bank.mergeNearDuplicates(fitness)
+    assert.equal(merged.length, 1)
+    const { loserId, winnerId } = merged[0]!
+    const winner = bank.getSkill(winnerId)!
+    // 更高 usage 者胜出；败者统计并入胜者
+    assert.equal(winnerId, 'b2')
+    assert.equal(loserId, 'a1')
+    assert.equal(winner.usage_count, 5)
+    assert.equal(winner.success_count, 3)
+    assert.deepEqual([...winner.tags].sort(), ['testing', 'workflow'])
+    assert.equal(winner.recent_failures.length, 1)
+    // 败者软淘汰为墓碑：不再占检索，但仍拦截蒸馏器重学
+    assert.equal(bank.getSkill(loserId)!.lifecycle, 'retired')
+    assert.equal(bank.size, 1)
+    assert.ok(bank.findNearDuplicate(RUN_TESTS_A))
+  })
+
+  it('promotes lifecycle maturity over fitness when picking the winner (trial merges into active)', () => {
+    const bank = new SkillBank('unused.json')
+    const trial = makeSkill('t1', RUN_TESTS_A)
+    trial.usage_count = 9
+    trial.success_count = 9
+    trial.lifecycle = 'trial'
+    const active = makeSkill('a1', RUN_TESTS_B)
+    active.usage_count = 1
+    active.success_count = 0
+    bank.add(trial)
+    trial.lifecycle = 'trial'
+    bank.add(active)
+    active.lifecycle = 'active'
+
+    const merged = bank.mergeNearDuplicates(fitness)
+    assert.equal(merged.length, 1)
+    assert.equal(merged[0]!.winnerId, 'a1', 'active 应吸收 trial，而不是反过来')
+    assert.equal(bank.getSkill('a1')!.usage_count, 10)
+    assert.equal(bank.getSkill('t1')!.lifecycle, 'retired')
+  })
+
+  it('does not merge pairs where both sides are established (active/stable)', () => {
+    const bank = new SkillBank('unused.json')
+    const a = makeSkill('a1', RUN_TESTS_A)
+    const b = makeSkill('b2', RUN_TESTS_B)
+    bank.add(a)
+    a.lifecycle = 'active'
+    bank.add(b)
+    b.lifecycle = 'active'
+    assert.deepEqual(bank.mergeNearDuplicates(fitness), [])
+    assert.equal(bank.size, 2)
+  })
+
+  it('leaves distinct skills untouched', () => {
+    const bank = new SkillBank('unused.json')
+    const a = makeSkill('a1', RUN_TESTS_A)
+    const b = makeSkill('b2', AGENT_LOOP_A)
+    bank.add(a)
+    a.lifecycle = 'trial'
+    bank.add(b)
+    b.lifecycle = 'trial'
+    assert.deepEqual(bank.mergeNearDuplicates(fitness), [])
+    assert.equal(bank.size, 2)
+  })
+
+  it('rewires lineage: loser children are re-parented to the winner', () => {
+    const bank = new SkillBank('unused.json')
+    const a = makeSkill('a1', RUN_TESTS_A)
+    const b = makeSkill('b2', RUN_TESTS_B)
+    const child = makeSkill('c1', '完全不同的子技能：部署前先备份数据库。')
+    bank.add(a)
+    a.lifecycle = 'trial'
+    bank.add(b)
+    b.lifecycle = 'trial'
+    bank.add(child)
+    child.lifecycle = 'trial'
+    a.children = ['c1']
+    child.parent_id = 'a1'
+
+    const merged = bank.mergeNearDuplicates(fitness)
+    assert.equal(merged.length, 1)
+    const winner = bank.getSkill(merged[0]!.winnerId)!
+    assert.deepEqual(winner.children, ['c1'])
+    assert.equal(bank.getSkill('c1')!.parent_id, winner.skill_id)
+  })
+})
+
+describe('SkillBank.reinforce', () => {
+  it('counts re-distillation as a successful use, pushing recurring skills toward promotion', () => {
+    const bank = new SkillBank('unused.json')
+    const s = makeSkill('s1', RUN_TESTS_A)
+    s.lifecycle = 'trial'
+    s.usage_count = 2
+    s.success_count = 1
+    bank.add(s)
+    s.lifecycle = 'trial'
+    bank.reinforce(s)
+    assert.equal(s.usage_count, 3)
+    assert.equal(s.success_count, 2)
+  })
+
+  it('ignores retired tombstones (equivalent to the old drop behavior)', () => {
+    const bank = new SkillBank('unused.json')
+    const s = makeSkill('s1', RUN_TESTS_A)
+    bank.add(s)
+    s.lifecycle = 'retired'
+    bank.reinforce(s)
+    assert.equal(s.usage_count, 0)
+    assert.equal(s.success_count, 0)
+  })
+})
+
+describe('SkillBank weighted trial exploration', () => {
+  it('prefers relevant low-usage trials for explore slots and stays deterministic with injected random', () => {
+    const bank = new SkillBank('unused.json')
+    const relevant = makeSkill('rel', '改动后运行 run-tests.mjs 聚合执行全部测试做验证。')
+    relevant.usage_count = 0
+    relevant.lifecycle = 'trial'
+    const busy = makeSkill('busy', '部署前先执行 npm run build 打包产物，再通过 scp 上传到服务器。')
+    busy.usage_count = 9
+    busy.lifecycle = 'trial'
+    bank.add(relevant)
+    relevant.lifecycle = 'trial'
+    bank.add(busy)
+    busy.lifecycle = 'trial'
+
+    const { general } = bank.retrieve('运行测试验证改动', 1, undefined, { exploreSlots: 1, random: () => 0 })
+    assert.equal(general.length, 1)
+    assert.equal(general[0]!.skill_id, 'rel', '相关性高且 usage 低的 trial 应优先进入探索槽')
+  })
+})

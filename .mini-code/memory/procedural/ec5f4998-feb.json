@@ -1,0 +1,28 @@
+{
+  "id": "ec5f4998-feb",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu 项目改完代码的验证方式：执行 `cd simu && npm run test:all`（= `npm test` 跑 node:test 的 api/middleware/rateLimit 三个测试文件 + `npm run test:unit` 跑 jest，共约 88 用例）；项目无 lint/typecheck 脚本，前端改动只能用 build 产物校验。Windows 终端下直接调 npm 会 spawn ENOENT，需用 `npm.cmd`，且用 cwd 指定目录而非 `cd x && npm ...`。",
+  "createdAt": "2026-10-26T15:51:47.020Z",
+  "updatedAt": "2026-10-26T15:51:47.020Z",
+  "lastAccessedAt": "2026-10-26T15:51:47.020Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "4cc92001",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": "b7f13739-ff2",
+  "supersededAt": null,
+  "tags": [
+    "simu",
+    "testing",
+    "npm",
+    "windows"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "0cfb6792c08edddd8807b6fadf398d72dd8f267791235a7802cd7a4e7f5270fe",
+  "origin": "agent",
+  "durability": "durable"
+}

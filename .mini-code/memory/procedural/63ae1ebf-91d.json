@@ -1,0 +1,28 @@
+{
+  "id": "63ae1ebf-91d",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "此类 Express+React 项目容器化用三阶段 Dockerfile：client 阶段 npm ci + vite build；deps 阶段 npm ci --omit=dev；runtime 阶段 node:20-alpine 复制 src、生产 node_modules 和 dist→/app/public，由 Express 静态托管并做 SPA 兜底（config.publicDir，PUBLIC_DIR 可覆盖）。配套 .dockerignore 排除 node_modules/test/.env/dist。注意静态资源会经过全局限流与 requestLogger。",
+  "createdAt": "2026-10-26T12:53:22.920Z",
+  "updatedAt": "2026-10-26T12:53:22.920Z",
+  "lastAccessedAt": "2026-10-26T12:53:22.920Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "85354be6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "docker",
+    "multi-stage",
+    "express",
+    "static-hosting"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "104354c00455aad374a73735175d9f7c99c4cfec835990e27a4a75b02e2e9586",
+  "origin": "agent",
+  "durability": "durable"
+}

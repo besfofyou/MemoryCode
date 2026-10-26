@@ -20,6 +20,16 @@ export const SKILL_BANK_CONFIG = {
   maxTaskSpecificPerGroup: 20,
   maxCommonMistakes: 10,
   retrieveTopK: 6,
+  /** 增量蒸馏间隔（回合），可被 MINI_CODE_SKILL_DISTILL_EVERY 覆盖 */
+  distillEvery: 3,
+  /** 增量蒸馏的最小新增消息数：太薄的 delta 先攒一攒，不值得一次模型调用 */
+  distillMinDeltaMessages: 3,
+  /** trial 占存活技能比例达到此值时暂停新增蒸馏，让存量 trial 先积累 usage 进化 */
+  distillMaxTrialRatio: 0.6,
+  /** trial 数量低于此值时不触发比例暂停（小池子照常蒸馏） */
+  distillMinTrialsForPause: 8,
+  /** 技能池用量超过容量上限的此比例时暂停蒸馏 */
+  distillNearCapacityRatio: 0.9,
 } as const
 
 // ---- 新增 ----

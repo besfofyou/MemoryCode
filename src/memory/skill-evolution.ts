@@ -44,8 +44,15 @@ export const DEFAULT_EVOLUTION_CONFIG: EvolutionConfig = {
 
 /** CLI 场景预设：会话轮次远少于 RL episode，阈值按比例下调 */
 export const CLI_EVOLUTION_PRESET: Partial<EvolutionConfig> = {
-  promoteMinUsage: 5, retireMinUsage: 12, stabilizeMinUsage: 20,
-  mutateMinUsage: 8, originalSkillProtectionUsage: 25, evolveEveryNTurns: 5,
+  // 样本少：3 次使用后即切换到真实 fitness，让晋升/淘汰基于实际表现而非默认值 0.5
+  fitnessWarmup: 3,
+  // usage 会被检索的探索槽摊薄，promoteMinUsage=5 在生产中几乎不可达（实测 30 回合最高 usage 仅 4）
+  promoteMinUsage: 3,
+  retireMinUsage: 10,
+  stabilizeMinUsage: 15,
+  mutateMinUsage: 6,
+  originalSkillProtectionUsage: 20,
+  evolveEveryNTurns: 5,
 }
 
 export type MutateFn = (parent: Skill, bank: SkillBank) => Promise<Skill | null>
@@ -106,6 +113,17 @@ export class ForgeEngine {
     // 确保所有 skill 字段完整
     for (const skill of bank.allSkills()) {
       bank.ensureFields(skill)
+    }
+
+    // 0. 合并存量近重复：入库去重只拦增量，蒸馏器换措辞的重复会在存量池累积并分流 usage。
+    //    合并把败者的 usage/success 转移给胜者，反复出现的经验才有机会跨越晋升阈值
+    for (const { loserId, winnerId } of bank.mergeNearDuplicates(s => this.fitness(s))) {
+      const winner = bank.getSkill(winnerId)
+      summary.retired.push({
+        skill_id: loserId,
+        fitness: winner ? Math.round(this.fitness(winner) * 10000) / 10000 : 0,
+        reason: 'merged',
+      })
     }
 
     // 1. Promotion: trial → active

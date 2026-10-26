@@ -1,0 +1,27 @@
+{
+  "id": "e11cf85a-83f",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "当基于长期记忆回答个人信息并遇到互相矛盾的记录时，按陈述时间取最新记录作为当前事实，同时显式列出矛盾点请用户确认，不静默丢弃旧记录。",
+  "createdAt": "2026-10-26T11:40:16.832Z",
+  "updatedAt": "2026-10-26T11:40:16.832Z",
+  "lastAccessedAt": "2026-10-26T11:40:16.832Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "conflict-resolution",
+    "personal-facts"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "cbedc5dd2cffd17d2154c94dc94969417862c6d18647444f185853ca4134d70a",
+  "origin": "agent",
+  "durability": "durable"
+}

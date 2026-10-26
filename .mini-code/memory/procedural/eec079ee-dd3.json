@@ -1,0 +1,28 @@
+{
+  "id": "eec079ee-dd3",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "审计 Express 端点是否受独立限流：先看 app.js 里 app.use(rateLimit(...)) 的挂载位置与参数（如 windowMs 60_000、max 100），确认是否为全局唯一一处；再在各 *.routes.js 中检索 rateLimit 符号的引用次数与路由中间件链是否为空（如 router.post('/login', login) 无额外中间件）；最后用 `for i in $(seq 1 101); do curl -s -o /dev/null -X POST ... ; done` 观察第 101 次才返回 429，以证明拦截来自全局限流而非端点限流。",
+  "createdAt": "2026-10-26T12:39:33.371Z",
+  "updatedAt": "2026-10-26T12:39:33.371Z",
+  "lastAccessedAt": "2026-10-26T12:39:33.371Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "rate-limiting",
+    "security",
+    "code-review"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "f2d81a44ed3a269d7b2e88de9a2c3395145d795ae5dffac3a7d2d017f69a1601",
+  "origin": "agent",
+  "durability": "durable"
+}

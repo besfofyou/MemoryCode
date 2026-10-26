@@ -1,0 +1,28 @@
+{
+  "id": "d038c8db-e3e",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "进程内限流中间件的实现要点：用 Map<ip,{count,resetAt}> 做固定窗口计数，过期则开新窗口；keyGenerator 用 normalizeIp 折叠 ::ffff:127.0.0.1 并把 IPv6 按 /64 归并；超限时设置 Retry-After 后 next(new HttpError(429,...)) 走统一错误链（保留 requestId 与结构化日志），并在响应头回写 RateLimit-Limit/Remaining/Reset；用 setInterval(...).unref() 清理过期桶并以 maxKeys 兜底；多实例部署时仅替换 store 为 Redis 的 INCR + PEXPIRE，中间件逻辑不变。",
+  "createdAt": "2026-10-26T12:39:33.459Z",
+  "updatedAt": "2026-10-26T12:39:33.459Z",
+  "lastAccessedAt": "2026-10-26T12:39:33.459Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "rate-limiting",
+    "middleware",
+    "redis"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "edd71e25010f8509f810d0346a6a10211bf46e5b18b1c545c6db7feb830f9b42",
+  "origin": "agent",
+  "durability": "durable"
+}

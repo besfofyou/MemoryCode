@@ -258,7 +258,7 @@ export class MemoryRuntime {
       : undefined
     await this.forgeEngine.maybeEvolve(this.skillBank, mutateFn)
 
-    const every = Number(process.env.MINI_CODE_SKILL_DISTILL_EVERY ?? 3)
+    const every = Number(process.env.MINI_CODE_SKILL_DISTILL_EVERY ?? SKILL_BANK_CONFIG.distillEvery)
     if (this.model && ++this.turnsSinceSkillDistill >= every && !this.bgSkillDistill) {
       this.turnsSinceSkillDistill = 0
       // 只蒸馏上次蒸馏之后的新消息；若上下文收敛缩短了 messages 导致索引越界，则回退到尾部窗口
@@ -266,15 +266,46 @@ export class MemoryRuntime {
         ? this.lastSkillDistillIdx
         : Math.max(0, args.messages.length - MIN_DISTILL_DELTA_MESSAGES)
       const delta = args.messages.slice(start)
-      this.lastSkillDistillIdx = args.messages.length
-      this.bgSkillDistill = distillSessionEnd(delta, this.model, this.proceduralStore, `turn-${this.turnIndex}`, { skillBank: this.skillBank })
-        .then(r => this.log(`incremental-skill ${JSON.stringify(r)}`))
-        .then(() => this.skillBank.save())
-        .catch(e => this.log(`incremental-skill FAILED: ${e}`))
-        .finally(() => { this.bgSkillDistill = null })
+      const skipReason = this.shouldSkipSkillDistill(delta)
+      if (skipReason) {
+        // 不推进 lastSkillDistillIdx：消息继续累积，下个周期重新评估
+        await this.log(`incremental-skill skipped: ${skipReason}`)
+      } else {
+        this.lastSkillDistillIdx = args.messages.length
+        this.bgSkillDistill = distillSessionEnd(delta, this.model, this.proceduralStore, `turn-${this.turnIndex}`, { skillBank: this.skillBank })
+          .then(r => this.log(`incremental-skill ${JSON.stringify(r)}`))
+          .then(() => this.skillBank.save())
+          .catch(e => this.log(`incremental-skill FAILED: ${e}`))
+          .finally(() => { this.bgSkillDistill = null })
+      }
     }
 
     await this.skillBank.save()
+  }
+
+  /**
+   * 增量蒸馏闸门：池子未饱和才值得新增技能。
+   * usage 是 trial 晋升的前提，无节制蒸馏只会把曝光摊得越来越薄——
+   * 生产实测：16 个 trial、最高 usage 4，晋升线（当时为 5）永远够不着。
+   * 返回跳过原因；null 表示放行。
+   */
+  private shouldSkipSkillDistill(delta: ChatMessage[]): string | null {
+    if (delta.length < SKILL_BANK_CONFIG.distillMinDeltaMessages) {
+      return `delta too small (${delta.length} msgs)`
+    }
+    const live = this.skillBank.allSkills()
+    const capacity = this.forgeEngine.capacity
+    if (live.length >= capacity * SKILL_BANK_CONFIG.distillNearCapacityRatio) {
+      return `near capacity (${live.length}/${capacity})`
+    }
+    const trials = live.filter(s => s.lifecycle === 'trial').length
+    if (
+      trials >= SKILL_BANK_CONFIG.distillMinTrialsForPause &&
+      trials / Math.max(live.length, 1) >= SKILL_BANK_CONFIG.distillMaxTrialRatio
+    ) {
+      return `trial pool saturated (${trials}/${live.length} still in trial)`
+    }
+    return null
   }
 
   /** 把 SkillForge 的 analyze_failures 接回来 */

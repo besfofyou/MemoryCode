@@ -35,7 +35,7 @@ Return only JSON with this shape:
 
 const MAX_PER_MESSAGE_CHARS = 1500
 
-export type DistillResult = { skillsCount: number; bankAdded: number; reason?: string }
+export type DistillResult = { skillsCount: number; bankAdded: number; bankSkipped?: number; reason?: string }
 
 type DistilledItem = { content?: unknown; tags?: unknown; durability?: unknown }
 
@@ -132,7 +132,15 @@ export async function distillSessionEnd(
   model: ModelAdapter,
   proceduralStore: MemoryFilesystem,
   sessionId: string,
-  options?: { skillBank?: SkillBank },
+  options?: {
+    skillBank?: SkillBank
+    /**
+     * normal：新技能照常入库；
+     * 'reinforce-only'：池子饱和时使用——重复项照常 reinforce，新技能不再入库，
+     * 只计数到 bankSkipped（程序记忆层不受影响，照常写入）
+     */
+    bankMode?: 'normal' | 'reinforce-only'
+  },
 ): Promise<DistillResult> {
   const relevant = messages.filter(message => extractText(message) !== null).slice(-30)
   const userTurnCount = relevant.filter(message => message.role === 'user').length
@@ -188,12 +196,25 @@ export async function distillSessionEnd(
     }
 
     // 将蒸馏出的 skills 同步写入 SkillBank（如果提供了引用）
+    let bankSkipped = 0
     if (extracted.skills.length > 0 && options?.skillBank) {
+      const reinforceOnly = options.bankMode === 'reinforce-only'
       const now = new Date().toISOString()
       for (const skill of extracted.skills.slice(0, maxSkills)) {
         if (typeof skill.content !== 'string' || skill.content.trim().length < 10) continue
         const raw = String(skill.content).trim()
-        if (options.skillBank.findNearDuplicate(raw)) continue
+        const duplicate = options.skillBank.findNearDuplicate(raw)
+        if (duplicate) {
+          // 重复提取 = 该经验跨会话反复出现：记为强化信号，推动其跨越晋升阈值；
+          // 命中墓碑（retired）时 reinforce 内部忽略，等同于旧的丢弃行为
+          options.skillBank.reinforce(duplicate)
+          continue
+        }
+        if (reinforceOnly) {
+          // 池子饱和：新技能不再入库，防止 trial 无限稀释存量技能的 usage 曝光
+          bankSkipped++
+          continue
+        }
         const candidate = sanitizeSkill({
           skill_id: `distill_${randomUUID().slice(0, 8)}`,
           title: extractTitle(raw),
@@ -209,7 +230,10 @@ export async function distillSessionEnd(
     }
 
     const reason = reasons.join('; ') || undefined
-    return reason ? { skillsCount, bankAdded, reason } : { skillsCount, bankAdded }
+    const result: DistillResult = { skillsCount, bankAdded }
+    if (bankSkipped > 0) result.bankSkipped = bankSkipped
+    if (reason) result.reason = reason
+    return result
   } catch (e) {
     return { skillsCount: 0, bankAdded: 0, reason: String(e) }
   }

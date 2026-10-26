@@ -1,0 +1,30 @@
+{
+  "id": "25603aee-52f",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/ 项目的验证命令（以 simu/package.json 为准，2026-10-26 实测全绿）：\n1) `npm test` = `node --test test/api.test.mjs test/middleware.test.mjs test/rateLimit.test.mjs` → 走 Node 内建 node:test，44 用例 / 8 suites，集成测试（supertest 起 app）。\n2) `npm run test:unit` = `node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand` → 走 Jest，jest.config.mjs 的 testMatch 是 test/jest/**/*.test.js（users.routes / auth.routes / store / password），4 suites / 44 用例。\n3) `npm run test:all` = 上面两条串行，回归用这个。\n⚠️ 更正旧记忆：不要把两个脚本的框架记反了——node:test 在 `npm test`，Jest 在 `npm run test:unit`。\n其他事实：项目无 lint / typecheck 脚本；前端 simu/client 是 Vite + React，只有 dev/build/preview，无测试，前端改动只能用 `npm run build` 做构建校验；启动 `npm start`（node src/server.js），热重载 `npm run dev`。\n环境注意：在 Windows 上通过 mini-code 的 run_command 调 npm 需写成 `npm.cmd`（单独的 `npm` 会 spawn ENOENT），并用 cwd 指定 simu 而不是 `cd simu && npm ...`（bash -lc 在该环境不可用）。",
+  "createdAt": "2026-10-26T15:47:02.198Z",
+  "updatedAt": "2026-10-26T15:47:02.198Z",
+  "lastAccessedAt": "2026-10-26T15:47:02.198Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "tool",
+    "trigger": "manual_tool"
+  },
+  "confidence": 0.7,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "simu",
+    "验证命令",
+    "npm",
+    "jest",
+    "node:test",
+    "windows"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "2f378f0364b3230d0e1a728d8cd632920877abb9dc5cf1fd90524c4ba6a44470",
+  "origin": "user",
+  "durability": "durable"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "0cf07be3-22d",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "从个人记忆/笔记中回答事实性问题时，若发现多条相互矛盾的记录，按「陈述时间最新者优先」的规则取值，同时在回答中显式列出矛盾条目并请用户确认后再更新记录。",
+  "createdAt": "2026-10-26T11:41:10.416Z",
+  "updatedAt": "2026-10-26T11:41:10.416Z",
+  "lastAccessedAt": "2026-10-26T11:41:10.416Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "f8052257",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "记忆检索",
+    "冲突消解",
+    "一致性"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "1efca5ca23e0d819b62455408c3734b9603aaccbd121193e798a704ad85e1c78",
+  "origin": "agent",
+  "durability": "durable"
+}

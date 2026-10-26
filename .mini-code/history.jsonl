@@ -1,17 +1,40 @@
-{"display":"帮我在当前目录建一个 notes/todo.md，格式规定：每行一个待办、用 - [ ] 开头、文件第一行写当天日期。","timestamp":1792935892686,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"3ad471ca"}
-{"display":"完美，谢谢。","timestamp":1792935923277,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"3ad471ca"}
-{"display":"把 todo.md 的第二项改成 - [x] 开头。","timestamp":1792935932889,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"3ad471ca"}
-{"display":"你自己决定","timestamp":1792935952146,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"3ad471ca"}
-{"display":"可以了。","timestamp":1792935966127,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"3ad471ca"}
-{"display":"再帮我建一个 notes/done.md，还是用 todo 那个格式。","timestamp":1792936036510,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"记住一下：我妻子叫林娜，她是儿科医生，在市儿童医院工作。","timestamp":1792936056495,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"再记一下：上周三我和张伟、王芳开了产品评审会，会上决定把发布周期改成双周。","timestamp":1792936079862,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"张伟觉得双周发布太激进了，他倾向每月一次。","timestamp":1792936096644,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"完美。","timestamp":1792936113585,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"我妻子是做什么工作的？","timestamp":1792936132864,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"上次评审会都决定了什么？张伟是什么态度？","timestamp":1792936141404,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"我现在住在浦东。","timestamp":1792936165294,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d5b46d5c"}
-{"display":"我上个月搬到徐汇了。","timestamp":1792936228545,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"0693700f"}
-{"display":"我现在住哪个区？我以前住哪？","timestamp":1792937924464,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d186be13"}
-{"display":"我的狗叫什么名字？","timestamp":1792937970465,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d186be13"}
-{"display":"我想找人请教一下儿童医院方面的事，我认识的人里谁最合适，为什么？","timestamp":1792937989391,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"d186be13"}
+{"display":"我叫张三，是一名Python后端工程师，目前在字节跳动工作，住在北京海淀区。我们团队主要做推荐系统。","timestamp":1793014622740,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"我已经从字节跳动离职了，上个月跳槽到了阿里巴巴，做云原生方向。","timestamp":1793014646036,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"我最近搬家了，从北京海淀搬到了杭州西湖区。","timestamp":1793014659025,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"上周我和李四一起用Go语言做了一个微服务网关项目。","timestamp":1793014671631,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"昨天我和李四、王五一起review了那个微服务网关的代码，发现了几个并发bug。","timestamp":1793014681372,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"上个月王五帮我修了一个Redis缓存穿透的问题，当时排查了两天。","timestamp":1793014692158,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"我觉得Go比Java更适合写微服务，但是李四认为Java的生态和工具链更成熟。","timestamp":1793014703815,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"402324c6"}
+{"display":"我现在住在哪里？在哪家公司？","timestamp":1793014780475,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"我之前在哪个城市住来着？之前是在哪家公司？","timestamp":1793014789329,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"帮我梳理一下我的职业变动经历。","timestamp":1793014796681,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"李四和王五之间有什么共同的工作交集？","timestamp":1793014810551,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"我跟谁一起合作过Go语言相关的项目？","timestamp":1793014821227,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"我和李四对微服务技术选型分别是什么看法？","timestamp":1793014831215,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"f8052257"}
+{"display":"帮我写一个Express的REST API，包含用户CRUD和JWT认证中间件。在你自己新建的simu文件夹写","timestamp":1793016663929,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"a76300ac"}
+{"display":"帮我给这个Express项目加一个统一的错误处理中间件和请求日志中间件。","timestamp":1793016902765,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"a76300ac"}
+{"display":"帮我写Express的单元测试，用Jest mock数据库连接。","timestamp":1793017093928,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"a76300ac"}
+{"display":"帮我给Express项目加一个rate limiter中间件，限制每个IP每分钟100次请求。","timestamp":1793017378178,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"a76300ac"}
+{"display":"帮我把Express的路由拆分成模块化结构，每个资源一个路由文件。","timestamp":1793017592943,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"a76300ac"}
+{"display":"简单分析项目Express","timestamp":1793018079839,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"我现在住在哪里","timestamp":1793018191882,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"我和哪些同事合作过？","timestamp":1793018225121,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"这个Express有什么改进点？非常简要分析","timestamp":1793018266529,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"最简单分析为何看出注册没有独立限流","timestamp":1793018318449,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"最简单分析限制每个IP每分钟100次请求如何做到的","timestamp":1793018361363,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"帮我写一个Dockerfile来容器化这个Express+React项目","timestamp":1793018588024,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"帮我用React写一个Todo应用的前端界面。","timestamp":1793018626547,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"帮我写一个Dockerfile来容器化这个Express+React项目。","timestamp":1793018850512,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"最简单分析一下这个项目的两个缺点","timestamp":1793019025288,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"我这个项目是什么语言？","timestamp":1793019132048,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"哦哦，我在哪个公司工作？","timestamp":1793019168756,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"85354be6"}
+{"display":"搜一下你的记忆里关于我现在任职公司的记录，有没有互相矛盾的？把矛盾点列出来","timestamp":1793029332072,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"根据你的记忆，我和谁一起做过项目？注意区分\"一起开发\"和\"一起评审\"","timestamp":1793029370280,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"用表格对比一下记录里我和其他人在项目中的角色差异，没有依据的关联不要猜","timestamp":1793029452397,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"查一下记忆里我的住址/履历类事实，如果有多条不一致的记录，按最新陈述告诉我并列出冲突","timestamp":1793029482110,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"读一下 simu/package.json，这个项目改完代码用什么命令验证？","timestamp":1793029562238,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"看一下 simu/src/app.js，中间件和路由的注册顺序是怎么安排的？","timestamp":1793029640852,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"读 simu/src 下的分层代码，routes/controller/store 各管什么？","timestamp":1793029707157,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"帮我评估一下 simu 这个项目离能上线还差什么，重点看持久化和登录限流","timestamp":1793029747926,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"如果要给 simu 写个三阶段 Dockerfile 容器化，你会怎么写？看下现有依赖再说","timestamp":1793029783924,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}
+{"display":"跑一下 simu 的测试确认现在全绿    ← 第 10 回合，触发第 40 周期","timestamp":1793029841087,"project":"D:\\backendCode\\minicode\\MiniCode-main","sessionId":"4cc92001"}

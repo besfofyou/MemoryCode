@@ -1,0 +1,27 @@
+{
+  "id": "8c4c3410-eea",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "处理记忆中互相矛盾的记录：按「陈述时间最新者优先」取值；严格区分键值事实层与概念/事件层，仅出现在概念或事件句子里的关联标为「存疑/记录不足」，不自行补成事实；每条冲突给出记录 ID、生效日期与差异说明，最后请用户确认口径而不擅自改写底层条目。",
+  "createdAt": "2026-10-26T15:47:58.685Z",
+  "updatedAt": "2026-10-26T15:47:58.685Z",
+  "lastAccessedAt": "2026-10-26T15:47:58.685Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "记忆检索",
+    "冲突消解",
+    "证据分级"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "92c5fec694aac3c72258e2ed180302610c45916400764ec2b39f2ae64b985490",
+  "origin": "agent",
+  "durability": "durable"
+}

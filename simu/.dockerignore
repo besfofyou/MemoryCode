@@ -1,0 +1,23 @@
+# 依赖与产物都在镜像里重新安装/构建，不要从宿主机带进去
+node_modules
+client/node_modules
+client/dist
+public
+
+# 测试与工具配置
+test
+jest.config.mjs
+*.test.mjs
+
+# 本地环境与密钥
+.env
+.env.*
+!.env.example
+
+# 仓库杂项
+.git
+.gitignore
+npm-debug.log*
+*.md
+.vscode
+.idea

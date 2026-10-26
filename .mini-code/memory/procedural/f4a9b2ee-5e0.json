@@ -1,0 +1,26 @@
+{
+  "id": "f4a9b2ee-5e0",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "区分“一起做项目”与“一起评审项目”：代码作者/建设者与 review 参与者应分开归类回答，避免把评审人算作项目合作者。",
+  "createdAt": "2026-10-26T11:40:39.114Z",
+  "updatedAt": "2026-10-26T11:40:39.114Z",
+  "lastAccessedAt": "2026-10-26T11:40:39.114Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "角色区分",
+    "项目归属"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "9fbf58d025734fcad072eb0f3f06fb558c85fa16908bd194b3f8fb6ea86385da",
+  "origin": "agent",
+  "durability": "durable"
+}

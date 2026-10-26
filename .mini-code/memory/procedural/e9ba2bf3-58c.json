@@ -1,0 +1,28 @@
+{
+  "id": "e9ba2bf3-58c",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "分层约定：routes 只负责路径与权限组合，controller 负责参数校验、业务与响应，store 是唯一数据访问层（换数据库只改 store.js）；中间件与路由的注册顺序集中在 app.js 的 createApp() 工厂，config.js 集中解析环境变量（生产环境强制校验 JWT_SECRET）。",
+  "createdAt": "2026-10-26T12:37:21.678Z",
+  "updatedAt": "2026-10-26T12:37:21.678Z",
+  "lastAccessedAt": "2026-10-26T12:37:21.678Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "architecture",
+    "convention",
+    "layering"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "385cf4f5a1ac18e7978f6570144431315c856b98d3db789869ac7e4242a1039c",
+  "origin": "agent",
+  "durability": "durable"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "d09ebda9-b67",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "容器化 Express + Vite/React 单仓库的三阶段 Dockerfile 写法：stage1 client（npm ci + npm run build 产出 dist）、stage2 deps（npm ci --omit=dev 只装生产依赖）、stage3 runtime（node:20-alpine，拷贝 src、node_modules 与 dist 到 /app/public）；配套 .dockerignore 排除 node_modules/test/.env/dist。Express 侧需加静态托管与 SPA 兜底路由，并用 config 的 publicDir（PUBLIC_DIR 环境变量可覆盖）指向产物目录。",
+  "createdAt": "2026-10-26T12:50:05.348Z",
+  "updatedAt": "2026-10-26T12:50:05.348Z",
+  "lastAccessedAt": "2026-10-26T12:50:05.348Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-9",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "docker",
+    "多阶段构建",
+    "express",
+    "vite",
+    "spa-fallback"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "97e049d84a3d4f50fbcbe3e2372e4506788a237fb86f308460a3eae90cb4b13e",
+  "origin": "agent",
+  "durability": "durable"
+}

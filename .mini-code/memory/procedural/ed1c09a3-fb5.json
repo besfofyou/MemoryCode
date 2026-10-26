@@ -1,0 +1,28 @@
+{
+  "id": "ed1c09a3-fb5",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/src 为四层结构（app.js/routes 装配 → routes → controller → store，另有 middleware/utils/config/logger），依赖单向向下，唯一例外是 store 反向依赖 middleware。app.js 中注册顺序约定：trust proxy → requestLogger → 全局 rateLimit → express.json/urlencoded → /health → /api 路由 → static(assets)+SPA 兜底 → notFoundHandler → errorHandler。新增中间件须按此顺序插入（限流要在 body 解析前、404 在所有路由后、错误处理最后）。当前无 CORS/helmet，隐含同源部署；静态产物在 createApp 时探测一次，build 后需重启服务。",
+  "createdAt": "2026-10-26T15:51:47.156Z",
+  "updatedAt": "2026-10-26T15:51:47.156Z",
+  "lastAccessedAt": "2026-10-26T15:51:47.156Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "4cc92001",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "simu",
+    "express",
+    "middleware",
+    "architecture"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "a83cc3dae036518bc39e04a56780e094b0823af60b1d406de49c998daccc2f16",
+  "origin": "agent",
+  "durability": "durable"
+}

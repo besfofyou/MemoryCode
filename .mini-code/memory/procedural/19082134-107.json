@@ -1,0 +1,27 @@
+{
+  "id": "19082134-107",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "处理记忆图谱中的事实冲突：以记录的 stated（陈述时间）最新者为准取值；键值型 fact 优先于概念/事件句中的描述；同一事实出现多个 from（生效）日期即视为冲突需并列列出；无键值事实支撑的角色/关系标记为「记录不足/存疑」，不做推断补齐。事实类条目不应擅自改写，需用户明确确认口径后再覆盖（写入工具仅支持流程类记忆）。",
+  "createdAt": "2026-10-26T15:51:47.296Z",
+  "updatedAt": "2026-10-26T15:51:47.296Z",
+  "lastAccessedAt": "2026-10-26T15:51:47.296Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "4cc92001",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "memory",
+    "conflict-resolution",
+    "fact-retrieval"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "980a87fa78601d36df6b1ed81318382a629f3d21deeccec9d604fd252b83042d",
+  "origin": "agent",
+  "durability": "durable"
+}

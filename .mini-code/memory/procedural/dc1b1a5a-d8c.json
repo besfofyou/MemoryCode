@@ -1,0 +1,27 @@
+{
+  "id": "dc1b1a5a-d8c",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/client 是 Vite + React 前端：`npm install` 后 `npm run dev`（5173，/api 代理到 http://localhost:3000，可用 API_TARGET 覆盖），`npm run build` 输出 dist/。数据层集中在 src/storage.js（localStorage key `simu.todo.items`），接后端只需改该文件。",
+  "createdAt": "2026-10-26T12:53:22.873Z",
+  "updatedAt": "2026-10-26T12:53:22.873Z",
+  "lastAccessedAt": "2026-10-26T12:53:22.873Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "85354be6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "react",
+    "vite",
+    "frontend"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "bff8aa7c59aebf5a8f70e489709ff449098cfb3f6755c33b83710f2ace8870ea",
+  "origin": "agent",
+  "durability": "durable"
+}

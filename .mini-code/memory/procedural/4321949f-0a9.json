@@ -1,0 +1,28 @@
+{
+  "id": "4321949f-0a9",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "评估一个前后端 demo 项目离“可上线”还差什么时，优先检查两块：(1) 持久化——后端是否用进程内 Map/内存存储（重启或多实例丢数据、冷启动重建默认管理员），前端是否用 localStorage，以及前后端是否真的通过 API 打通（核对后端路由清单与实际请求）；(2) 生产安全——登录/注册等认证路由是否单独限流（不能只吃全局配额）、修改密码/邮箱是否校验旧密码、token 是否有版本号或黑名单可失效、是否启用 helmet/cors/HTTPS。给出结论时同时给出改法，如保留 store 函数签名替换为 Postgres/Redis、把前端 load/save 换成 fetch 调用。",
+  "createdAt": "2026-10-26T12:53:02.855Z",
+  "updatedAt": "2026-10-26T12:53:02.855Z",
+  "lastAccessedAt": "2026-10-26T12:53:02.855Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-12",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "code-review",
+    "security",
+    "persistence",
+    "fullstack"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "d48d30aadda4a43b1fa03ab3ef0fb4bc0cdef60353b95216e4271432d456fd10",
+  "origin": "agent",
+  "durability": "durable"
+}

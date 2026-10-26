@@ -1,0 +1,28 @@
+{
+  "id": "3472870e-097",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu 项目结构约定：Express 后端在 simu/src（依赖仅 express/jsonwebtoken/dotenv，测试用 jest+supertest），React 前端在 simu/client（Vite）。前端验证命令：cd simu/client && npm install && npm run build（产出 client/dist）；本地开发 npm run dev 起 5173，vite.config.js 已把 /api 代理到 http://localhost:3000（可用 API_TARGET 覆盖）。",
+  "createdAt": "2026-10-26T12:50:05.320Z",
+  "updatedAt": "2026-10-26T12:50:05.320Z",
+  "lastAccessedAt": "2026-10-26T12:50:05.320Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-9",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "simu",
+    "构建命令",
+    "vite",
+    "express"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "a0a7683e684f627794207f1284583a7bae963980029ab93de8add4daa4d85862",
+  "origin": "agent",
+  "durability": "durable"
+}

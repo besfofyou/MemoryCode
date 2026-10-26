@@ -1,0 +1,27 @@
+{
+  "id": "9a0de2b4-787",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "梳理人物/事件关系时，先区分每个主体在事件中的角色（建设者、评审参与者、被咨询者等），再回答「共同交集」类问题；对记录中无依据的关联（如同团队、同公司、此前合作）明确说明「无记录、不做推断」，并提示用户可补充。",
+  "createdAt": "2026-10-26T11:41:10.441Z",
+  "updatedAt": "2026-10-26T11:41:10.441Z",
+  "lastAccessedAt": "2026-10-26T11:41:10.441Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "f8052257",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "关系梳理",
+    "角色区分",
+    "不臆测"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "231373012e56f6ed949b77a1cb825b7e6b020b94aed9695f8f71834799016b36",
+  "origin": "agent",
+  "durability": "durable"
+}

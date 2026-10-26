@@ -1,0 +1,28 @@
+{
+  "id": "fb600ab1-cd7",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "Express 托管前端静态资源时，若应用挂了 requestLogger 和全局限流，静态资源请求也会各记一条日志并消耗配额；必要时把 /assets 加入 skipRequestLog 与限流的 skip 列表。",
+  "createdAt": "2026-10-26T12:50:05.379Z",
+  "updatedAt": "2026-10-26T12:50:05.379Z",
+  "lastAccessedAt": "2026-10-26T12:50:05.379Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-9",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "中间件",
+    "限流",
+    "日志"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "8993fac34457e25614ae99a58174780ba4ce71e3048e881df4787c7e58bc817f",
+  "origin": "agent",
+  "durability": "durable"
+}

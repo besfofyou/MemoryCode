@@ -1,0 +1,27 @@
+{
+  "id": "79f72ec9-075",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "新增资源时的目录模式：routes/index.js 汇总挂载，每个资源一个子目录，内含 routes.js（路径+权限）与 controller.js（校验+业务+响应），数据操作统一走 store.js 的内存 Map。",
+  "createdAt": "2026-10-26T12:37:21.718Z",
+  "updatedAt": "2026-10-26T12:37:21.718Z",
+  "lastAccessedAt": "2026-10-26T12:37:21.718Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-3",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "routing",
+    "project-structure"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "992d0761481a69c92837fdb618d32f2001216cb84e3b606a203cf124414abc40",
+  "origin": "agent",
+  "durability": "durable"
+}

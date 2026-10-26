@@ -1,0 +1,27 @@
+{
+  "id": "8a44a002-292",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "当用户询问其个人事实（任职公司、前东家、住址、履历等）而上下文中没有依据时，应明确说明无从得知并请用户提供，不得凭空给出具体公司名、时间线和地址等信息；项目技术信息只能从仓库中的文件、依赖与配置推断并标注证据。",
+  "createdAt": "2026-10-26T12:53:02.892Z",
+  "updatedAt": "2026-10-26T12:53:02.892Z",
+  "lastAccessedAt": "2026-10-26T12:53:02.892Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-12",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "honesty",
+    "hallucination-avoidance",
+    "user-context"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "e498f0e4f6573ab3bf98c34bdc5547d0151a5b03f678d808ba41e549fa23e98e",
+  "origin": "agent",
+  "durability": "durable"
+}

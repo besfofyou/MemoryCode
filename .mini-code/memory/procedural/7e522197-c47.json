@@ -1,0 +1,27 @@
+{
+  "id": "7e522197-c47",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "回答基于记忆/记录的人物关系类问题时，先给出记录中唯一可确认的交集，再用表格并列各人角色与差异（如“作者/建设者”vs“评审参与者”），最后显式声明记录中缺失的事实（如同属一团队、此前是否有过合作）并邀请用户补充。",
+  "createdAt": "2026-10-26T11:40:39.086Z",
+  "updatedAt": "2026-10-26T11:40:39.086Z",
+  "lastAccessedAt": "2026-10-26T11:40:39.086Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "turn-6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "记忆检索",
+    "人物关系",
+    "事实边界"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "b2b2ab630c0d2c996340672e32038fe6b28f1a166ee88c50fb51de1d7aa540a1",
+  "origin": "agent",
+  "durability": "durable"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "bbc6f60a-e47",
+  "schemaVersion": 2,
+  "tier": "procedural",
+  "content": "simu/ 是纯 ESM 的 Express 骨架，分层约定固定：routes 只负责路径与权限（authenticate + controller），controller 负责参数校验、业务逻辑与响应，store.js 是唯一数据层（内存 Map）。替换数据库或改数据结构只需改 store.js，不动路由与控制器。",
+  "createdAt": "2026-10-26T12:53:22.758Z",
+  "updatedAt": "2026-10-26T12:53:22.758Z",
+  "lastAccessedAt": "2026-10-26T12:53:22.758Z",
+  "accessCount": 0,
+  "source": {
+    "sessionId": "85354be6",
+    "trigger": "auto_distill"
+  },
+  "confidence": 0.6,
+  "supersedes": null,
+  "supersededAt": null,
+  "tags": [
+    "express",
+    "architecture",
+    "simu"
+  ],
+  "obsolete": false,
+  "obsoleteReason": null,
+  "contentHash": "1eac1722cae59433c897c827933355256e3b7b7f857c7a1460bc07517469115e",
+  "origin": "agent",
+  "durability": "durable"
+}
