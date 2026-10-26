@@ -67,7 +67,36 @@ export function canonicalPersonName(name: string): string {
   return name.trim()
 }
 
-/** 对应 CogMem indexer._resolve_relative_time；模糊时间（recently/最近）返回 undefined，只保留原文 */
+// ---- 相对时间解析辅助 ----
+
+/** 中文星期：一=1 … 六=6，日/天=7（周一起算，ISO 8601 / 国内惯例） */
+const CN_WEEKDAYS: Record<string, number> = { '一': 1, '二': 2, '三': 3, '四': 4, '五': 5, '六': 6, '日': 7, '天': 7 }
+/** 英文星期缩写/全称 → 周一起算序号 */
+const EN_WEEKDAYS: Array<[RegExp, number]> = [
+  [/^mon(?:day)?$/, 1], [/^tue(?:s|sday)?$/, 2], [/^wed(?:s|nesday)?$/, 3], [/^thu(?:r|rs|rsday)?$/, 4],
+  [/^fri(?:day)?$/, 5], [/^sat(?:urday)?$/, 6], [/^sun(?:day)?$/, 7],
+]
+
+/** 周一起算的相对星期日期：weekOffset -1=上周 0=本周/这周 1=下周；weekday 1=周一..7=周日 */
+function weekdayDate(base: Date, weekOffset: number, weekday: number): string {
+  const monday = new Date(base.getTime() - ((base.getUTCDay() + 6) % 7) * 86_400_000)   // 本周一
+  return new Date(monday.getTime() + (weekOffset * 7 + weekday - 1) * 86_400_000).toISOString().slice(0, 10)
+}
+
+/** 上个日历月的同一天，天数不足则取月末（修复 ago(30) 在月末漂到当月的问题，如 10-31 → 09-30） */
+function previousMonthDate(base: Date): string {
+  const d = new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth(), 1))
+  d.setUTCMonth(d.getUTCMonth() - 1)
+  const daysInPrevMonth = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate()
+  d.setUTCDate(Math.min(base.getUTCDate(), daysInPrevMonth))
+  return d.toISOString().slice(0, 10)
+}
+
+/**
+ * 对应 CogMem indexer._resolve_relative_time；模糊时间（recently/最近/不含星期的"星期三"）返回 undefined，只保留原文。
+ * 星期统一按周一起算（ISO 8601 / 国内惯例）：2026-10-25（周日）说"上周三" → 2026-10-14，
+ * 而不是 today−7 的 10-18（那是周日）。会话层仍可向用户确认候选日期；用户给出绝对日期后由上面的直通分支接管。
+ */
 export function resolveRelativeTime(raw: string | undefined, sessionDate: string): string | undefined {
   if (!raw) return undefined
   const t = raw.trim().toLowerCase()
@@ -75,10 +104,26 @@ export function resolveRelativeTime(raw: string | undefined, sessionDate: string
   const base = new Date(`${sessionDate}T00:00:00Z`)
   if (Number.isNaN(base.getTime())) return undefined
   const ago = (d: number) => new Date(base.getTime() - d * 86_400_000).toISOString().slice(0, 10)
+
+  // 带星期的相对周表达（必须先于裸"上周/last week"匹配）："上周三 / 下周五 / 这周日 / last wednesday / this friday"
+  const cnWeek = t.match(/(?:上|下|这|本)(?:周|星期|礼拜)([一二三四五六日天])/)
+  if (cnWeek) {
+    const offset = cnWeek[0].startsWith('上') ? -1 : cnWeek[0].startsWith('下') ? 1 : 0
+    return weekdayDate(base, offset, CN_WEEKDAYS[cnWeek[1]]!)
+  }
+  const enWeek = t.match(/\b(last|next|this)\s+(mon(?:day)?|tue(?:s|sday)?|wed(?:s|nesday)?|thu(?:r|rs|rsday)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)\b/)
+  if (enWeek) {
+    const weekday = EN_WEEKDAYS.find(([re]) => re.test(enWeek[2]))?.[1]
+    if (weekday) {
+      const offset = enWeek[1] === 'last' ? -1 : enWeek[1] === 'next' ? 1 : 0
+      return weekdayDate(base, offset, weekday)
+    }
+  }
+
   if (/\btoday\b|今天|刚才/.test(t)) return ago(0)
   if (/yesterday|昨天/.test(t)) return ago(1)
-  if (/last week|上周|上星期/.test(t)) return ago(7)
-  if (/last month|上个月/.test(t)) return ago(30)
+  if (/last week|上周|上星期/.test(t)) return ago(7)          // 裸"上周"：today−7 恰落在周一起算的上一周内
+  if (/last month|上个月/.test(t)) return previousMonthDate(base)
   const d = t.match(/(\d+)\s*(?:days?\s+ago|天前)/); if (d) return ago(Number(d[1]))
   const w = t.match(/(\d+)\s*(?:weeks?\s+ago|周前)/); if (w) return ago(Number(w[1]) * 7)
   return undefined

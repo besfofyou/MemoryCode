@@ -98,8 +98,38 @@ describe('P0-1 时间双轴：写入时冲突消解（不依赖事后 reconcile�
     assert.equal(isRetrievable(xuhui), true)
   })
 
-  it('多值谓词不误伤：attended 两条并存', async () => {
+  it('同一会话内先后更正：即使 LLM 乱序返回 facts，裁决仍按对话顺序', async () => {
     const graph = new GraphStore()
+    const vectors = new VectorStore(new MockEmbeddingClient())
+    // 一次会话里先说住浦东、后说搬到徐汇；LLM 把徐汇排在数组前面返回（乱序）
+    const extractor = new CogMemExtractor(graph, vectors, new FixedModel([extraction({
+      persons: PERSONS,
+      concepts: [{ name: '浦东', description: '上海浦东' }, { name: '徐汇', description: '上海徐汇' }],
+      events: [],
+      facts: [
+        { subject: 'User', predicate: 'resides_in', object: '徐汇', source: 'user', effective_from: yesterday, evidence: '我上个月搬到徐汇' },
+        { subject: 'User', predicate: 'lives_in', object: '浦东', source: 'user', evidence: '我现在住在浦东' },
+      ],
+      claims: [], invalidations: [],
+    })]))
+    const messages: ChatMessage[] = [
+      { role: 'user', content: '我现在住在浦东。以后涉及通勤本地服务就默认按浦东来。' },
+      { role: 'assistant', content: '已记下：你目前住在浦东。' },
+      { role: 'user', content: '对了纠正一下，我上个月搬到徐汇了，之前的说法过时了。' },
+      { role: 'assistant', content: '好的，改成徐汇了。' },
+    ]
+    await extractor.extractFromMessages(messages, 'session-single')
+
+    const pudong = graph.getNodesByType<FactNode>('fact').find(f => f.object === '浦东')!
+    const xuhui = graph.getNodesByType<FactNode>('fact').find(f => f.object === '徐汇')!
+    // 对话顺序：徐汇（第 3 行）晚于浦东（第 1 行）→ 徐汇胜，尽管它在 LLM 数组里排第一
+    assert.ok(xuhui.stated_at! > pudong.stated_at!, `expected xuhui stated later: ${xuhui.stated_at} vs ${pudong.stated_at}`)
+    assert.equal(xuhui.is_latest, true)
+    assert.equal(pudong.lifecycle, 'archived')
+    assert.equal(pudong.superseded_by, xuhui.node_id)
+  })
+
+  it('多值谓词不误伤：attended 两条并存', async () => {    const graph = new GraphStore()
     const vectors = new VectorStore(new MockEmbeddingClient())
     const mk = (obj: string, session: string) => new CogMemExtractor(graph, vectors, new FixedModel([extraction({
       persons: PERSONS,

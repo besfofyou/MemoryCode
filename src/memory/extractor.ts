@@ -17,12 +17,19 @@ import { tokenize } from './filesystem.js'
 type Ctx = {
   sessionId: string
   now: string
-  /** 同一窗口内逐条递增的陈述序号：保证 stated_at 严格按会话顺序单调递增 */
+  /** 本次抽取的陈述时间基准（epoch ms） */
+  runBase: number
+  /** 当前 chunk 首行在全会话行序列中的偏移 */
+  lineBase: number
+  /** 无证据行的事实用的尾部序号 */
   statedSeq: number
   sourceText: string
   batch: { id: string; text: string }[]
   created: { n: number }
 }
+
+/** 无证据行的事实的 stated_at 偏移：远大于任何 chunk 行号，排到窗口尾部 */
+const EVIDENCE_TAIL_OFFSET = 100_000
 
 /**
  * 结构化信息抽取器（对应 CogMem 的 Indexer）
@@ -46,12 +53,19 @@ export class CogMemExtractor {
   ): Promise<{ nodesCreated: number; newEventIds: string[]; touchedFactIds: string[] }> {
     const sessionDate = new Date().toISOString().slice(0, 10)
     const out = { nodesCreated: 0, newEventIds: [] as string[], touchedFactIds: [] as string[] }
+    // 陈述时间锚点：本次抽取的基准时刻 + 跨 chunk 累计行号，保证同一会话内 strictly 按对话顺序
+    const runBase = Date.now()
+    let lineBase = 0
     for (const text of chunkMessages(messages, 6000, 4)) {          // 按窗口切分，保证会话末尾一定被抽取
-      if (text.length < 50) continue
-      const x = await this.callLLM(text, sessionDate)
-      if (!x) continue
-      const r = await this.writeExtraction(x, text, sessionId, sessionDate)
-      out.nodesCreated += r.nodesCreated; out.newEventIds.push(...r.newEventIds); out.touchedFactIds.push(...r.touchedFactIds)
+      const chunkLines = text.split('\n').length
+      if (text.length >= 50) {
+        const x = await this.callLLM(text, sessionDate)
+        if (x) {
+          const r = await this.writeExtraction(x, text, sessionId, sessionDate, runBase, lineBase)
+          out.nodesCreated += r.nodesCreated; out.newEventIds.push(...r.newEventIds); out.touchedFactIds.push(...r.touchedFactIds)
+        }
+      }
+      lineBase += chunkLines
     }
     return out
   }
@@ -73,15 +87,18 @@ export class CogMemExtractor {
     } catch { return null }
   }
 
-  /** 陈述时间：窗口基准时刻 + 单调递增序号，严格保持会话内的先后顺序（后陈述 ≥ 先陈述） */
-  private nextStatedAt(ctx: Ctx): string {
-    const iso = new Date(Date.parse(ctx.now) + ctx.statedSeq).toISOString()
-    ctx.statedSeq++
-    return iso
+  /**
+   * 陈述时间锚定到证据所在行号（跨 chunk 累计）：同一会话内严格按对话顺序，
+   * 且不受 LLM 返回数组顺序影响——后说的永远是更晚的 stated_at。
+   * 无证据行的事实排在窗口尾部（大偏移 + 序号），避免插到真实对话顺序中间。
+   */
+  private nextStatedAt(ctx: Ctx, lineIndex?: number): string {
+    const offset = lineIndex !== undefined ? ctx.lineBase + lineIndex : EVIDENCE_TAIL_OFFSET + ctx.statedSeq++
+    return new Date(ctx.runBase + offset).toISOString()
   }
 
-  private async writeExtraction(x: ExtractionResult, sourceText: string, sessionId: string, sessionDate: string) {
-    const ctx: Ctx = { sessionId, now: new Date().toISOString(), statedSeq: 0, sourceText, batch: [], created: { n: 0 } }
+  private async writeExtraction(x: ExtractionResult, sourceText: string, sessionId: string, sessionDate: string, runBase: number, lineBase: number) {
+    const ctx: Ctx = { sessionId, now: new Date().toISOString(), statedSeq: 0, runBase, lineBase, sourceText, batch: [], created: { n: 0 } }
     const newEventIds: string[] = [], touchedFactIds: string[] = []
 
     // 顶层 concepts 的描述表（按归一化名索引），供事件/事实/声明中出现的同名概念补齐描述
@@ -144,7 +161,7 @@ export class CogMemExtractor {
         existing.mention_count = (existing.mention_count ?? 1) + 1
         existing.source_sessions = [...new Set([...(existing.source_sessions ?? []), sessionId])]
         const wasArchived = (existing.lifecycle ?? 'stable') === 'archived' || existing.is_latest === false
-        existing.stated_at = this.nextStatedAt(ctx)                             // 重新陈述 → 刷新陈述时间（裁决依据）
+        existing.stated_at = this.nextStatedAt(ctx, ev.lineIndex)               // 重新陈述 → 刷新陈述时间（裁决依据）
         if (ev.lines[0] && !(existing.evidence ?? []).includes(ev.lines[0])) {
           existing.evidence = [...(existing.evidence ?? []), ev.lines[0]].slice(-3)
         }
@@ -169,7 +186,7 @@ export class CogMemExtractor {
         node_id: id, node_type: 'fact', subject, predicate, object, description: desc,
         subject_id: subj.node_id, object_id: obj.node_id,
         confidence: 0.6, lifecycle: 'candidate', is_latest: true,
-        stated_at: this.nextStatedAt(ctx), effective_from: effectiveFrom, valid_from: effectiveFrom,
+        stated_at: this.nextStatedAt(ctx, ev.lineIndex), effective_from: effectiveFrom, valid_from: effectiveFrom,
         mention_count: 1, source_sessions: [sessionId], supported_by_event_ids: [],
         evidence: ev.lines,
         created_at: ctx.now, updated_at: ctx.now, source_session_id: sessionId,
@@ -310,23 +327,25 @@ function clean(v: unknown, max = 300): string {
 /**
  * 证据选取 + 发言者识别（chunk 文本每行以 "[user]: " / "[assistant]: " 开头）：
  * - LLM 引文必须真的出现在原文中；引文验证通过时，以引文所在行判断来源；
- * - 引文未验证通过时按词重叠找最相关的一行（防幻觉引文），该行的发言者即证据来源。
+ * - 引文未验证通过时按词重叠找最相关的一行（防幻觉引文），该行的发言者即证据来源；
+ * - lineIndex = 命中行在 chunk 内的行号，供 stated_at 锚定对话顺序。
  */
-function pickEvidenceWithOrigin(quote: unknown, source: string, key: string): { lines: string[]; origin: 'user' | 'assistant' | 'unknown' } {
+function pickEvidenceWithOrigin(quote: unknown, source: string, key: string): { lines: string[]; origin: 'user' | 'assistant' | 'unknown'; lineIndex?: number } {
   const speakerOf = (line: string): 'user' | 'assistant' | 'unknown' =>
     /^\[assistant\]:/i.test(line) ? 'assistant' : /^\[user\]:/i.test(line) ? 'user' : 'unknown'
+  const allLines = source.split('\n')
   if (typeof quote === 'string' && quote.trim().length >= 8) {
     const q = quote.trim()
-    const line = source.split('\n').find(l => l.includes(q))
-    if (line) return { lines: [q.slice(0, 300)], origin: speakerOf(line) }
+    const idx = allLines.findIndex(l => l.includes(q))
+    if (idx >= 0) return { lines: [q.slice(0, 300)], origin: speakerOf(allLines[idx]), lineIndex: idx }
   }
   const keyTokens = new Set(tokenize(key))
-  let best = '', bestScore = 0
-  for (const line of source.split('\n')) {
-    const score = tokenize(line).filter(t => keyTokens.has(t)).length
-    if (score > bestScore) { best = line; bestScore = score }
+  let best = '', bestScore = 0, bestIdx = -1
+  for (let i = 0; i < allLines.length; i++) {
+    const score = tokenize(allLines[i]).filter(t => keyTokens.has(t)).length
+    if (score > bestScore) { best = allLines[i]; bestScore = score; bestIdx = i }
   }
-  return bestScore >= 2 ? { lines: [best.slice(0, 300)], origin: speakerOf(best) } : { lines: [], origin: 'unknown' }
+  return bestScore >= 2 ? { lines: [best.slice(0, 300)], origin: speakerOf(best), lineIndex: bestIdx } : { lines: [], origin: 'unknown' }
 }
 
 /** 兼容旧调用：只取证据行 */
