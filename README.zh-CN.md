@@ -1,56 +1,35 @@
-# MiniCode
+# MemoryCode
 
 <p align="center">
-  <img src="./docs/logo.svg" alt="MiniCode Logo" width="180" />
+  <img src="./docs/logo.svg" alt="MemoryCode Logo" width="180" />
 </p>
 
-<h2 align="center">MiniCode</h2>
+<h2 align="center">MemoryCode</h2>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Editor-Minicode-D97757?style=for-the-badge" alt="Editor: Minicode" />
-  <img src="https://img.shields.io/badge/%23minicode-Project-B85C3F?style=for-the-badge" alt="#minicode" />
-  <img src="https://img.shields.io/badge/%23lightweight-Focus-F0EBE1?style=for-the-badge&labelColor=8B8B8B" alt="#lightweight" />
-  <a href="https://deepwiki.com/LiuMengxuan04/MiniCode">
-    <img src="https://img.shields.io/badge/Ask-DeepWiki-0F7BBF?style=for-the-badge&labelColor=2B2B2B" alt="Ask DeepWiki" />
-  </a>
-  <a href="https://fluxionai.space/register?source=github&campaign=github-sidrune-minicode&promo=SDRMINICODE">
-    <img src="https://img.shields.io/badge/%E8%B5%9E%E5%8A%A9%E5%95%86-Sidrune_AI-4F46E5?style=for-the-badge" alt="赞助商：Sidrune AI" />
-  </a>
+  <img src="https://img.shields.io/badge/Editor-MemoryCode-D97757?style=for-the-badge" alt="Editor: MemoryCode" />
+  <img src="https://img.shields.io/badge/%23memorycode-%E9%A1%B9%E7%9B%AE-B85C3F?style=for-the-badge" alt="#memorycode" />
+  <img src="https://img.shields.io/badge/%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7-F0EBE1?style=for-the-badge&labelColor=8B8B8B" alt="长期记忆：核心特性" />
+  <img src="https://img.shields.io/badge/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1-F0EBE1?style=for-the-badge&labelColor=8B8B8B" alt="知识图谱" />
 </p>
 
 ---
 
 <p align="center">
-  一个轻量且高效的编码工具。为速度而生，为简洁而建。
+  一个带长期记忆的轻量级终端编码助手。它记得你的项目、你的决策、你的纠正——跨会话依然有效。
 </p>
 
-[English](./README.md) | [详细使用指南](./USAGE_ZH.md) | [DeepWiki](https://deepwiki.com/LiuMengxuan04/MiniCode) | [架构说明](./ARCHITECTURE_ZH.md) | [贡献规范](./CONTRIBUTING_ZH.md) | [路线图](./ROADMAP_ZH.md) | [License](./LICENSE)
+[English](./README.md) | [详细使用指南](./USAGE_ZH.md) | [架构说明](./ARCHITECTURE_ZH.md) | [贡献规范](./CONTRIBUTING_ZH.md) | [路线图](./ROADMAP_ZH.md) | [License](./LICENSE)
 
-MiniCode 是一个面向本地开发工作流的轻量级终端编码助手。
+MemoryCode 是一个内置长期记忆的终端编码助手。
 
-它用更小的实现体量，提供类 Claude Code 的工作流体验和架构思路，因此很适合学习、实验，以及继续做自己的定制化开发。
-
-## 赞助
-
-<p align="center">
-  <a href="https://fluxionai.space/register?source=github&campaign=github-sidrune-minicode&promo=SDRMINICODE">
-    <img src="./docs/sidrune-ai-banner.jpg" alt="Sidrune AI — 一个入口，接入全球主流 AI 模型，注册即送 3 美元 API 额度" width="760" />
-  </a>
-</p>
-
-<p align="center">
-  <strong>由 <a href="https://fluxionai.space/register?source=github&campaign=github-sidrune-minicode&promo=SDRMINICODE">Sidrune AI</a> 赞助</strong>
-</p>
-
-Sidrune AI 提供 GPT、Claude 等主流 AI 模型的统一 API 接入，多线路选择，用量和费用清晰可查。通过 MiniCode 专属链接注册，即可获得 **3 美元 API 额度**（优惠码 `SDRMINICODE` 已自动带入）：
-
-<p align="center">
-  <a href="https://fluxionai.space/register?source=github&campaign=github-sidrune-minicode&promo=SDRMINICODE">👉 前往 Sidrune AI 领取 3 美元 API 额度</a>
-</p>
+它保留了轻量的类 Claude Code agent-loop 架构，并加入了一套知识图谱记忆系统：每次会话沉淀下的事实、事件、经验教训和技能，会在之后的会话中自动检索复用。因此它既适合在长期维护的项目里做日常开发，也适合用来学习一个"记忆优先"的 Agent 是如何构建的。
 
 ## 项目简介
 
-MiniCode 围绕一个 terminal-first agent loop 构建：
+MemoryCode 同时运行着两个循环：
+
+**Agent 循环**（terminal-first，逐轮推进）：
 
 - 接收用户请求
 - 检查当前工作区
@@ -58,102 +37,49 @@ MiniCode 围绕一个 terminal-first agent loop 构建：
 - 修改文件前先 review
 - 在同一个终端会话里返回最终结果
 
-整个项目有意保持紧凑，让主控制流、工具模型和 TUI 行为更容易理解和扩展。
+**记忆循环**（在底层持续运行，跨会话生效）：
 
-## 核心作者
+- 模型回答前，先检索相关记忆
+- 每轮结束后，记录本轮实际发生了什么
+- 把事实、事件和观点抽取进知识图谱
+- 新旧事实互相校对（合并、取代或归档）
+- 定期整合会话，蒸馏出可复用的技能
 
-<table>
-  <tr>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/LiuMengxuan04">
-        <img src="https://github.com/LiuMengxuan04.png?size=160" width="96" height="96" alt="LiuMengxuan04" /><br />
-        <strong>Liu Mengxuan</strong>
-      </a>
-      <br />
-      <sub><strong>发起者</strong></sub>
-      <br />
-      <sub>主导 TypeScript 主仓库、核心工作流、MCP/Skills、TUI 与文档。</sub>
-    </td>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/GateJustice">
-        <img src="https://github.com/GateJustice.png?size=160" width="96" height="96" alt="GateJustice" /><br />
-        <strong>GateJustice</strong>
-      </a>
-      <br />
-      <sub><strong>共同发起者</strong></sub>
-      <br />
-      <sub>贡献长会话上下文系统，包括 usage 记账、自动压缩和 context collapse。</sub>
-    </td>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/sssn-tech">
-        <img src="https://github.com/sssn-tech.png?size=160" width="96" height="96" alt="sssn" /><br />
-        <strong>sssn</strong>
-      </a>
-      <br />
-      <sub><strong>核心贡献者</strong></sub>
-      <br />
-      <sub>贡献长程规划工作流（/goal、/loop 和 /plan）、多子代理编排能力与 TUI 视觉优化。</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/harkerhand">
-        <img src="https://github.com/harkerhand.png?size=160" width="96" height="96" alt="harkerhand" /><br />
-        <strong>harkerhand</strong>
-      </a>
-      <br />
-      <sub><strong>MiniCode-rs</strong></sub>
-      <br />
-      <sub>Rust 版本主要作者。</sub>
-    </td>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/QUSETIONS">
-        <img src="https://github.com/QUSETIONS.png?size=160" width="96" height="96" alt="QUSETIONS" /><br />
-        <strong>QUSETIONS</strong>
-      </a>
-      <br />
-      <sub><strong>MiniCode-Python</strong></sub>
-      <br />
-      <sub>Python 版本主要作者。</sub>
-    </td>
-    <td align="center" valign="top" width="33.33%">
-      <a href="https://github.com/GoDiao">
-        <img src="https://github.com/GoDiao.png?size=160" width="96" height="96" alt="GoDiao" /><br />
-        <strong>GoDiao</strong>
-      </a>
-      <br />
-      <sub><strong>核心贡献者</strong></sub>
-      <br />
-      <sub>贡献分层 memory、/init、会话恢复和 TUI 交互改进。</sub>
-    </td>
-  </tr>
-</table>
+整个项目有意保持紧凑，让主控制流、工具模型、记忆管线和 TUI 行为都更容易理解和扩展。
 
-简介根据主仓库与多语言分支提交记录归纳。更多贡献者请以仓库提交历史为准。
+## 为什么选择 MemoryCode
 
-## 多语言版本
+MemoryCode 适合你，如果你想要：
 
-- TypeScript（本仓库）：[MiniCode](https://github.com/LiuMengxuan04/MiniCode)
-- Rust 版本：[MiniCode-rs](https://github.com/harkerhand/MiniCode-rs/tree/master)
-- Python 版本：[MiniCode-Python](https://github.com/QUSETIONS/MiniCode-Python)
-- Go 版本：[MiniCode-go](https://github.com/ssbsunshengbo/MiniCode)
-- Java 版本：[MiniCode4j](https://github.com/hobbescalvin414-tech/minicode4j/tree/feat/default-ts-ui)
-
-## 产品展示页
-
-- 在浏览器中打开 [docs/index.html](./docs/index.html)，即可查看可视化产品介绍页面。
-- GitHub Pages 推荐访问地址：`https://liumengxuan04.github.io/MiniCode/`
-
-## 为什么选择 MiniCode
-
-MiniCode 适合你，如果你想要：
-
+- 一个能记住你的技术栈、项目约定和纠正意见的助手，而不是每次对话都从零开始
+- 一套有真实生命周期的记忆：事实有版本链，冲突按陈述时间裁决，过时记录被归档而不是悄悄共存
+- 从你真实成功与失败中生长出来的技能，带基于使用情况的适应度评分和淘汰机制
 - 一个轻量级 coding assistant，而不是庞大的平台
-- 一个带 tool calling、transcript 和命令工作流的终端 UI
 - 一个很适合阅读和二次开发的小代码库
-- 一个可用于学习类 Claude Code agent 架构的参考实现
 
 ## 核心能力
+
+### 长期记忆
+
+- 受 CogMem 启发的知识图谱：`Person`、`Event`、`Concept`、`Claim`、`Fact` 五类节点，通过带类型的关系边（`SUPERSEDED_BY`、`SUPPORTED_BY`、`PARTICIPATED_IN` 等）连接，每条记录最多保留 3 段逐字原文证据。
+- 每轮自动检索：回答前自动查找相关记忆并注入上下文；`/memory` 可查看本轮实际加载内容与持久记忆健康报告。
+- 事实生命周期建立在时间双轴上：`stated_at`（用户最近一次陈述的时间——新旧裁决的唯一依据）与 `effective_from`（事实在世界中开始为真的时间——仅用于展示与追溯）。新陈述通过显式 `SUPERSEDES` 链取代旧陈述，被归档的事实会移出向量索引。
+- 冲突校对：近似重复的事实自动合并（相似度 ≥ 0.95），同主体的更新形成版本链（相似度 ≥ 0.80），模糊冲突交给 LLM 批量确认，谓词先做同义归一（`lives_in`/`resides_in`/`moved_home` → `lives_in`），换措辞的更新也能匹配上。
+- 显式作废：当用户宣布之前的记录不再成立时，旧事实会被归档，而不是与新事实默默共存。
+- 事实只来自用户：只有用户陈述（或用户确认的结果）才会成为事实，Assistant 自身的推理永远不会回写成记忆。抽取阶段禁止记录密钥、token 和绝对路径。
+- 防谎报守卫：回复里声称"已记录/已更新/已作废"但本轮没有任何成功的 `memory_write`/`memory_forget` 调用时，会被标记为 `unbacked-memory-claim`。
+- 三层记忆结构——`episodic`（情景）、`semantic`（语义）、`procedural`（程序性），并带持久性分级（`durable` / `session` / `volatile`），底层由本地向量库加 embedding 支撑语义检索。
+- 专用工具：`memory_read`（检索图谱记忆）、`memory_write`（沉淀程序性经验）、`memory_forget`（带理由的软删除）。
+
+### 技能生命周期（SkillForge）
+
+- 技能保存在持久化的 skill bank 中，生命周期为 `trial → active → stable → retired`，由使用次数和成功次数追踪。
+- 检索时把成熟技能与留给 trial 技能的探索名额混合曝光。
+- 周期性进化：按适应度晋升、降级、淘汰和固化；反复出现的失败会被分析成新的候选技能（变异）。
+- 增量蒸馏带闸门控制（bank 容量、trial 池饱和度），避免技能池被稀释；retired 墓碑数量有上限，保证 bank 不会无限增长。
+- 与技能一起沉淀的还有 `common_mistakes`（常见错误清单）。
+
+### Agent 核心
 
 - 单轮支持多步工具执行，形成 `model -> tool -> model` 闭环。
 - 支持最多 3 个并发的只读 sub-agent；root agent 统一修改代码，并可等待或主动关闭 worker。
@@ -173,25 +99,25 @@ MiniCode 适合你，如果你想要：
 ## 安装
 
 ```bash
-git clone https://github.com/LiuMengxuan04/MiniCode.git
-cd MiniCode
+git clone https://github.com/besfofyou/MemoryCode.git
+cd MemoryCode
 npm install
 npm run install-local
 ```
 
 安装器会询问模型名称、`ANTHROPIC_BASE_URL` 和 `ANTHROPIC_AUTH_TOKEN`。默认配置保存在：
 
-- `~/.mini-code/settings.json`
-- `~/.mini-code/mcp.json`
+- `~/.memory-code/settings.json`
+- `~/.memory-code/mcp.json`
 
-可通过 `MINI_CODE_HOME` 自定义配置目录，通过 `MINI_CODE_BIN_DIR` 自定义启动器目录。更多安装细节见 [详细使用指南](./USAGE_ZH.md#安装细节)。
+可通过 `MEMORY_CODE_HOME` 自定义配置目录，通过 `MEMORY_CODE_BIN_DIR` 自定义启动器目录。更多安装细节见 [详细使用指南](./USAGE_ZH.md#安装细节)。
 
 ## 快速开始
 
 运行安装后的命令：
 
 ```bash
-minicode
+memorycode
 ```
 
 本地开发模式：
@@ -203,48 +129,27 @@ npm run dev
 离线演示模式：
 
 ```bash
-MINI_CODE_MODEL_MODE=mock npm run dev
+MEMORY_CODE_MODEL_MODE=mock npm run dev
 ```
 
 ## 常用入口
 
 - `/help`：查看交互帮助。
 - `/tools`：查看当前可用工具。
+- `/memory`：查看本轮加载的指令文件与持久记忆健康报告。
 - `/plan`：查看当前内存中的 Todo 清单。
 - `/goal <目标>`、`/goal [status]`、`/goal pause [原因]`、`/goal resume`、`/goal clear`：创建、查看和控制 Goal。
 - `/loop [Nm|Nh] <提示词>`、`/loop`、`/loop stop`：创建、查看和停止重复触发，默认 10 分钟，最短 1 分钟。
 - `/skills`：查看当前可发现的 skills。
 - `/mcp`：查看当前 MCP 连接状态。
 - `/status`：查看会话和上下文状态。
-- `/init`：为当前项目生成 `.mini-code/` 与 `MINI.md` 初始化文件。
-- `/memory`：查看本轮实际加载的分层 memory 文件。
+- `/init`：为当前项目生成 `.memory-code/` 与 `MEMORY.md` 初始化文件。
 - `/model` / `/model <name>`：查看或切换模型。
 - `/resume`：打开会话选择器。
 - `/compact`：手动压缩上下文。
 
-管理命令包括 `minicode mcp ...` 和 `minicode skills ...`，详见 [命令说明](./USAGE_ZH.md#命令)。
+管理命令包括 `memorycode mcp ...` 和 `memorycode skills ...`，详见 [命令说明](./USAGE_ZH.md#命令)。
 
-## 文档导航
-
-- [详细使用指南](./USAGE_ZH.md)
-- [Architecture Overview](./ARCHITECTURE.md)
-- [中文架构说明](./ARCHITECTURE_ZH.md)
-- [中文贡献规范](./CONTRIBUTING_ZH.md)
-- [Contribution Guidelines](./CONTRIBUTING.md)
-- [路线图](./ROADMAP_ZH.md)
-- [Roadmap](./ROADMAP.md)
-- [通过 MiniCode 学习 Claude Code 设计](./CLAUDE_CODE_PATTERNS_ZH.md)
-
-## Star 趋势
-
-<p align="center">
-  <a href="https://star-history.dera.page/#LiuMengxuan04/MiniCode&Date">
-    <img
-      alt="Star History Chart"
-      src="https://star-history.dera.page/svg?repos=LiuMengxuan04/MiniCode&style=landscape1"
-    />
-  </a>
-</p>
 
 ## 开发
 
@@ -253,4 +158,8 @@ npm run check
 npm test
 ```
 
-MiniCode 有意保持小而实用。目标是让整体架构足够清晰、易改造、易扩展。
+MemoryCode 有意保持小而实用。目标是让整体架构足够清晰、易改造、易扩展——尤其是记忆管线。
+
+## 致谢
+
+MemoryCode 基于开源项目 [MiniCode](https://github.com/LiuMengxuan04/MiniCode) 构建，这是由 [Liu Mengxuan](https://github.com/LiuMengxuan04) 发起、社区共同贡献的轻量级类 Claude Code 编码助手（长会话上下文系统、长程规划工作流、分层 memory 基础等均来自上游）。本仓库在其基础上新增的核心内容是知识图谱记忆、事实生命周期与技能生命周期。感谢所有上游作者。

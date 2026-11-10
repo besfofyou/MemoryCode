@@ -266,7 +266,7 @@ export class CogMemExtractor {
 
   /**
    * 概念层写入（对应 CogMem ConceptManager.resolve + indexer 的 Concept 节点创建）：
-   * - 低价值概念（泛称词/测量值/日期/引文）不实例化为节点；
+   * - 低价值概念（/测量值/泛称词日期/引文）不实例化为节点；
    * - 原始写法与归一化名不同时记录为别名；
    * - 旧节点描述是占位符（等于名称/为空）时用新描述刷新并重建向量索引；
    * - 每次命中累计 mention_count（供后续概念合并/排序使用）。
