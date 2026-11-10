@@ -160,6 +160,3 @@ npm test
 
 MemoryCode 有意保持小而实用。目标是让整体架构足够清晰、易改造、易扩展——尤其是记忆管线。
 
-## 致谢
-
-MemoryCode 基于开源项目 [MiniCode](https://github.com/LiuMengxuan04/MiniCode) 构建，这是由 [Liu Mengxuan](https://github.com/LiuMengxuan04) 发起、社区共同贡献的轻量级类 Claude Code 编码助手（长会话上下文系统、长程规划工作流、分层 memory 基础等均来自上游）。本仓库在其基础上新增的核心内容是知识图谱记忆、事实生命周期与技能生命周期。感谢所有上游作者。

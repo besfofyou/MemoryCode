@@ -160,7 +160,3 @@ npm test
 ```
 
 MemoryCode is intentionally small and pragmatic. The goal is to keep the architecture understandable, hackable, and easy to extend — especially the memory pipeline.
-
-## Acknowledgments
-
-MemoryCode is built on top of [MiniCode](https://github.com/LiuMengxuan04/MiniCode), a lightweight Claude Code-like coding assistant created by [Liu Mengxuan](https://github.com/LiuMengxuan04) with contributions from the community (long-session context system, planning workflows, layered memory groundwork, and more). The knowledge-graph memory, fact lifecycle, and skill lifecycle in this repository are the main additions of this fork. Thanks to all upstream authors.
